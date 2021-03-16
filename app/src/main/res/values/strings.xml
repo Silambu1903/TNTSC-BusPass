@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TNSTC BUS PASS</string>
+    <string name="s_no">S.NO</string>
+    <string name="id_no">ID NO</string>
+    <string name="new_old">NEW/OLD</string>
+    <string name="receipt_no">RECEIPT NO</string>
+    <string name="date">DATE</string>
+    <string name="name">NAME</string>
+    <string name="form">FORM</string>
+    <string name="to">TO</string>
+    <string name="bus_fare">BUS FARE</string>
+    <string name="amount">AMOUNT</string>
 </resources>
