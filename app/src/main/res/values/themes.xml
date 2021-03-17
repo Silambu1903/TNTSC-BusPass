@@ -18,6 +18,9 @@
         <item name="fontFamily">@font/google_font</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
         <item name="android:navigationBarColor">?colorSurface</item>
@@ -28,6 +31,8 @@
     <style name="LStyled.ActionMode" parent="@style/Widget.AppCompat.ActionMode">
         <item name="background">@color/colorAccent</item>
     </style>
+
+
 
     <style name="NavigationView">
         <item name="fontFamily">@font/google_font</item>

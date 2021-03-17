@@ -10,4 +10,9 @@
     <string name="to">TO</string>
     <string name="bus_fare">BUS FARE</string>
     <string name="amount">AMOUNT</string>
+    <string name="submit">SUBMIT</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="passentry">PassEntry</string>
+    <string name="exp_del">EXP/DEL</string>
+    <string name="cellnumber">CELL NUMBER</string>
 </resources>
