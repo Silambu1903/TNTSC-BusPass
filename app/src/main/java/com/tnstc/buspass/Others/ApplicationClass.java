@@ -13,6 +13,8 @@ import java.util.Date;
 
 public class ApplicationClass extends Application {
 
+    public static String[] FORM = {"Ambur", "Vellore", "Madhanur","Vaniyambadi", "Palikonda", "Krishnagiri","Thirupathur","Walaja"};
+
 
     public void navigate(FragmentActivity fragAct, int destinationID) {
       Navigation.findNavController((Activity) fragAct, R.id.nav_host_fragment).navigate(destinationID);

@@ -33,10 +33,14 @@ public class PassEntryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mBinding.textView.setText(mAppClass.getCurrentDateTime());
-        init();
+        mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetPassEntryDetails();
+            }
+        });
     }
 
-    private void init() {
-
+    private void GetPassEntryDetails() {
     }
 }

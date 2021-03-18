@@ -238,6 +238,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_submit"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
             android:layout_margin="20dp"
