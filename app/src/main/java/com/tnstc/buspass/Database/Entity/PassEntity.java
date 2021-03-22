@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class PassEntity {
+public class PassEntity  {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sNo")
     public int sno;

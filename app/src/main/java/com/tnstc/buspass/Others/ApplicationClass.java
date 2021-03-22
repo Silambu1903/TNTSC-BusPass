@@ -13,7 +13,9 @@ import java.util.Date;
 
 public class ApplicationClass extends Application {
 
-    public static String[] FORM = {"Ambur", "Vellore", "Madhanur","Vaniyambadi", "Palikonda", "Krishnagiri","Thirupathur","Walaja"};
+    public static String[] FORM_BUS_LIST = {"Ambur", "Vellore", "Madhanur","Vaniyambadi", "Palikonda", "Krishnagiri","Thirupathur","Walaja"};
+    public static String[] NEW_OLD_LIST = {"NEW","OLD"};
+    public static String[] EXP_DEL = {"EXPRESS","DELUXE"};
 
 
     public void navigate(FragmentActivity fragAct, int destinationID) {
