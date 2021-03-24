@@ -18,12 +18,23 @@
         <action
             android:id="@+id/action_dashboardFragment_to_passentry"
             app:destination="@id/passentry" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_passentrylist"
+            app:destination="@id/passentrylist" />
     </fragment>
 
     <fragment
         android:id="@+id/passentry"
         android:name="com.tnstc.buspass.Fragment.PassEntryFragment"
         tools:layout="@layout/passentry"
+        android:label="@string/passentry">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/passentrylist"
+        android:name="com.tnstc.buspass.Fragment.PassEntryListFragment"
+        tools:layout="@layout/pass_entry_list"
         android:label="@string/passentry">
 
     </fragment>
