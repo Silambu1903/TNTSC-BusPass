@@ -1,7 +1,6 @@
 package com.tnstc.buspass.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.Entity.PassEntity;
-import com.tnstc.buspass.Model.PassEntry;
 import com.tnstc.buspass.R;
 
 import java.util.List;
 
 public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> {
 
-    public List<PassEntry> passEntryList;
+    public List<PassEntity> passEntityList;
     private Context mContext;
 
-    public PassEntryAdapter(List<PassEntry> passEntryList, Context mContext) {
-        this.passEntryList = passEntryList;
+    public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList) {
         this.mContext = mContext;
+        this.passEntityList = passEntityList;
     }
+
 
     @NonNull
     @Override
@@ -35,43 +34,42 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
 
     @Override
     public void onBindViewHolder(@NonNull PassEntryAdapter.PassEntryViewHolder holder, int position) {
-        PassEntry passEntry = this.passEntryList.get(position);
-        PassEntity passEntity = passEntry.getPassEntryList();
-        holder.txtSNo.setText(passEntity.sno);
-        holder.txtID.setText(passEntity.iNo);
-        holder.txtRepNo.setText(passEntity.repNo);
-        holder.txtDate.setText(passEntity.date);
-        holder.txtName.setText(passEntity.name);
-        holder.txtForm.setText(passEntity.fromArea);
-        holder.txtTo.setText(passEntity.toArea);
-        holder.txtBusFare.setText(passEntity.busFare);
-        holder.txtAmount.setText(passEntity.amount);
-        holder.txtExpDel.setText(passEntity.expDel);
-        holder.txtCelNo.setText(passEntity.cellNumber);
 
-
+        holder.txtSNo.setText(passEntityList.get(position).sno + "");
+        holder.txtID.setText(passEntityList.get(position).iNo + "");
+        holder.txtRepNo.setText(passEntityList.get(position).repNo + "");
+        holder.txtDate.setText(passEntityList.get(position).date);
+        holder.txtName.setText(passEntityList.get(position).name);
+        holder.txtForm.setText(passEntityList.get(position).fromArea);
+        holder.txtTo.setText(passEntityList.get(position).toArea);
+        holder.txtBusFare.setText(passEntityList.get(position).busFare + "");
+        holder.txtAmount.setText(passEntityList.get(position).amount + "");
+        holder.txtExpDel.setText(passEntityList.get(position).expDel);
+        holder.txtCelNo.setText(passEntityList.get(position).cellNumber);
     }
 
     @Override
     public int getItemCount() {
-        return passEntryList.size();
+        return passEntityList.size();
     }
 
+
     public class PassEntryViewHolder extends RecyclerView.ViewHolder {
-        TextView txtSNo, txtID,txtRepNo,txtDate, txtName,txtForm,txtTo,txtBusFare,txtAmount,txtExpDel,txtCelNo;
+        TextView txtSNo, txtID, txtRepNo, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
+
         public PassEntryViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtSNo = itemView.findViewById(R.id.txtSNo);
-            txtID = itemView.findViewById(R.id.txtIno);
-            txtRepNo = itemView.findViewById(R.id.txtrepno);
-            txtDate = itemView.findViewById(R.id.txtdate);
-            txtName = itemView.findViewById(R.id.txtname);
-            txtForm = itemView.findViewById(R.id.txtform);
-            txtTo = itemView.findViewById(R.id.txtto);
-            txtBusFare = itemView.findViewById(R.id.txtbusfare);
-            txtAmount = itemView.findViewById(R.id.txt_total_amount);
-            txtExpDel = itemView.findViewById(R.id.txt_expdel);
-            txtCelNo = itemView.findViewById(R.id.txt_cellnumber);
+            txtSNo = itemView.findViewById(R.id.item_txtSNo);
+            txtID = itemView.findViewById(R.id.item_txtIno);
+            txtRepNo = itemView.findViewById(R.id.item_txtrepno);
+            txtDate = itemView.findViewById(R.id.item_txtdate);
+            txtName = itemView.findViewById(R.id.item_txtname);
+            txtForm = itemView.findViewById(R.id.item_txtform);
+            txtTo = itemView.findViewById(R.id.item_txtto);
+            txtBusFare = itemView.findViewById(R.id.item_txtbusfare);
+            txtAmount = itemView.findViewById(R.id.item_txttotalamount);
+            txtExpDel = itemView.findViewById(R.id.item_txt_expdel);
+            txtCelNo = itemView.findViewById(R.id.item_txt_cellnumber);
 
         }
     }

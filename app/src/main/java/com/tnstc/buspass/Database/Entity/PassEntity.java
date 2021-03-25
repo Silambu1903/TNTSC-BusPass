@@ -20,6 +20,10 @@ public class PassEntity  {
     @ColumnInfo(name = "newOld")
     public String newOld;
 
+
+    @ColumnInfo(name ="date")
+    public String date;
+
     @ColumnInfo(name = "name")
     public String name;
 
@@ -29,8 +33,6 @@ public class PassEntity  {
     @ColumnInfo(name = "toArea")
     public String toArea;
 
-    @ColumnInfo(name ="date")
-    public String date;
 
     @ColumnInfo(name="busFare")
     public int busFare;
@@ -45,114 +47,20 @@ public class PassEntity  {
     public String cellNumber;
 
 
-    public PassEntity(int sno, int iNo, int repNo, String newOld, String name, String fromArea, String toArea, String date, int busFare, int amount, String expDel, String cellNumber) {
+    public PassEntity(int sno, int iNo, int repNo, String newOld, String date, String name, String fromArea, String toArea, int busFare, int amount, String expDel, String cellNumber) {
         this.sno = sno;
         this.iNo = iNo;
         this.repNo = repNo;
         this.newOld = newOld;
+        this.date = date;
         this.name = name;
         this.fromArea = fromArea;
         this.toArea = toArea;
-        this.date = date;
         this.busFare = busFare;
         this.amount = amount;
         this.expDel = expDel;
         this.cellNumber = cellNumber;
     }
 
-    public int getSno() {
-        return sno;
-    }
 
-    public void setSno(int sno) {
-        this.sno = sno;
-    }
-
-    public int getiNo() {
-        return iNo;
-    }
-
-    public void setiNo(int iNo) {
-        this.iNo = iNo;
-    }
-
-    public int getRepNo() {
-        return repNo;
-    }
-
-    public void setRepNo(int repNo) {
-        this.repNo = repNo;
-    }
-
-    public String getNewOld() {
-        return newOld;
-    }
-
-    public void setNewOld(String newOld) {
-        this.newOld = newOld;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFromArea() {
-        return fromArea;
-    }
-
-    public void setFromArea(String fromArea) {
-        this.fromArea = fromArea;
-    }
-
-    public String getToArea() {
-        return toArea;
-    }
-
-    public void setToArea(String toArea) {
-        this.toArea = toArea;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public int getBusFare() {
-        return busFare;
-    }
-
-    public void setBusFare(int busFare) {
-        this.busFare = busFare;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getExpDel() {
-        return expDel;
-    }
-
-    public void setExpDel(String expDel) {
-        this.expDel = expDel;
-    }
-
-    public String getCellNumber() {
-        return cellNumber;
-    }
-
-    public void setCellNumber(String cellNumber) {
-        this.cellNumber = cellNumber;
-    }
 }

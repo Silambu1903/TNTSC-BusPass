@@ -100,31 +100,11 @@ public class PassEntryFragment extends Fragment {
     }
 
     private void GetPassEntryDetails() {
-        mBinding.teiSno.getText().toString();
-        mBinding.teiIno.getText().toString();
-        mBinding.teiRepno.getText().toString();
-        mBinding.actNewOld.getText().toString();
-        mBinding.textView.getText().toString();
-        mBinding.teiName.getText().toString();
-        mBinding.actForm.getText().toString();
-        mBinding.actTo.getText().toString();
-        mBinding.teiBusFare.getText().toString();
-        mBinding.txtTotalAmount.getText().toString();
-        mBinding.actExpDel.getText().toString();
-        mBinding.teiCellNumber.getText().toString();
-
         PassEntity entry = new PassEntity(Integer.parseInt(mBinding.teiSno.getText().toString()),
-                Integer.parseInt(mBinding.teiIno.getText().toString()),
-                Integer.parseInt(mBinding.teiRepno.getText().toString()),
-                mBinding.actNewOld.getText().toString(),
-                mBinding.textView.getText().toString(),
-                mBinding.teiName.getText().toString(),
-                mBinding.actForm.getText().toString(),
-                mBinding.actTo.getText().toString(),
-                Integer.parseInt(mBinding.teiBusFare.getText().toString()),
-                Integer.parseInt(mBinding.txtTotalAmount.getText().toString()),
-                mBinding.actExpDel.getText().toString(),
-                mBinding.teiCellNumber.getText().toString());
+                Integer.parseInt(mBinding.teiIno.getText().toString()), Integer.parseInt(mBinding.teiRepno.getText().toString()),
+                mBinding.actNewOld.getText().toString(), mBinding.textView.getText().toString(), mBinding.teiName.getText().toString(),
+                mBinding.actForm.getText().toString(), mBinding.actTo.getText().toString(), Integer.parseInt(mBinding.teiBusFare.getText().toString()),
+                        Integer.parseInt(mBinding.txtTotalAmount.getText().toString()),mBinding.actExpDel.getText().toString(),mBinding.teiCellNumber.getText().toString());
         List<PassEntity> entryList = new ArrayList<>();
         entryList.add(entry);
         updatePassEntryToDb(entryList);
