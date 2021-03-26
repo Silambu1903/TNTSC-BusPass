@@ -1,6 +1,7 @@
 package com.tnstc.buspass.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> {
 
     public List<PassEntity> passEntityList;
     private Context mContext;
+    List<Integer> list = new ArrayList<>();
+    private ItemClickListener clickListener;
 
-    public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList) {
+    public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList,ItemClickListener clickListener) {
         this.mContext = mContext;
         this.passEntityList = passEntityList;
+        this.clickListener = clickListener;
     }
 
 
@@ -45,10 +51,10 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtBusFare.setText(passEntityList.get(position).busFare + "");
         holder.txtAmount.setText(passEntityList.get(position).amount + "");
         holder.txtExpDel.setText(passEntityList.get(position).expDel);
-        holder.txtCelNo.setText(passEntityList.get(position).cellNumber);
+        holder.txtCelNo.setText(passEntityList.get(position).amount+"");
+
     }
 
-    @Override
     public int getItemCount() {
         return passEntityList.size();
     }
@@ -71,6 +77,13 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
             txtExpDel = itemView.findViewById(R.id.item_txt_expdel);
             txtCelNo = itemView.findViewById(R.id.item_txt_cellnumber);
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    clickListener.OnItemLongClick(view, getAdapterPosition());
+                    return true;
+                }
+            });
         }
     }
 }

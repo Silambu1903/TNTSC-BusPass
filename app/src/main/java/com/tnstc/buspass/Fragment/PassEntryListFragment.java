@@ -5,9 +5,12 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -27,14 +30,16 @@ import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 import com.tnstc.buspass.databinding.PassEntryListBinding;
 
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassEntryListFragment extends Fragment {
+public class PassEntryListFragment extends Fragment implements ItemClickListener {
     PassEntryListBinding mBinding;
     ApplicationClass mAppClass;
     Context mContext;
@@ -45,6 +50,9 @@ public class PassEntryListFragment extends Fragment {
     GestureDetector detector;
     private float mScaleFactor = 1.f;
     private float mScale = 1f;
+    int txt;
+    private ActionMode actionMode;
+    boolean mMultiSelect = false;
 
 
     @Nullable
@@ -69,9 +77,12 @@ public class PassEntryListFragment extends Fragment {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
         PassDao dao = db.passDao();
         passEntityList = dao.getAllList();
-        passEntryAdapter = new PassEntryAdapter(getContext(), passEntityList);
+        passEntryAdapter = new PassEntryAdapter(getContext(), passEntityList, this);
         mBinding.entryList.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.entryList.setAdapter(passEntryAdapter);
+        txt = dao.getTotalAmount();
+        mBinding.txtTotAmount.setText(txt + "");
+
         pitchZoom();
         mBinding.getRoot().setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -85,6 +96,11 @@ public class PassEntryListFragment extends Fragment {
 
     }
 
+    private void deleteUsers(String... UIDs) {
+        TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
+        PassDao dao = db.passDao();
+        dao.deleteEmployees(UIDs);
+    }
 
     private void pitchZoom() {
         detector = new GestureDetector(getContext(), new GestureListener());
@@ -106,6 +122,44 @@ public class PassEntryListFragment extends Fragment {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void OnItemClick(View v, int pos) {
+
+    }
+
+    @Override
+    public void OnItemLongClick(View v, int pos) {
+
+        passEntityList.remove(pos);
+        passEntryAdapter.notifyDataSetChanged();
+    }
+
+    private void startActionMode(int pos) {
+        ActionMode.Callback passEntryDelete = new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                actionMode = actionMode;
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                Toast.makeText(mContext, "sdsda", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+
+            }
+        };
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
