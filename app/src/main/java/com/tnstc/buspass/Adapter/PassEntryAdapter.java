@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.Entity.PassEntity;
+import com.tnstc.buspass.Model.PassEntry;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.ItemClickListener;
 
@@ -20,11 +21,12 @@ import java.util.List;
 public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> {
 
     public List<PassEntity> passEntityList;
+
     private Context mContext;
     List<Integer> list = new ArrayList<>();
     private ItemClickListener clickListener;
 
-    public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList,ItemClickListener clickListener) {
+    public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList, ItemClickListener clickListener) {
         this.mContext = mContext;
         this.passEntityList = passEntityList;
         this.clickListener = clickListener;
@@ -51,13 +53,15 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtBusFare.setText(passEntityList.get(position).busFare + "");
         holder.txtAmount.setText(passEntityList.get(position).amount + "");
         holder.txtExpDel.setText(passEntityList.get(position).expDel);
-        holder.txtCelNo.setText(passEntityList.get(position).amount+"");
+        holder.txtCelNo.setText(passEntityList.get(position).amount + "");
 
     }
 
     public int getItemCount() {
         return passEntityList.size();
     }
+
+
 
 
     public class PassEntryViewHolder extends RecyclerView.ViewHolder {

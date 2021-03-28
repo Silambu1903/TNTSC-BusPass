@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
@@ -35,6 +36,9 @@ public class PassEntryFragment extends Fragment {
     PassentryBinding mBinding;
     ApplicationClass mAppClass;
     Context mContext;
+    TnstcBusPassDB db;
+    PassDao dao;
+    public List<PassEntity> passEntityList;
 
 
     @Nullable
@@ -49,7 +53,20 @@ public class PassEntryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
+        db = TnstcBusPassDB.getDatabase(mContext);
+        dao = db.passDao();
+        mBinding.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialDatePicker.Builder<Long> builder =
+                        MaterialDatePicker.Builder.datePicker();
+                MaterialDatePicker<Long> picker = builder.build();
+                picker.show(getChildFragmentManager(), picker.toString());
+            }
+        });
+
         mBinding.textView.setText(mAppClass.getCurrentDateTime());
+        initialValueset();
         adapterForAutoComplete();
         totalAmount();
 
@@ -60,6 +77,25 @@ public class PassEntryFragment extends Fragment {
                 GetPassEntryDetails();
             }
         });
+    }
+
+    private void initialValueset() {
+        int sno = dao.lastSno() + 1;
+        mBinding.teiSno.setText(sno + "");
+        int ino = dao.lastIno();
+        if (ino == 0) {
+            mBinding.teiIno.setText(ino + "");
+        } else {
+            ino = dao.lastIno() + 1;
+            mBinding.teiIno.setText(ino + "");
+        }
+        int repNo = dao.lastRepno();
+        if (repNo == 0) {
+            mBinding.teiRepno.setText(repNo + "");
+        } else {
+            repNo = dao.lastRepno() + 1;
+            mBinding.teiRepno.setText(repNo + "");
+        }
     }
 
     private void totalAmount() {
@@ -104,7 +140,7 @@ public class PassEntryFragment extends Fragment {
                 Integer.parseInt(mBinding.teiIno.getText().toString()), Integer.parseInt(mBinding.teiRepno.getText().toString()),
                 mBinding.actNewOld.getText().toString(), mBinding.textView.getText().toString(), mBinding.teiName.getText().toString(),
                 mBinding.actForm.getText().toString(), mBinding.actTo.getText().toString(), Integer.parseInt(mBinding.teiBusFare.getText().toString()),
-                        Integer.parseInt(mBinding.txtTotalAmount.getText().toString()),mBinding.actExpDel.getText().toString(),mBinding.teiCellNumber.getText().toString());
+                Integer.parseInt(mBinding.txtTotalAmount.getText().toString()), mBinding.actExpDel.getText().toString(), mBinding.teiCellNumber.getText().toString());
         List<PassEntity> entryList = new ArrayList<>();
         entryList.add(entry);
         updatePassEntryToDb(entryList);

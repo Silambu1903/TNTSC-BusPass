@@ -7,13 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
-@Database(entities = {PassEntity.class}, version = 2,exportSchema = false)
+@Database(entities = {PassEntity.class}, version = 2)
+@TypeConverters(Converters.class)
 
 public abstract class TnstcBusPassDB extends RoomDatabase {
     public static volatile TnstcBusPassDB INSTANCE;

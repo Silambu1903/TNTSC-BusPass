@@ -4,6 +4,7 @@ import com.tnstc.buspass.Database.Entity.PassEntity;
 
 public class PassEntry {
     PassEntity passEntryList;
+    boolean isSelected;
 
     public PassEntry(PassEntity passEntryList) {
         this.passEntryList = passEntryList;
@@ -13,5 +14,9 @@ public class PassEntry {
         return passEntryList;
     }
 
+
+    public boolean isSelected() {
+        return isSelected;
+    }
 
 }

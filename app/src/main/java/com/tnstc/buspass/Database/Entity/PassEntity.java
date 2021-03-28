@@ -62,5 +62,51 @@ public class PassEntity  {
         this.cellNumber = cellNumber;
     }
 
+    public int getSno() {
+        return sno;
+    }
 
+    public int getiNo() {
+        return iNo;
+    }
+
+    public int getRepNo() {
+        return repNo;
+    }
+
+    public String getNewOld() {
+        return newOld;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFromArea() {
+        return fromArea;
+    }
+
+    public String getToArea() {
+        return toArea;
+    }
+
+    public int getBusFare() {
+        return busFare;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getExpDel() {
+        return expDel;
+    }
+
+    public String getCellNumber() {
+        return cellNumber;
+    }
 }

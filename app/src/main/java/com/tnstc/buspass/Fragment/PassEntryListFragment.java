@@ -37,6 +37,7 @@ import android.view.MotionEvent;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PassEntryListFragment extends Fragment implements ItemClickListener {
@@ -53,6 +54,8 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     int txt;
     private ActionMode actionMode;
     boolean mMultiSelect = false;
+    TnstcBusPassDB db;
+    PassDao dao;
 
 
     @Nullable
@@ -74,14 +77,14 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         mActivity = (BaseActivity) getActivity();
         mActivity.getSupportActionBar().hide();
         passEntityList = new ArrayList<>();
-        TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
-        PassDao dao = db.passDao();
+        db = TnstcBusPassDB.getDatabase(mContext);
+        dao = db.passDao();
         passEntityList = dao.getAllList();
         passEntryAdapter = new PassEntryAdapter(getContext(), passEntityList, this);
         mBinding.entryList.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.entryList.setAdapter(passEntryAdapter);
-        txt = dao.getTotalAmount();
-        mBinding.txtTotAmount.setText(txt + "");
+        totalAndDailyEntry();
+
 
         pitchZoom();
         mBinding.getRoot().setOnTouchListener(new View.OnTouchListener() {
@@ -96,11 +99,17 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
 
     }
 
-    private void deleteUsers(String... UIDs) {
-        TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
-        PassDao dao = db.passDao();
-        dao.deleteEmployees(UIDs);
+    private void totalAndDailyEntry() {
+        txt = dao.getTotalAmount();
+        mBinding.txtTotAmount.setText(txt + "");
+        int dailytxt = dao.getDailyTotalAmount(mAppClass.getCurrentDateTime(),mAppClass.getCurrentDateTime());
+        mBinding.dailtAmt.setText(dailytxt + "");
+        int TotalSales = dao.getTotalSales() ;
+        mBinding.txtToalScalesAm.setText(TotalSales+"");
+        int DailySales = dao.getDailySales(mAppClass.getCurrentDateTime(),mAppClass.getCurrentDateTime()) ;
+        mBinding.txtDailySalesAmount.setText(DailySales+"");
     }
+
 
     private void pitchZoom() {
         detector = new GestureDetector(getContext(), new GestureListener());
@@ -131,9 +140,11 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
 
     @Override
     public void OnItemLongClick(View v, int pos) {
-
-        passEntityList.remove(pos);
+        dao.delete(passEntityList.get(pos));
+        passEntityList.remove(passEntityList.get(pos));
         passEntryAdapter.notifyDataSetChanged();
+
+
     }
 
     private void startActionMode(int pos) {
