@@ -1,16 +1,21 @@
 package com.tnstc.buspass.Adapter;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
+import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Model.PassEntry;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.ItemClickListener;
@@ -46,6 +51,7 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtSNo.setText(passEntityList.get(position).sno + "");
         holder.txtID.setText(passEntityList.get(position).iNo + "");
         holder.txtRepNo.setText(passEntityList.get(position).repNo + "");
+        holder.txtnewOld.setText(passEntityList.get(position).newOld);
         holder.txtDate.setText(passEntityList.get(position).date);
         holder.txtName.setText(passEntityList.get(position).name);
         holder.txtForm.setText(passEntityList.get(position).fromArea);
@@ -55,6 +61,31 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtExpDel.setText(passEntityList.get(position).expDel);
         holder.txtCelNo.setText(passEntityList.get(position).amount + "");
 
+        holder.txtID.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
+                PassDao dao =db.passDao();
+                dao.updateino(Integer.parseInt(holder.txtID.getText().toString()),
+                        Integer.parseInt(holder.txtRepNo.getText().toString()),holder.txtnewOld.getText().toString(),holder.txtDate.getText().toString(),
+                        holder.txtName.getText().toString(),holder.txtForm.getText().toString(),holder.txtTo.getText().toString(),
+                        Integer.parseInt(holder.txtBusFare.getText().toString()), Integer.parseInt(holder.txtAmount.getText().toString()),
+                                holder.txtCelNo.getText().toString(),holder.txtCelNo.getText().toString(),
+                        passEntityList.get(position).getSno());
+
+
+            }
+        });
     }
 
     public int getItemCount() {
@@ -62,16 +93,16 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
     }
 
 
-
-
     public class PassEntryViewHolder extends RecyclerView.ViewHolder {
-        TextView txtSNo, txtID, txtRepNo, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
+        TextView txtSNo;
+        EditText txtID, txtRepNo,txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
 
         public PassEntryViewHolder(@NonNull View itemView) {
             super(itemView);
             txtSNo = itemView.findViewById(R.id.item_txtSNo);
             txtID = itemView.findViewById(R.id.item_txtIno);
             txtRepNo = itemView.findViewById(R.id.item_txtrepno);
+            txtnewOld = itemView.findViewById(R.id.item_txtnewOld);
             txtDate = itemView.findViewById(R.id.item_txtdate);
             txtName = itemView.findViewById(R.id.item_txtname);
             txtForm = itemView.findViewById(R.id.item_txtform);
@@ -88,6 +119,8 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
                     return true;
                 }
             });
+
+
         }
     }
 }

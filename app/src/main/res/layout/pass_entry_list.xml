@@ -99,12 +99,37 @@
 
 
                 <View
-                    android:id="@+id/view5"
+                    android:id="@+id/view4"
                     android:layout_width="0.5dp"
                     android:layout_height="0dp"
                     android:background="@color/colorBlack"
                     app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
                     app:layout_constraintEnd_toEndOf="@+id/item_txtrepno"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/item_txtnewOld"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="NEW/OLD"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/item_txtrepno"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="0.5dp"
+                    android:layout_height="0dp"
+                    android:background="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_txtnewOld"
+                    app:layout_constraintEnd_toEndOf="@+id/item_txtnewOld"
                     app:layout_constraintTop_toTopOf="parent" />
 
 

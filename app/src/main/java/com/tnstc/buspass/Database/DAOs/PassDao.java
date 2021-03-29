@@ -26,7 +26,6 @@ public interface PassDao {
     int getTotalAmount();
 
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(PassEntity... passEntities);
 
@@ -42,13 +41,19 @@ public interface PassDao {
 
 
     @Query("SELECT SUM(amount) FROM passentity WHERE date BETWEEN :startDate AND :endDate")
-    int  getDailyTotalAmount(String startDate, String endDate);
+    int getDailyTotalAmount(String startDate, String endDate);
 
     @Query("SELECT max(sNo) FROM passentity WHERE date BETWEEN :startDate AND :endDate")
-    int  getDailySales(String startDate, String endDate);
+    int getDailySales(String startDate, String endDate);
 
     @Query("SELECT sNo FROM passentity order by 1 desc limit 1 ")
     int getTotalSales();
+
+    @Query("UPDATE passentity SET iNo = :ino ,repno =:repno , newOld =:newOld ,date =:date ," +
+            "name =:name ,formArea = :formarea ,toArea =:toarea,busFare =:busFare ,amount =:amount" +
+            " ,expDel =:expDel, cellNumber =:cellNumber WHERE sNo = :sno")
+    int updateino(int ino, int repno, String newOld, String date, String name,
+                  String formarea, String toarea, int busFare, int amount, String expDel, String cellNumber, int sno);
 
 
     @Update

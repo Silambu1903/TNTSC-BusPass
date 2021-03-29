@@ -3,309 +3,342 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/item_txtSNo"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="S.NO"
-                android:textAlignment="center"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtSNo"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/item_txtSNo"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="S.NO"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtIno"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="ID.NO"
-                android:textAlignment="center"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtSNo"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtIno"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtIno"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="ID.NO"
+            android:imeOptions="actionDone"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtrepno"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="RECEIPT NO"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtIno"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view3"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtIno"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view5"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtrepno"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtrepno"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="RECEIPT NO"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtIno"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtrepno"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtdate"
-                android:layout_width="90dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="DATE"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/view5"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtnewOld"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="NEW/OLD"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtrepno"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view6"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtdate"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/item_txtname"
-                android:layout_width="220dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="NAME"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtdate"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view5"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtnewOld"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtnewOld"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view7"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtname"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtdate"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="DATE"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/view5"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtform"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="FORM"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtname"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view6"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtdate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/item_txtname"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="NAME"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtdate"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view8"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtform"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view7"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtname"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtto"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="TO"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtform"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtform"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="FORM"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtname"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtto"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view8"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtform"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txtbusfare"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="BUSFARE"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtto"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtto"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="TO"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtform"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view10"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txtbusfare"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtto"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txttotalamount"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="AMOUNT"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txtbusfare"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txtbusfare"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="BUSFARE"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtto"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txttotalamount"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/view10"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txtbusfare"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/item_txt_expdel"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="EXP/DEL"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/item_txttotalamount"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txttotalamount"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="AMOUNT"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txtbusfare"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view11"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txt_expdel"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/item_txt_cellnumber"
-                android:layout_width="120dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="CELLNUMBER"
-                android:textColor="@color/colorBlack"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/view11"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txttotalamount"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:id="@+id/view12"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
-                app:layout_constraintEnd_toEndOf="@+id/item_txt_cellnumber"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/item_txt_expdel"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="EXP/DEL"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/item_txttotalamount"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0.5dp"
-                android:background="@color/colorBlack"
-                app:layout_constraintTop_toBottomOf="@id/item_txtSNo"
-                app:layout_constraintEnd_toEndOf="@+id/item_txt_cellnumber"
-                app:layout_constraintStart_toStartOf="@+id/item_txtSNo" />
+        <View
+            android:id="@+id/view11"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txt_expdel"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/item_txt_cellnumber"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:text="CELLNUMBER"
+            android:textColor="@color/colorBlack"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/view11"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
+        <View
+            android:id="@+id/view12"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txtrepno"
+            app:layout_constraintEnd_toEndOf="@+id/item_txt_cellnumber"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="@+id/item_txt_cellnumber"
+            app:layout_constraintStart_toStartOf="@+id/item_txtSNo"
+            app:layout_constraintTop_toBottomOf="@id/item_txtSNo" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>
