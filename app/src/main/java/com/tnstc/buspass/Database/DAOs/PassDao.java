@@ -49,11 +49,39 @@ public interface PassDao {
     @Query("SELECT sNo FROM passentity order by 1 desc limit 1 ")
     int getTotalSales();
 
-    @Query("UPDATE passentity SET iNo = :ino ,repno =:repno , newOld =:newOld ,date =:date ," +
-            "name =:name ,formArea = :formarea ,toArea =:toarea,busFare =:busFare ,amount =:amount" +
-            " ,expDel =:expDel, cellNumber =:cellNumber WHERE sNo = :sno")
-    int updateino(int ino, int repno, String newOld, String date, String name,
-                  String formarea, String toarea, int busFare, int amount, String expDel, String cellNumber, int sno);
+    @Query("UPDATE passentity SET iNo = :ino  WHERE sNo = :sno")
+    int updateino(int ino, int sno);
+
+    @Query("UPDATE passentity SET repno =:repno WHERE sNo = :sno")
+    int updaterRepNo(int repno, int sno);
+
+    @Query("UPDATE passentity SET newOld =:newOld WHERE sNo = :sno")
+    int updateNewOld(String newOld, int sno);
+
+    @Query("UPDATE passentity SET date =:date  WHERE sNo = :sno")
+    int updateDate(String date, int sno);
+
+
+    @Query("UPDATE passentity SET name =:name   WHERE sNo = :sno")
+    int updateName(String name, int sno);
+
+    @Query("UPDATE passentity SET formArea = :formarea  WHERE sNo = :sno")
+    int updatefrom(String formarea, int sno);
+
+    @Query("UPDATE passentity SET toArea =:toarea WHERE sNo = :sno")
+    int updateTo(String toarea, int sno);
+
+    @Query("UPDATE passentity SET busFare =:busFare  WHERE sNo = :sno")
+    int busFare(int busFare, int sno);
+
+    @Query("UPDATE passentity SET amount =:amount  WHERE sNo = :sno")
+    int amount(int amount, int sno);
+
+    @Query("UPDATE passentity SET expDel =:expDel  WHERE sNo = :sno")
+    int expDel(String expDel, int sno);
+
+    @Query("UPDATE passentity SET cellNumber =:cellNumber  WHERE sNo = :sno")
+    int cellNumber(String cellNumber, int sno);
 
 
     @Update

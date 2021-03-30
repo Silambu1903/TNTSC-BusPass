@@ -17,13 +17,15 @@ import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Model.PassEntry;
+import com.tnstc.buspass.Others.MultiTextWatcher;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.ItemClickListener;
+import com.tnstc.buspass.callback.TextWatcherWithInstance;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> {
+public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> implements TextWatcherWithInstance {
 
     public List<PassEntity> passEntityList;
 
@@ -47,7 +49,8 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
 
     @Override
     public void onBindViewHolder(@NonNull PassEntryAdapter.PassEntryViewHolder holder, int position) {
-
+        TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
+        PassDao dao = db.passDao();
         holder.txtSNo.setText(passEntityList.get(position).sno + "");
         holder.txtID.setText(passEntityList.get(position).iNo + "");
         holder.txtRepNo.setText(passEntityList.get(position).repNo + "");
@@ -69,33 +72,227 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtID.getText().toString().equals("")) {
+                    dao.updateino(Integer.parseInt(holder.txtID.getText().toString()),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtRepNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtRepNo.getText().toString().equals("")) {
+                    dao.updaterRepNo(Integer.parseInt(holder.txtRepNo.getText().toString()),
+                            passEntityList.get(position).getSno());
+                }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
-                PassDao dao =db.passDao();
-                dao.updateino(Integer.parseInt(holder.txtID.getText().toString()),
-                        Integer.parseInt(holder.txtRepNo.getText().toString()),holder.txtnewOld.getText().toString(),holder.txtDate.getText().toString(),
-                        holder.txtName.getText().toString(),holder.txtForm.getText().toString(),holder.txtTo.getText().toString(),
-                        Integer.parseInt(holder.txtBusFare.getText().toString()), Integer.parseInt(holder.txtAmount.getText().toString()),
-                                holder.txtCelNo.getText().toString(),holder.txtCelNo.getText().toString(),
-                        passEntityList.get(position).getSno());
-
 
             }
         });
+        holder.txtnewOld.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtnewOld.getText().toString().equals("")) {
+                    dao.updateNewOld(holder.txtnewOld.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtDate.getText().toString().equals("")) {
+                    dao.updateDate(holder.txtDate.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtName.getText().toString().equals("")) {
+                    dao.updateName(holder.txtName.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtForm.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtForm.getText().toString().equals("")) {
+                    dao.updatefrom(holder.txtForm.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtTo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dao.updateTo(holder.txtTo.getText().toString(),
+                        passEntityList.get(position).getSno());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtBusFare.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtBusFare.getText().toString().equals("")) {
+                    dao.busFare(Integer.parseInt(holder.txtBusFare.getText().toString()),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtAmount.getText().toString().equals("")) {
+                    dao.amount(Integer.parseInt(holder.txtAmount.getText().toString()),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtExpDel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!holder.txtExpDel.getText().toString().equals("")) {
+                    dao.expDel(holder.txtExpDel.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.txtCelNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (holder.txtCelNo.getText().toString().equals("")) {
+                    dao.cellNumber(holder.txtCelNo.getText().toString(),
+                            passEntityList.get(position).getSno());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
     }
 
     public int getItemCount() {
         return passEntityList.size();
     }
 
+    @Override
+    public void onTextChanged(EditText editText, PassEntryViewHolder holder, CharSequence s, int start, int before, int count) {
+
+
+    }
+
 
     public class PassEntryViewHolder extends RecyclerView.ViewHolder {
         TextView txtSNo;
-        EditText txtID, txtRepNo,txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
+        EditText txtID, txtRepNo, txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
 
         public PassEntryViewHolder(@NonNull View itemView) {
             super(itemView);

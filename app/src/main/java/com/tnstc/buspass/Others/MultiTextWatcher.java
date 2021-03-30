@@ -4,7 +4,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
-import com.tnstc.buspass.Database.DAOs.TextWatcherWithInstance;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.tnstc.buspass.Adapter.PassEntryAdapter;
+import com.tnstc.buspass.callback.TextWatcherWithInstance;
 
 public class MultiTextWatcher {
     private TextWatcherWithInstance callback;
@@ -14,7 +17,7 @@ public class MultiTextWatcher {
         return this;
     }
 
-    public MultiTextWatcher registerEditText(final EditText editText) {
+    public MultiTextWatcher registerEditText( EditText editText ,PassEntryAdapter.PassEntryViewHolder holder ) {
         editText.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -23,15 +26,19 @@ public class MultiTextWatcher {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                callback.onTextChanged(editText, s, start, before, count);
+                callback.onTextChanged(editText,holder, s, start, before, count);
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
+
             }
 
         });
 
         return this;
     }
+
+
+
 }
