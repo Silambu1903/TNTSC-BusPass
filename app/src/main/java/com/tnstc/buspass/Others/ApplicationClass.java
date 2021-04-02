@@ -13,13 +13,14 @@ import java.util.Date;
 
 public class ApplicationClass extends Application {
 
-    public static String[] FORM_BUS_LIST = {"Ambur", "Vellore", "Madhanur","Vaniyambadi", "Palikonda", "Krishnagiri","Thirupathur","Walaja"};
-    public static String[] NEW_OLD_LIST = {"NEW","OLD"};
-    public static String[] EXP_DEL = {"EXPRESS","DELUXE"};
+    public static String[] FORM_BUS_LIST = {"Ambur", "Vellore", "Madhanur", "Vaniyambadi", "Palikonda", "Krishnagiri", "Thirupathur", "Walaja"};
+    public static String[] NEW_OLD_LIST = {"NEW", "OLD"};
+    public static String[] EXP_DEL = {"EXPRESS", "DELUXE"};
+    public static String[] MONTH = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
 
 
     public void navigate(FragmentActivity fragAct, int destinationID) {
-      Navigation.findNavController((Activity) fragAct, R.id.nav_host_fragment).navigate(destinationID);
+        Navigation.findNavController((Activity) fragAct, R.id.nav_host_fragment).navigate(destinationID);
     }
 
     public void goBack(FragmentActivity activity) {

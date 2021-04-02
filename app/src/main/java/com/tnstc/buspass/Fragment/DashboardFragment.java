@@ -46,6 +46,12 @@ public class DashboardFragment extends Fragment {
                 mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_passentrylist);
             }
         });
+        mBinding.submit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_passmonthwiselist);
+            }
+        });
     }
 
 

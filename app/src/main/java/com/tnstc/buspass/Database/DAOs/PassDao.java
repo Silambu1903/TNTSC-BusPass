@@ -84,6 +84,10 @@ public interface PassDao {
     int cellNumber(String cellNumber, int sno);
 
 
+    @Query("SELECT * FROM passentity where iNo=:idno")
+    List<PassEntity>getIdData(int idno);
+
+
     @Update
     void update(PassEntity passEntity);
 

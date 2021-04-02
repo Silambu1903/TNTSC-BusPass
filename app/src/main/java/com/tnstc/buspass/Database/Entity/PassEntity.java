@@ -46,8 +46,13 @@ public class PassEntity  {
     @ColumnInfo(name = "cellNumber")
     public String cellNumber;
 
+    @ColumnInfo(name="month")
+    public String month;
 
-    public PassEntity(int sno, int iNo, int repNo, String newOld, String date, String name, String fromArea, String toArea, int busFare, int amount, String expDel, String cellNumber) {
+    @ColumnInfo(name = "year")
+    public String year;
+
+    public PassEntity(int sno, int iNo, int repNo, String newOld, String date, String name, String fromArea, String toArea, int busFare, int amount, String expDel, String cellNumber, String month, String year) {
         this.sno = sno;
         this.iNo = iNo;
         this.repNo = repNo;
@@ -60,6 +65,8 @@ public class PassEntity  {
         this.amount = amount;
         this.expDel = expDel;
         this.cellNumber = cellNumber;
+        this.month = month;
+        this.year = year;
     }
 
     public int getSno() {
@@ -108,5 +115,13 @@ public class PassEntity  {
 
     public String getCellNumber() {
         return cellNumber;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public String getYear() {
+        return year;
     }
 }

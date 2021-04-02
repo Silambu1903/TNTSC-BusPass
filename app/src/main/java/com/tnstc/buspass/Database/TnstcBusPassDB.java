@@ -14,7 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
-@Database(entities = {PassEntity.class}, version = 2)
+@Database(entities = {PassEntity.class}, version = 2,exportSchema = false)
 @TypeConverters(Converters.class)
 
 public abstract class TnstcBusPassDB extends RoomDatabase {

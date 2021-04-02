@@ -15,4 +15,6 @@
     <string name="passentry">PassEntry</string>
     <string name="exp_del">EXP/DEL</string>
     <string name="cellnumber">CELL NUMBER</string>
+    <string name="Month">Month</string>
+    <string name="Year">Year</string>
 </resources>

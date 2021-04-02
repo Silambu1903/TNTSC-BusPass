@@ -4,12 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +23,10 @@ import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.databinding.PassentryBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static com.tnstc.buspass.Others.ApplicationClass.EXP_DEL;
@@ -39,6 +40,9 @@ public class PassEntryFragment extends Fragment {
     TnstcBusPassDB db;
     PassDao dao;
     public List<PassEntity> passEntityList;
+    List<PassEntity> getIdList;
+    int currentId;
+    int id;
 
 
     @Nullable
@@ -55,20 +59,25 @@ public class PassEntryFragment extends Fragment {
         mContext = getContext();
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.passDao();
-        mBinding.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MaterialDatePicker.Builder<Long> builder =
-                        MaterialDatePicker.Builder.datePicker();
-                MaterialDatePicker<Long> picker = builder.build();
-                picker.show(getChildFragmentManager(), picker.toString());
-            }
-        });
-
+        mBinding.month.setText((String) android.text.format.DateFormat.format("MMMM", new Date()));
+        mBinding.year.setText(Calendar.getInstance().get(Calendar.YEAR) + "");
         mBinding.textView.setText(mAppClass.getCurrentDateTime());
+        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        materialDateBuilder.setTitleText("SELECT A DATE");
+        materialDateBuilder.setTheme(R.style.Canlder);
+        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+
         initialValueset();
         adapterForAutoComplete();
         totalAmount();
+        getDataFromDb();
+        mBinding.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker.show(getChildFragmentManager(), "MATERIAL_DATE_PICKER");
+
+            }
+        });
 
 
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -79,16 +88,53 @@ public class PassEntryFragment extends Fragment {
         });
     }
 
+    private void getDataFromDb() {
+        mBinding.teiIno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (!mBinding.teiIno.getText().toString().equals("")) {
+                    id = Integer.parseInt(mBinding.teiIno.getText().toString());
+                    getIdList = new ArrayList<>();
+                    getIdList = dao.getIdData(id);
+                    for (int i = 0; i < getIdList.size(); i++) {
+                        currentId = getIdList.get(i).getiNo();
+                        mBinding.teiName.setText(getIdList.get(i).getName());
+                        mBinding.actForm.setText(getIdList.get(i).getFromArea());
+                        mBinding.actTo.setText(getIdList.get(i).getToArea());
+                        mBinding.actNewOld.setText(getIdList.get(i).getNewOld());
+                        mBinding.teiBusFare.setText(getIdList.get(i).getBusFare() + "");
+                        mBinding.actExpDel.setText(getIdList.get(i).getExpDel());
+                        mBinding.teiCellNumber.setText(getIdList.get(i).getCellNumber());
+                    }
+                } else if (mBinding.teiIno.getText().toString().equals("")) {
+                    mBinding.teiName.setText("");
+                    mBinding.actForm.setText("");
+                    mBinding.actTo.setText("");
+                    mBinding.actNewOld.setText("");
+                    mBinding.teiBusFare.setText("");
+                    mBinding.actExpDel.setText("");
+                    mBinding.teiCellNumber.setText("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+
     private void initialValueset() {
         int sno = dao.lastSno() + 1;
         mBinding.teiSno.setText(sno + "");
-        int ino = dao.lastIno();
-        if (ino == 0) {
-            mBinding.teiIno.setText(ino + "");
-        } else {
-            ino = dao.lastIno() + 1;
-            mBinding.teiIno.setText(ino + "");
-        }
         int repNo = dao.lastRepno();
         if (repNo == 0) {
             mBinding.teiRepno.setText(repNo + "");
@@ -140,7 +186,8 @@ public class PassEntryFragment extends Fragment {
                 Integer.parseInt(mBinding.teiIno.getText().toString()), Integer.parseInt(mBinding.teiRepno.getText().toString()),
                 mBinding.actNewOld.getText().toString(), mBinding.textView.getText().toString(), mBinding.teiName.getText().toString(),
                 mBinding.actForm.getText().toString(), mBinding.actTo.getText().toString(), Integer.parseInt(mBinding.teiBusFare.getText().toString()),
-                Integer.parseInt(mBinding.txtTotalAmount.getText().toString()), mBinding.actExpDel.getText().toString(), mBinding.teiCellNumber.getText().toString());
+                Integer.parseInt(mBinding.txtTotalAmount.getText().toString()), mBinding.actExpDel.getText().toString(), mBinding.teiCellNumber.getText().toString()
+                , mBinding.month.getText().toString(), mBinding.year.getText().toString());
         List<PassEntity> entryList = new ArrayList<>();
         entryList.add(entry);
         updatePassEntryToDb(entryList);
