@@ -2,6 +2,7 @@ package com.tnstc.buspass.Others;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +39,6 @@ public class MultiTextWatcher {
 
         return this;
     }
-
 
 
 }

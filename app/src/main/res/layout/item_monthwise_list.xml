@@ -15,12 +15,12 @@
             android:layout_width="0.5dp"
             android:layout_height="0dp"
             android:background="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
+            app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtSNo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_txtSNo"
+            android:id="@+id/item_month_wise_txtSNo"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:background="@null"
@@ -41,8 +41,8 @@
             android:layout_width="0.5dp"
             android:layout_height="0dp"
             android:background="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
-            app:layout_constraintEnd_toEndOf="@+id/item_txtSNo"
+            app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtSNo"
+            app:layout_constraintEnd_toEndOf="@+id/item_month_wise_txtSNo"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -71,7 +71,7 @@
             android:layout_width="0.5dp"
             android:layout_height="0dp"
             android:background="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="@+id/item_txtSNo"
+            app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtSNo"
             app:layout_constraintEnd_toEndOf="@+id/item_month_wise_txtIno"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,7 +163,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_txtname"
+            android:id="@+id/item_month_wise_txtname"
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:imeOptions="actionDone"
@@ -187,7 +187,7 @@
             android:layout_height="0dp"
             android:background="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtrepno"
-            app:layout_constraintEnd_toEndOf="@+id/item_txtname"
+            app:layout_constraintEnd_toEndOf="@+id/item_month_wise_txtname"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -206,7 +206,7 @@
             android:text="FORM"
             android:textColor="@color/colorBlack"
             android:textSize="12dp"
-            app:layout_constraintStart_toEndOf="@+id/item_txtname"
+            app:layout_constraintStart_toEndOf="@+id/item_month_wise_txtname"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -221,7 +221,7 @@
 
 
         <TextView
-            android:id="@+id/item_txtto"
+            android:id="@+id/item_month_wise_txtto"
             android:layout_width="110dp"
             android:layout_height="30dp"
             android:imeOptions="actionDone"
@@ -244,7 +244,7 @@
             android:layout_height="0dp"
             android:background="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtrepno"
-            app:layout_constraintEnd_toEndOf="@+id/item_txtto"
+            app:layout_constraintEnd_toEndOf="@+id/item_month_wise_txtto"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -263,7 +263,7 @@
             android:text="BUSFARE"
             android:textColor="@color/colorBlack"
             android:textSize="12dp"
-            app:layout_constraintStart_toEndOf="@+id/item_txtto"
+            app:layout_constraintStart_toEndOf="@+id/item_month_wise_txtto"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -278,7 +278,7 @@
 
 
         <TextView
-            android:id="@+id/item_txttotalamount"
+            android:id="@+id/item_txt_month_wise_totalamount"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:background="@null"
@@ -301,7 +301,7 @@
             android:layout_height="0dp"
             android:background="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="@+id/item_month_wise_txtrepno"
-            app:layout_constraintEnd_toEndOf="@+id/item_txttotalamount"
+            app:layout_constraintEnd_toEndOf="@+id/item_txt_month_wise_totalamount"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -320,7 +320,7 @@
             android:text="EXP/DEL"
             android:textColor="@color/colorBlack"
             android:textSize="12dp"
-            app:layout_constraintStart_toEndOf="@+id/item_txttotalamount"
+            app:layout_constraintStart_toEndOf="@+id/item_txt_month_wise_totalamount"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -367,8 +367,8 @@
             android:layout_height="0.5dp"
             android:background="@color/colorBlack"
             app:layout_constraintEnd_toEndOf="@+id/item_month_wise_txt_cellnumber"
-            app:layout_constraintStart_toStartOf="@+id/item_txtSNo"
-            app:layout_constraintTop_toBottomOf="@id/item_txtSNo" />
+            app:layout_constraintStart_toStartOf="@+id/item_month_wise_txtSNo"
+            app:layout_constraintTop_toBottomOf="@id/item_month_wise_txtSNo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

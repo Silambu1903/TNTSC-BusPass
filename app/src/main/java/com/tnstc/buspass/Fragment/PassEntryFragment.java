@@ -41,7 +41,6 @@ public class PassEntryFragment extends Fragment {
     PassDao dao;
     public List<PassEntity> passEntityList;
     List<PassEntity> getIdList;
-    int currentId;
     int id;
 
 
@@ -83,7 +82,10 @@ public class PassEntryFragment extends Fragment {
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetPassEntryDetails();
+                if (validation()){
+                    GetPassEntryDetails();
+                }
+
             }
         });
     }
@@ -104,7 +106,6 @@ public class PassEntryFragment extends Fragment {
                     getIdList = new ArrayList<>();
                     getIdList = dao.getIdData(id);
                     for (int i = 0; i < getIdList.size(); i++) {
-                        currentId = getIdList.get(i).getiNo();
                         mBinding.teiName.setText(getIdList.get(i).getName());
                         mBinding.actForm.setText(getIdList.get(i).getFromArea());
                         mBinding.actTo.setText(getIdList.get(i).getToArea());
@@ -198,5 +199,50 @@ public class PassEntryFragment extends Fragment {
         PassDao dao = db.passDao();
         dao.insert(entryList.toArray(new PassEntity[0]));
         Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean validation() {
+        if (mBinding.teiSno.getText().toString().equals("")) {
+            mBinding.teiSno.requestFocus();
+            mBinding.teiSno.setError("Sno is empty");
+            return false;
+        }  else if (mBinding.teiIno.getText().toString().equals("")) {
+            mBinding.teiIno.requestFocus();
+            mBinding.teiIno.setError("Idno is empty");
+            return false;
+        } else if (mBinding.teiRepno.getText().toString().equals("")) {
+            mBinding.teiRepno.requestFocus();
+            mBinding.teiRepno.setError("Repno is empty");
+            return false;
+        } else if (mBinding.actNewOld.getText().toString().equals("")) {
+            mBinding.teiRepno.requestFocus();
+            mBinding.teiRepno.setError("NewOld is empty");
+            return false;
+        } else if (mBinding.teiName.getText().toString().equals("")) {
+            mBinding.teiName.requestFocus();
+            mBinding.teiName.setError("Name is empty");
+            return false;
+        } else if (mBinding.actForm.getText().toString().equals("")) {
+            mBinding.actForm.requestFocus();
+            mBinding.actForm.setError("Form is empty");
+            return false;
+        } else if (mBinding.actTo.getText().toString().equals("")) {
+            mBinding.actTo.requestFocus();
+            mBinding.actTo.setError("To is empty");
+            return false;
+        } else if (mBinding.teiBusFare.getText().toString().equals("")) {
+            mBinding.teiBusFare.requestFocus();
+            mBinding.teiBusFare.setError("BusFare is empty");
+            return false;
+        }  else if (mBinding.actExpDel.getText().toString().equals("")) {
+            mBinding.actExpDel.requestFocus();
+            mBinding.actExpDel.setError("ExpDel is empty");
+            return false;
+        } else if (mBinding.teiCellNumber.getText().toString().equals("")) {
+            mBinding.teiCellNumber.requestFocus();
+            mBinding.teiCellNumber.setError("CellNumber is empty");
+            return false;
+        }
+        return true;
     }
 }

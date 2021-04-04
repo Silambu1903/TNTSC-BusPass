@@ -449,7 +449,7 @@
                     android:textColor="@color/colorBlack"
                     app:layout_constraintBottom_toBottomOf="@+id/txt_tot"
                     app:layout_constraintStart_toEndOf="@+id/daily_txt"
-                    app:layout_constraintTop_toTopOf="@+id/txt_tot" />-
+                    app:layout_constraintTop_toTopOf="@+id/txt_tot" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

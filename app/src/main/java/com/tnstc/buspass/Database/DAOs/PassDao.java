@@ -43,10 +43,10 @@ public interface PassDao {
     @Query("SELECT SUM(amount) FROM passentity WHERE date BETWEEN :startDate AND :endDate")
     int getDailyTotalAmount(String startDate, String endDate);
 
-    @Query("SELECT max(sNo) FROM passentity WHERE date BETWEEN :startDate AND :endDate")
+    @Query("SELECT COUNT(sNo) FROM passentity WHERE date BETWEEN :startDate AND :endDate")
     int getDailySales(String startDate, String endDate);
 
-    @Query("SELECT sNo FROM passentity order by 1 desc limit 1 ")
+    @Query("SELECT COUNT(sNo) FROM passentity order by 1 desc limit 1 ")
     int getTotalSales();
 
     @Query("UPDATE passentity SET iNo = :ino  WHERE sNo = :sno")
@@ -85,8 +85,22 @@ public interface PassDao {
 
 
     @Query("SELECT * FROM passentity where iNo=:idno")
-    List<PassEntity>getIdData(int idno);
+    List<PassEntity> getIdData(int idno);
 
+    @Query("SELECT *FROM passentity WHERE month=:monthwise and year=:yearwise")
+    List<PassEntity> getMonthWise(String monthwise, String yearwise);
+
+    @Query("SELECT SUM(amount) FROM passentity WHERE month=:monthwise and year=:yearwise")
+    int monthWiseTotal(String monthwise,String yearwise );
+
+    @Query("SELECT COUNT(sNo) FROM passentity WHERE month=:monthwise and year=:yearwise")
+    int getMonthWiseTotalSales(String monthwise,String yearwise);
+
+    @Query("SELECT   year FROM passentity")
+    List<String> getYear();
+
+    @Query("SELECT   month FROM passentity")
+    List<String> getMonth();
 
     @Update
     void update(PassEntity passEntity);
