@@ -25,12 +25,11 @@ import com.tnstc.buspass.callback.TextWatcherWithInstance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> implements TextWatcherWithInstance {
+public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder>  {
 
     public List<PassEntity> passEntityList;
 
     private Context mContext;
-    List<Integer> list = new ArrayList<>();
     private ItemClickListener clickListener;
 
     public PassEntryAdapter(Context mContext, List<PassEntity> passEntityList, ItemClickListener clickListener) {
@@ -276,17 +275,10 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
             }
         });
 
-
     }
 
     public int getItemCount() {
         return passEntityList.size();
-    }
-
-    @Override
-    public void onTextChanged(EditText editText, PassEntryViewHolder holder, CharSequence s, int start, int before, int count) {
-
-
     }
 
 

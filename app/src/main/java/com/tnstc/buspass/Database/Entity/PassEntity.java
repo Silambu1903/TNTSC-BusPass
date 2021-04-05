@@ -6,7 +6,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class PassEntity  {
+public class PassEntity {
+
+
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sNo")
     public int sno;
@@ -21,24 +24,24 @@ public class PassEntity  {
     public String newOld;
 
 
-    @ColumnInfo(name ="date")
+    @ColumnInfo(name = "date")
     public String date;
 
     @ColumnInfo(name = "name")
     public String name;
 
-    @ColumnInfo(name="formArea")
-    public  String fromArea;
+    @ColumnInfo(name = "formArea")
+    public String fromArea;
 
     @ColumnInfo(name = "toArea")
     public String toArea;
 
 
-    @ColumnInfo(name="busFare")
+    @ColumnInfo(name = "busFare")
     public int busFare;
 
     @ColumnInfo(name = "amount")
-    public  int amount;
+    public int amount;
 
     @ColumnInfo(name = "expDel")
     public String expDel;
@@ -46,7 +49,7 @@ public class PassEntity  {
     @ColumnInfo(name = "cellNumber")
     public String cellNumber;
 
-    @ColumnInfo(name="month")
+    @ColumnInfo(name = "month")
     public String month;
 
     @ColumnInfo(name = "year")
@@ -68,6 +71,10 @@ public class PassEntity  {
         this.month = month;
         this.year = year;
     }
+
+
+
+
 
     public int getSno() {
         return sno;

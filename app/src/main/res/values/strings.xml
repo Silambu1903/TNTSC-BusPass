@@ -16,5 +16,13 @@
     <string name="exp_del">EXP/DEL</string>
     <string name="cellnumber">CELL NUMBER</string>
     <string name="Month">Month</string>
+    <string name="selectAll">Select all</string>
+    <string name="generateQr">Generate QR</string>
+    <string name="selected">\" selected\"</string>
+    <string name="deselectAll">Deselect all</string>
+    <string name="areYouSureWantToDelete">Are you sure want to delete ?</string>
+    <string name="no">NO</string>
+    <string name="selectItemsToDelete">Select items to delete</string>
     <string name="Year">Year</string>
+    <string name="delete">Delete</string>
 </resources>
