@@ -2,10 +2,14 @@ package com.tnstc.buspass.Others;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.Color;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.tnstc.buspass.R;
 
 import java.text.SimpleDateFormat;
@@ -31,5 +35,12 @@ public class ApplicationClass extends Application {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Date date = new Date();
         return simpleDateFormat.format(date);
+    }
+
+    public void showSnackBar(Context context, String message) {
+        Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.root), message, Snackbar.LENGTH_SHORT);
+        TextView tv = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
+        snackbar.show();
     }
 }

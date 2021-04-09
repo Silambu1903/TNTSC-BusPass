@@ -1,13 +1,18 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -25,6 +30,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.PassEntryAdapter;
 import com.tnstc.buspass.Database.DAOs.PassDao;
@@ -37,13 +43,19 @@ import com.tnstc.buspass.databinding.PassEntryListBinding;
 
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -57,6 +69,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static org.apache.poi.hssf.usermodel.HSSFFont.FONT_ARIAL;
 
 public class PassEntryListFragment extends Fragment implements ItemClickListener {
     PassEntryListBinding mBinding;
@@ -90,7 +104,7 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
-
+        setHasOptionsMenu(true);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
@@ -105,7 +119,6 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         mBinding.entryList.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.entryList.setAdapter(passEntryAdapter);
         totalAndDailyEntry();
-        // workbook object
 
         pitchZoom();
         mBinding.getRoot().setOnTouchListener(new View.OnTouchListener() {
@@ -116,27 +129,63 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
                 return detector.onTouchEvent(event);
             }
         });
-        xl();
+
 
     }
 
-    private void xl() {
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.users_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_download) {
+            excelWorkBookWrite();
+        }
+        if (item.getItemId() == R.id.action_open) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+                    +  File.separator + "TNSTCBusPass" + File.separator);
+            intent.setDataAndType(uri, "*/*");
+            startActivity(Intent.createChooser(intent, "TNSTCBusPass"));
+        } else {
+            BaseActivity activity = (BaseActivity) getActivity();
+            activity.onSupportNavigateUp();
+        }
+        return true;
+    }
+
+    private void excelWorkBookWrite() {
         HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet firstSheet = workbook.createSheet("Sheet");
+        HSSFSheet firstSheet = workbook.createSheet(currentMonth);
         firstSheet.setFitToPage(true);
         HSSFRow row = firstSheet.createRow(0);
         HSSFCell cell1 = row.createCell(0);
+        firstSheet.setColumnWidth(0, 25 * 60);
         HSSFCell cell2 = row.createCell(1);
+        firstSheet.setColumnWidth(1, 25 * 60);
         HSSFCell cell3 = row.createCell(2);
+        firstSheet.setColumnWidth(2, 25 * 70);
         HSSFCell cell4 = row.createCell(3);
+        firstSheet.setColumnWidth(3, 25 * 100);
         HSSFCell cell5 = row.createCell(4);
+        firstSheet.setColumnWidth(4, 25 * 100);
         HSSFCell cell6 = row.createCell(5);
+        firstSheet.setColumnWidth(5, 25 * 216);
         HSSFCell cell7 = row.createCell(6);
+        firstSheet.setColumnWidth(6, 25 * 100);
         HSSFCell cell8 = row.createCell(7);
+        firstSheet.setColumnWidth(7, 25 * 100);
         HSSFCell cell9 = row.createCell(8);
+        firstSheet.setColumnWidth(8, 25 * 100);
         HSSFCell cell10 = row.createCell(9);
+        firstSheet.setColumnWidth(9, 25 * 100);
         HSSFCell cell11 = row.createCell(10);
+        firstSheet.setColumnWidth(10, 25 * 100);
         HSSFCell cell12 = row.createCell(11);
+        firstSheet.setColumnWidth(11, 25 * 130);
         cell1.setCellValue(new HSSFRichTextString("S.NO"));
         cell2.setCellValue(new HSSFRichTextString("ID.NO"));
         cell3.setCellValue(new HSSFRichTextString("REP NO"));
@@ -149,8 +198,8 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         cell10.setCellValue(new HSSFRichTextString("AMOUNT"));
         cell11.setCellValue(new HSSFRichTextString("EXP/DEL"));
         cell12.setCellValue(new HSSFRichTextString("CELLNUMBER"));
-        for (int i=0; i<passEntityList.size(); i++){
-            HSSFRow rowA = firstSheet.createRow(i+1);
+        for (int i = 0; i < passEntityList.size(); i++) {
+            HSSFRow rowA = firstSheet.createRow(i + 1);
             rowA.createCell(0).setCellValue(passEntityList.get(i).getSno());
             rowA.createCell(1).setCellValue(passEntityList.get(i).getiNo());
             rowA.createCell(2).setCellValue(passEntityList.get(i).getRepNo());
@@ -165,13 +214,15 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             rowA.createCell(11).setCellValue(passEntityList.get(i).getCellNumber());
 
         }
-            FileOutputStream fos = null;
+        FileOutputStream fos = null;
         try {
-            String str_path = Environment.getExternalStorageDirectory().toString();
+            File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "TNSTCBusPass");
             File file;
-            file = new File(str_path, "Pass" + ".xls");
+            file = new File(mediaStorageDir + File.separator, "TNSTCBusPass" + currentMonth + currentYear + ".xls");
             fos = new FileOutputStream(file);
             workbook.write(fos);
+            mAppClass.showSnackBar(getContext(), "Excel Sheet Download Successfully");
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

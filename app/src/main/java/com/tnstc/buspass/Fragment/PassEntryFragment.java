@@ -56,6 +56,7 @@ public class PassEntryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
+
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.passDao();
         mBinding.month.setText((String) android.text.format.DateFormat.format("MMMM", new Date()));
