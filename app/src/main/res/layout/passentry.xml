@@ -123,21 +123,21 @@
                 android:hint="@string/new_old" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/background_txt"
-            android:drawableRight="@drawable/ic_calendar_interface_symbol_tool"
-            android:gravity="center"
-            android:hint="@string/date"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/til_new_old"
-            app:layout_constraintEnd_toEndOf="@id/til_repno"
-            app:layout_constraintStart_toEndOf="@+id/til_new_old"
-            app:layout_constraintTop_toTopOf="@id/til_new_old" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_txt"
+                android:drawableRight="@drawable/ic_calendar_interface_symbol_tool"
+                android:gravity="center"
+                android:hint="@string/date"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/til_new_old"
+                app:layout_constraintEnd_toEndOf="@id/til_repno"
+                app:layout_constraintStart_toEndOf="@+id/til_new_old"
+                app:layout_constraintTop_toTopOf="@id/til_new_old" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_name"

@@ -24,6 +24,12 @@
         <action
             android:id="@+id/action_dashboardFragment_to_passmonthwiselist"
             app:destination="@id/passmonthwiselist" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_mstsctentry"
+            app:destination="@id/mstsctentry" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_sctentry"
+            app:destination="@id/sctentry" />
     </fragment>
 
     <fragment
@@ -50,5 +56,23 @@
         android:label="@string/passentry">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/mstsctentry"
+        android:name="com.tnstc.buspass.Fragment.MstSctFragment"
+        tools:layout="@layout/mst_sct_entry"
+        android:label="@string/passentry">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/sctentry"
+        android:name="com.tnstc.buspass.Fragment.SctFragment"
+        tools:layout="@layout/sct_fragment"
+        android:label="@string/passentry">
+
+    </fragment>
+
+
 
 </navigation>

@@ -8,6 +8,7 @@ import androidx.room.TypeConverter;
 import androidx.room.Update;
 import androidx.room.Dao;
 
+import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
 import java.text.DateFormat;
@@ -28,6 +29,8 @@ public interface PassDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(PassEntity... passEntities);
+
+
 
     @Query("SELECT* FROM passentity WHERE sNo=(SELECT max(sNo)  FROM passentity)")
     int lastSno();
@@ -81,7 +84,7 @@ public interface PassDao {
     int expDel(String expDel, int sno);
 
     @Query("UPDATE passentity SET cellNumber =:cellNumber  WHERE sNo = :sno")
-    int cellNumber (String cellNumber, int sno);
+    int cellNumber(String cellNumber, int sno);
 
 
     @Query("SELECT * FROM passentity where iNo=:idno")
@@ -91,10 +94,10 @@ public interface PassDao {
     List<PassEntity> getMonthWise(String monthwise, String yearwise);
 
     @Query("SELECT SUM(amount) FROM passentity WHERE month=:monthwise and year=:yearwise")
-    int monthWiseTotal(String monthwise,String yearwise );
+    int monthWiseTotal(String monthwise, String yearwise);
 
     @Query("SELECT COUNT(sNo) FROM passentity WHERE month=:monthwise and year=:yearwise")
-    int getMonthWiseTotalSales(String monthwise,String yearwise);
+    int getMonthWiseTotalSales(String monthwise, String yearwise);
 
     @Query("SELECT *FROM passentity WHERE month=:monthwise and year=:yearwise")
     List<PassEntity> currentMonth(String monthwise, String yearwise);

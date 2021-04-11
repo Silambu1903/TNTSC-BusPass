@@ -52,6 +52,20 @@ public class DashboardFragment extends Fragment {
                 mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_passmonthwiselist);
             }
         });
+
+        mBinding.submit4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_mstsctentry);
+            }
+        });
+
+        mBinding.submit5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_sctentry);
+            }
+        });
     }
 
 

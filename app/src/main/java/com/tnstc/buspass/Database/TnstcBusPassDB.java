@@ -11,10 +11,12 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.tnstc.buspass.Database.DAOs.MstDao;
 import com.tnstc.buspass.Database.DAOs.PassDao;
+import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
-@Database(entities = {PassEntity.class}, version = 2,exportSchema = false)
+@Database(entities = {PassEntity.class, MstEntity.class}, version = 2,exportSchema = false)
 @TypeConverters(Converters.class)
 
 public abstract class TnstcBusPassDB extends RoomDatabase {
@@ -23,6 +25,7 @@ public abstract class TnstcBusPassDB extends RoomDatabase {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE PassEntity ADD DEPARMENT TEXT");
+
         }
     };
 
@@ -43,5 +46,7 @@ public abstract class TnstcBusPassDB extends RoomDatabase {
     }
 
     public abstract PassDao passDao();
+
+    public abstract MstDao mstDao();
 
 }
