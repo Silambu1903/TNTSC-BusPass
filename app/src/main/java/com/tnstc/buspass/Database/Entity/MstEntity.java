@@ -4,11 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(primaryKeys = {"card","sno"})
 public class MstEntity {
 
-    @PrimaryKey
-    public int sec;
+    @ColumnInfo(name = "sno")
+    public long sec;
+
     @ColumnInfo(name = "card")
     public int card;
 
@@ -30,11 +31,13 @@ public class MstEntity {
     @ColumnInfo(name = "year")
     public String year;
 
+    @ColumnInfo(name = "total")
+    public int total;
 
     @ColumnInfo(name = "date")
     public String date;
 
-    public MstEntity(int sec, int card, int spare, String key, int opening, int closing, String month, String year, String date) {
+    public MstEntity(long sec, int card, int spare, String key, int opening, int closing, String month, String year, int total, String date) {
         this.sec = sec;
         this.card = card;
         this.spare = spare;
@@ -43,14 +46,15 @@ public class MstEntity {
         this.closing = closing;
         this.month = month;
         this.year = year;
+        this.total = total;
         this.date = date;
     }
 
-    public int getSec() {
+    public long getSec() {
         return sec;
     }
 
-    public void setSec(int sec) {
+    public void setSec(long sec) {
         this.sec = sec;
     }
 
@@ -108,6 +112,14 @@ public class MstEntity {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public String getDate() {

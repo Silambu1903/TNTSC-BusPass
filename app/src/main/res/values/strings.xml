@@ -26,10 +26,6 @@
     <string name="Year">Year</string>
     <string name="delete">Delete</string>
     <string name="cardvalue">CARD</string>
-    <string name="spare">SPARE</string>
-    <string name="key">KEY</string>
-    <string name="opening_no">OPENING NO</string>
-    <string name="closing_no">CLOSING NO</string>
     <string name="_280">280</string>
     <string name="_240">240</string>
     <string name="_200">200</string>
@@ -55,4 +51,10 @@
     <string name="_720">720</string>
     <string name="_680">680</string>
     <string name="_760">760</string>
+    <string name="card">CARD</string>
+    <string name="key">KEY</string>
+    <string name="spare">SPARE</string>
+    <string name="opening_no">OPENING NO</string>
+    <string name="closing_no">CLOSING NO</string>
+    <string name="totalcard">TOTALCARD</string>
 </resources>

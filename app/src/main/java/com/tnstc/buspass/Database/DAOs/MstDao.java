@@ -8,6 +8,6 @@ import com.tnstc.buspass.Database.Entity.MstEntity;
 
 @Dao
 public interface MstDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMstEntry(MstEntity... MstEntity);
 }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,18 +74,11 @@ public class MstSctFragment extends Fragment {
     }
 
     private void MstEntry() {
-        Calendar now = Calendar.getInstance();
-        int year = now.get(Calendar.YEAR)+now.get(Calendar.MONTH) + 1;
-        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
-        int day = now.get(Calendar.DAY_OF_MONTH);
-        int hour = now.get(Calendar.HOUR_OF_DAY);
-        int minute = now.get(Calendar.MINUTE);
-        int second = now.get(Calendar.SECOND);
-        int sec=year+month+day+hour+minute+second+second;
+
+        long Date = Long.valueOf(new SimpleDateFormat("ddMMyyyy").format(new Date()));
         String monthMst = mBinding.monthMst.getText().toString();
         String yearMst = mBinding.yearMst.getText().toString();
-        String dateMst = mBinding.date.getText().toString();
-
+        String dateMst = mAppClass.getCurrentDateTime();
         spare200 = preferences.getInt("spare200", 0);
         spare240 = preferences.getInt("spare240", 0);
         spare280 = preferences.getInt("spare280", 0);
@@ -116,54 +110,144 @@ public class MstSctFragment extends Fragment {
         key720 = preferences.getString("key720", "");
         key760 = preferences.getString("key760", "");
 
+        int TotalCard200 = Integer.parseInt(mBinding.teiClosing.getText().toString()) - Integer.parseInt(mBinding.teiOpening.getText().toString());
+        if (TotalCard200 == 0) {
+            TotalCard200 = 1;
+        } else if (TotalCard200 == -Integer.parseInt(mBinding.teiOpening.getText().toString())) {
+            TotalCard200 = 0;
+        }
+        int TotalCard240 = Integer.parseInt(mBinding.teiClosing240.getText().toString()) - Integer.parseInt(mBinding.teiOpening240.getText().toString());
+        if (TotalCard240 == 0) {
+            TotalCard240 = 1;
+        } else if (TotalCard240 == -Integer.parseInt(mBinding.teiOpening240.getText().toString())) {
+            TotalCard240 = 0;
+        }
+        int TotalCard280 = Integer.parseInt(mBinding.teiClosing280.getText().toString()) - Integer.parseInt(mBinding.teiOpening280.getText().toString());
+        if (TotalCard280 == 0) {
+            TotalCard280 = 1;
+        } else if (TotalCard280 == -Integer.parseInt(mBinding.teiOpening280.getText().toString())) {
+            TotalCard280 = 0;
+        }
+        int TotalCard320 = Integer.parseInt(mBinding.teiClosing320.getText().toString()) - Integer.parseInt(mBinding.teiOpening320.getText().toString());
+        if (TotalCard320 == 0) {
+            TotalCard320 = 1;
+        } else if (TotalCard320 == -Integer.parseInt(mBinding.teiOpening320.getText().toString())) {
+            TotalCard320 = 0;
+        }
+        int TotalCard360 = Integer.parseInt(mBinding.teiClosing360.getText().toString()) - Integer.parseInt(mBinding.teiOpening360.getText().toString());
+        if (TotalCard360 == 0) {
+            TotalCard360 = 1;
+        } else if (TotalCard360 == -Integer.parseInt(mBinding.teiOpening360.getText().toString())) {
+            TotalCard360 = 0;
+        }
+        int TotalCard400 = Integer.parseInt(mBinding.teiClosing400.getText().toString()) - Integer.parseInt(mBinding.teiOpening400.getText().toString());
+        if (TotalCard400 == 0) {
+            TotalCard400 = 1;
+        } else if (TotalCard400 == -Integer.parseInt(mBinding.teiOpening400.getText().toString())) {
+            TotalCard400 = 0;
+        }
+        int TotalCard440 = Integer.parseInt(mBinding.teiClosing440.getText().toString()) - Integer.parseInt(mBinding.teiOpening440.getText().toString());
+        if (TotalCard440 == 0) {
+            TotalCard440 = 1;
+        } else if (TotalCard440 == -Integer.parseInt(mBinding.teiOpening440.getText().toString())) {
+            TotalCard440 = 0;
+        }
+        int TotalCard480 = Integer.parseInt(mBinding.teiClosing480.getText().toString()) - Integer.parseInt(mBinding.teiOpening480.getText().toString());
+        if (TotalCard480 == 0) {
+            TotalCard480 = 1;
+        } else if (TotalCard480 == -Integer.parseInt(mBinding.teiOpening480.getText().toString())) {
+            TotalCard480 = 0;
+        }
+        int TotalCard520 = Integer.parseInt(mBinding.teiClosing520.getText().toString()) - Integer.parseInt(mBinding.teiOpening520.getText().toString());
+        if (TotalCard520 == 0) {
+            TotalCard520 = 1;
+        } else if (TotalCard520 == -Integer.parseInt(mBinding.teiOpening520.getText().toString())) {
+            TotalCard520 = 0;
+        }
+        int TotalCard560 = Integer.parseInt(mBinding.teiClosing560.getText().toString()) - Integer.parseInt(mBinding.teiOpening560.getText().toString());
+        if (TotalCard560 == 0) {
+            TotalCard560 = 1;
+        } else if (TotalCard560 == -Integer.parseInt(mBinding.teiOpening560.getText().toString())) {
+            TotalCard560 = 0;
+        }
+        int TotalCard600 = Integer.parseInt(mBinding.teiClosing600.getText().toString()) - Integer.parseInt(mBinding.teiOpening600.getText().toString());
+        if (TotalCard600 == 0) {
+            TotalCard600 = 1;
+        } else if (TotalCard600 == -Integer.parseInt(mBinding.teiOpening600.getText().toString())) {
+            TotalCard600 = 0;
+        }
+        int TotalCard640 = Integer.parseInt(mBinding.teiClosing640.getText().toString()) - Integer.parseInt(mBinding.teiOpening640.getText().toString());
+        if (TotalCard640 == 0) {
+            TotalCard640 = 1;
+        } else if (TotalCard640 == -Integer.parseInt(mBinding.teiOpening640.getText().toString())) {
+            TotalCard640 = 0;
+        }
+        int TotalCard680 = Integer.parseInt(mBinding.teiClosing680.getText().toString()) - Integer.parseInt(mBinding.teiOpening680.getText().toString());
+        if (TotalCard680 == 0) {
+            TotalCard680 = 1;
+        } else if (TotalCard680 == -Integer.parseInt(mBinding.teiOpening680.getText().toString())) {
+            TotalCard680 = 0;
+        }
+        int TotalCard720 = Integer.parseInt(mBinding.teiClosing720.getText().toString()) - Integer.parseInt(mBinding.teiOpening720.getText().toString());
+        if (TotalCard720 == 0) {
+            TotalCard720 = 1;
+        } else if (TotalCard720 == -Integer.parseInt(mBinding.teiOpening720.getText().toString())) {
+            TotalCard720 = 0;
+        }
+        int TotalCard760 = Integer.parseInt(mBinding.teiClosing760.getText().toString()) - Integer.parseInt(mBinding.teiOpening760.getText().toString());
+        if (TotalCard760 == 0) {
+            TotalCard760 = 1;
+        } else if (TotalCard760 == -Integer.parseInt(mBinding.teiOpening760.getText().toString())) {
+            TotalCard760 = 0;
+        }
 
-        MstEntity entity200 = new MstEntity(sec,Integer.parseInt(mBinding.teiCardValue.getText().toString()), spare200, key200,
-                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, dateMst);
+        MstEntity entity200 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue.getText().toString()), spare200, key200,
+                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, TotalCard200,dateMst);
 
-      /*  MstEntity entity240 = new MstEntity(Integer.parseInt(mBinding.teiCardValue240.getText().toString()), spare240, key240,
-                Integer.parseInt(mBinding.teiOpening240.getText().toString()), Integer.parseInt(mBinding.teiClosing240.getText().toString()));
+        MstEntity entity240 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue240.getText().toString()), spare240, key240,
+                Integer.parseInt(mBinding.teiOpening240.getText().toString()), Integer.parseInt(mBinding.teiClosing240.getText().toString()), monthMst, yearMst, TotalCard240,dateMst);
 
-        MstEntity entity280 = new MstEntity(Integer.parseInt(mBinding.teiCardValue280.getText().toString()), spare280, key280,
-                Integer.parseInt(mBinding.teiOpening280.getText().toString()), Integer.parseInt(mBinding.teiClosing280.getText().toString()));
+        MstEntity entity280 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue280.getText().toString()), spare280, key280,
+                Integer.parseInt(mBinding.teiOpening280.getText().toString()), Integer.parseInt(mBinding.teiClosing280.getText().toString()), monthMst, yearMst, TotalCard280,dateMst);
 
-        MstEntity entity320 = new MstEntity(Integer.parseInt(mBinding.teiCardValue320.getText().toString()), spare320, key320,
-                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()));
+        MstEntity entity320 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue320.getText().toString()), spare320, key320,
+                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, TotalCard320,dateMst);
 
-        MstEntity entity360 = new MstEntity(Integer.parseInt(mBinding.teiCardValue360.getText().toString()), spare360, key360,
-                Integer.parseInt(mBinding.teiOpening360.getText().toString()), Integer.parseInt(mBinding.teiClosing360.getText().toString()));
+        MstEntity entity360 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue360.getText().toString()), spare360, key360,
+                Integer.parseInt(mBinding.teiOpening360.getText().toString()), Integer.parseInt(mBinding.teiClosing360.getText().toString()), monthMst, yearMst, TotalCard360,dateMst);
 
-        MstEntity entity400 = new MstEntity(Integer.parseInt(mBinding.teiCardValue400.getText().toString()), spare400, key400,
-                Integer.parseInt(mBinding.teiOpening400.getText().toString()), Integer.parseInt(mBinding.teiClosing400.getText().toString()));
+        MstEntity entity400 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue400.getText().toString()), spare400, key400,
+                Integer.parseInt(mBinding.teiOpening400.getText().toString()), Integer.parseInt(mBinding.teiClosing400.getText().toString()), monthMst, yearMst, TotalCard400,dateMst);
 
-        MstEntity entity440 = new MstEntity(Integer.parseInt(mBinding.teiCardValue440.getText().toString()), spare440, key440,
-                Integer.parseInt(mBinding.teiOpening440.getText().toString()), Integer.parseInt(mBinding.teiClosing440.getText().toString()));
+        MstEntity entity440 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue440.getText().toString()), spare440, key440,
+                Integer.parseInt(mBinding.teiOpening440.getText().toString()), Integer.parseInt(mBinding.teiClosing440.getText().toString()), monthMst, yearMst, TotalCard440,dateMst);
 
-        MstEntity entity480 = new MstEntity(Integer.parseInt(mBinding.teiCardValue480.getText().toString()), spare480, key480,
-                Integer.parseInt(mBinding.teiOpening480.getText().toString()), Integer.parseInt(mBinding.teiClosing480.getText().toString()));
+        MstEntity entity480 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue480.getText().toString()), spare480, key480,
+                Integer.parseInt(mBinding.teiOpening480.getText().toString()), Integer.parseInt(mBinding.teiClosing480.getText().toString()), monthMst, yearMst, TotalCard480,dateMst);
 
-        MstEntity entity520 = new MstEntity(Integer.parseInt(mBinding.teiCardValue520.getText().toString()), spare520, key520,
-                Integer.parseInt(mBinding.teiOpening520.getText().toString()), Integer.parseInt(mBinding.teiClosing520.getText().toString()));
+        MstEntity entity520 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue520.getText().toString()), spare520, key520,
+                Integer.parseInt(mBinding.teiOpening520.getText().toString()), Integer.parseInt(mBinding.teiClosing520.getText().toString()), monthMst, yearMst, TotalCard520,dateMst);
 
-        MstEntity entity560 = new MstEntity(Integer.parseInt(mBinding.teiCardValue560.getText().toString()), spare560, key560,
-                Integer.parseInt(mBinding.teiOpening560.getText().toString()), Integer.parseInt(mBinding.teiClosing560.getText().toString()));
+        MstEntity entity560 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue560.getText().toString()), spare560, key560,
+                Integer.parseInt(mBinding.teiOpening560.getText().toString()), Integer.parseInt(mBinding.teiClosing560.getText().toString()), monthMst, yearMst, TotalCard560,dateMst);
 
-        MstEntity entity600 = new MstEntity(Integer.parseInt(mBinding.teiCardValue600.getText().toString()), spare600, key600,
-                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()));
+        MstEntity entity600 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue600.getText().toString()), spare600, key600,
+                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, TotalCard600,dateMst);
 
-        MstEntity entity640 = new MstEntity(Integer.parseInt(mBinding.teiCardValue640.getText().toString()), spare640, key640,
-                Integer.parseInt(mBinding.teiOpening640.getText().toString()), Integer.parseInt(mBinding.teiClosing640.getText().toString()));
+        MstEntity entity640 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue640.getText().toString()), spare640, key640,
+                Integer.parseInt(mBinding.teiOpening640.getText().toString()), Integer.parseInt(mBinding.teiClosing640.getText().toString()), monthMst, yearMst, TotalCard640,dateMst);
 
-        MstEntity entity680 = new MstEntity(Integer.parseInt(mBinding.teiCardValue680.getText().toString()), spare680, key680,
-                Integer.parseInt(mBinding.teiOpening680.getText().toString()), Integer.parseInt(mBinding.teiClosing680.getText().toString()));
+        MstEntity entity680 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue680.getText().toString()), spare680, key680,
+                Integer.parseInt(mBinding.teiOpening680.getText().toString()), Integer.parseInt(mBinding.teiClosing680.getText().toString()), monthMst, yearMst, TotalCard680,dateMst);
 
-        MstEntity entity720 = new MstEntity(Integer.parseInt(mBinding.teiCardValue720.getText().toString()), spare720, key720,
-                Integer.parseInt(mBinding.teiOpening720.getText().toString()), Integer.parseInt(mBinding.teiClosing720.getText().toString()));
+        MstEntity entity720 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue720.getText().toString()), spare720, key720,
+                Integer.parseInt(mBinding.teiOpening720.getText().toString()), Integer.parseInt(mBinding.teiClosing720.getText().toString()), monthMst, yearMst, TotalCard720,dateMst);
 
-        MstEntity entity760 = new MstEntity(Integer.parseInt(mBinding.teiCardValue760.getText().toString()), spare760, key760,
-                Integer.parseInt(mBinding.teiOpening760.getText().toString()), Integer.parseInt(mBinding.teiClosing760.getText().toString()));*/
+        MstEntity entity760 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue760.getText().toString()), spare760, key760,
+                Integer.parseInt(mBinding.teiOpening760.getText().toString()), Integer.parseInt(mBinding.teiClosing760.getText().toString()), monthMst, yearMst, TotalCard760,dateMst);
         List<MstEntity> entryList = new ArrayList<>();
         entryList.add(entity200);
-       /* entryList.add(entity240);
+        entryList.add(entity240);
         entryList.add(entity280);
         entryList.add(entity320);
         entryList.add(entity360);
@@ -176,7 +260,7 @@ public class MstSctFragment extends Fragment {
         entryList.add(entity640);
         entryList.add(entity680);
         entryList.add(entity720);
-        entryList.add(entity760);*/
+        entryList.add(entity760);
         updateMstEntryToDb(entryList);
 
     }
