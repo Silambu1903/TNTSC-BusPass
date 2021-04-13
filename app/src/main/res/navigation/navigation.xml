@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_sctentry"
             app:destination="@id/sctentry" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_mst_list"
+            app:destination="@id/mst_list" />
     </fragment>
 
     <fragment
@@ -70,6 +73,15 @@
         android:name="com.tnstc.buspass.Fragment.SctFragment"
         tools:layout="@layout/sct_fragment"
         android:label="@string/passentry">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/mst_list"
+        android:name="com.tnstc.buspass.Fragment.MstListFragment"
+        tools:layout="@layout/mst_list_fragment"
+        android:label="MSTLIST">
 
     </fragment>
 

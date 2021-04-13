@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -22,18 +23,10 @@
         app:layout_constraintStart_toStartOf="@id/item_date"
         app:layout_constraintTop_toBottomOf="@id/item_date" />
 
-    <View
-        android:id="@+id/viewtop"
-        android:layout_width="0.0dp"
-        android:layout_height="0.5dp"
-        android:background="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@id/view8"
-        app:layout_constraintStart_toStartOf="@id/item_date"
-        app:layout_constraintTop_toTopOf="@id/item_date" />
 
-    <TextView
+    <EditText
         android:id="@+id/item_date"
-        android:layout_width="40dp"
+        android:layout_width="120dp"
         android:layout_height="30dp"
         android:background="@null"
         android:gravity="center"
@@ -56,9 +49,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
+    <EditText
         android:id="@+id/item_card_200"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@null"
         android:gravity="center"
@@ -81,9 +74,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
-        android:id="@+id/item_card_240"
-        android:layout_width="50dp"
+    <EditText
+        android:id="@+id/item_spare"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@null"
         android:gravity="center"
@@ -102,13 +95,13 @@
         android:layout_width="0.5dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@id/item_card_240"
+        app:layout_constraintStart_toEndOf="@id/item_spare"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
-        android:id="@+id/item_card_280"
-        android:layout_width="40dp"
+    <EditText
+        android:id="@+id/item_key"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@null"
         android:gravity="center"
@@ -127,12 +120,12 @@
         android:layout_width="0.5dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@id/item_card_280"
+        app:layout_constraintStart_toEndOf="@id/item_key"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
-        android:id="@+id/item_card_320"
+    <EditText
+        android:id="@+id/item_opening"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@null"
@@ -152,12 +145,12 @@
         android:layout_width="0.5dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@id/item_card_320"
+        app:layout_constraintStart_toEndOf="@id/item_opening"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
-        android:id="@+id/item_card_360"
+    <EditText
+        android:id="@+id/item_closing"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@null"
@@ -178,12 +171,12 @@
         android:layout_width="0.5dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@id/item_card_360"
+        app:layout_constraintStart_toEndOf="@id/item_closing"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 
-    <TextView
-        android:id="@+id/item_card_400"
+    <EditText
+        android:id="@+id/item_total_card"
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:background="@null"
@@ -203,7 +196,7 @@
         android:layout_width="0.5dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@id/item_card_400"
+        app:layout_constraintStart_toEndOf="@id/item_total_card"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/view"/>
 

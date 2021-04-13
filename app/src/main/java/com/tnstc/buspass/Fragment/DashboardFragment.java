@@ -63,7 +63,7 @@ public class DashboardFragment extends Fragment {
         mBinding.submit5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_sctentry);
+                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_mst_list);
             }
         });
     }
