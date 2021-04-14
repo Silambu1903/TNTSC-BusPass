@@ -37,7 +37,7 @@ public class MstListFragment extends Fragment implements ItemClickListener {
     List<MstEntity> mstEntityList;
     MstDailyWiseAdapter mstDailyWiseAdapter;
     ApplicationClass mAppClass;
-    int value=0;
+    int value = 0;
 
     @Nullable
     @Override
@@ -56,16 +56,19 @@ public class MstListFragment extends Fragment implements ItemClickListener {
         db = TnstcBusPassDB.getDatabase(mContext);
         mstDao = db.mstDao();
         mstEntityList = mstDao.currentDate(mAppClass.getCurrentDateTime());
+        mBinding.TotalSalesValue.setText(mstDao.totalSalesCard(mAppClass.getCurrentDateTime(), mAppClass.getCurrentDateTime()) + "");
         mstDailyWiseAdapter = new MstDailyWiseAdapter(mstEntityList, getContext(), this);
         mBinding.mstListRev.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.mstListRev.setAdapter(mstDailyWiseAdapter);
         mBinding.currentdate.setText(mAppClass.getCurrentDateTime());
+      
+
         mBinding.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 value--;
                 previousNextDay(value);
-                Log.e("TAG", "onClick: "+value );
+                Log.e("TAG", "onClick: " + value);
             }
         });
         mBinding.plus.setOnClickListener(new View.OnClickListener() {
@@ -73,16 +76,13 @@ public class MstListFragment extends Fragment implements ItemClickListener {
             public void onClick(View v) {
                 value++;
                 previousNextDay(value);
-                Log.e("TAG", "onClick: "+value );
+                Log.e("TAG", "onClick: " + value);
             }
         });
-
-
-
     }
 
     private void previousNextDay(int number) {
-       String currentDate = mAppClass.getCurrentDateTime();
+        String currentDate = mAppClass.getCurrentDateTime();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Calendar c = Calendar.getInstance();
         try {
@@ -98,6 +98,8 @@ public class MstListFragment extends Fragment implements ItemClickListener {
         mstDailyWiseAdapter = new MstDailyWiseAdapter(mstEntityList, getContext(), this);
         mBinding.mstListRev.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.mstListRev.setAdapter(mstDailyWiseAdapter);
+        mBinding.TotalSalesValue.setText(mstDao.totalSalesCard(currentDate, currentDate) + "");
+
 
     }
 

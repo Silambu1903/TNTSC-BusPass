@@ -32,7 +32,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/background_txt"
-                android:drawableRight="@drawable/ic_calendar_interface_symbol_tool"
                 android:gravity="center"
                 android:hint="@string/date"
                 android:padding="8dp"

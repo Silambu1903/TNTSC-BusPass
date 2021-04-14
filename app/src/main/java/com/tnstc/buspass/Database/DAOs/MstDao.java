@@ -17,4 +17,7 @@ public interface MstDao {
 
     @Query("SELECT *FROM mstentity WHERE date=:date")
     List<MstEntity> currentDate(String date);
+
+    @Query("SELECT SUM(total) FROM mstentity WHERE date BETWEEN :startDate AND :endDate")
+    int totalSalesCard(String startDate, String endDate);
 }

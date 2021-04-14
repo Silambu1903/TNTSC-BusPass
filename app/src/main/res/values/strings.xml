@@ -57,4 +57,5 @@
     <string name="opening_no">OPENING NO</string>
     <string name="closing_no">CLOSING NO</string>
     <string name="totalcard">TOTALCARD</string>
+    <string name="_100">100</string>
 </resources>
