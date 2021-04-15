@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/mst_menu"
+        android:actionLayout="@layout/date_plus_minus"
+        android:title=""
+        app:showAsAction="ifRoom">
+
+    </item>
+
+
+    <item
+        android:id="@+id/empty"
+        android:title=""
+        app:showAsAction="always">
+
+    </item>
+
+</menu>

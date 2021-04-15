@@ -12,6 +12,7 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.tnstc.buspass.Database.DAOs.MstDao;
+import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
@@ -48,5 +49,7 @@ public abstract class TnstcBusPassDB extends RoomDatabase {
     public abstract PassDao passDao();
 
     public abstract MstDao mstDao();
+
+    public abstract MstOpeningDao mstOpeningDao();
 
 }

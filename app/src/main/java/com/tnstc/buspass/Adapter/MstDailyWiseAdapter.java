@@ -49,6 +49,7 @@ public class MstDailyWiseAdapter extends RecyclerView.Adapter<MstDailyWiseAdapte
         holder.opening.setText(mstEntityList.get(position).opening+"");
         holder.closing.setText(mstEntityList.get(position).closing+"");
         holder.totalcard.setText(mstEntityList.get(position).total+"");
+        holder.amount.setText(mstEntityList.get(position).mstTotalAmount+"");
 
     }
 
@@ -58,7 +59,7 @@ public class MstDailyWiseAdapter extends RecyclerView.Adapter<MstDailyWiseAdapte
     }
 
     public static class MstDailyViewHolder extends RecyclerView.ViewHolder {
-        EditText date,card,spare,key,opening,closing,totalcard;
+        EditText date,card,spare,key,opening,closing,totalcard,amount;
         public MstDailyViewHolder(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.item_date);
@@ -68,6 +69,8 @@ public class MstDailyWiseAdapter extends RecyclerView.Adapter<MstDailyWiseAdapte
             opening = itemView.findViewById(R.id.item_opening);
             closing= itemView.findViewById(R.id.item_closing);
             totalcard=itemView.findViewById(R.id.item_total_card);
+            amount = itemView.findViewById(R.id.item_total);
+
 
         }
     }

@@ -34,10 +34,13 @@ public class MstEntity {
     @ColumnInfo(name = "total")
     public int total;
 
+    @ColumnInfo(name = "mstTotalAmount")
+    public int mstTotalAmount;
+
     @ColumnInfo(name = "date")
     public String date;
 
-    public MstEntity(long sec, int card, int spare, String key, int opening, int closing, String month, String year, int total, String date) {
+    public MstEntity(long sec, int card, int spare, String key, int opening, int closing, String month, String year, int total, int mstTotalAmount, String date) {
         this.sec = sec;
         this.card = card;
         this.spare = spare;
@@ -47,6 +50,7 @@ public class MstEntity {
         this.month = month;
         this.year = year;
         this.total = total;
+        this.mstTotalAmount = mstTotalAmount;
         this.date = date;
     }
 
@@ -120,6 +124,14 @@ public class MstEntity {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public int getMstTotalAmount() {
+        return mstTotalAmount;
+    }
+
+    public void setMstTotalAmount(int mstTotalAmount) {
+        this.mstTotalAmount = mstTotalAmount;
     }
 
     public String getDate() {

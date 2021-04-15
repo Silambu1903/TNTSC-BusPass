@@ -5,11 +5,16 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +43,10 @@ public class MstListFragment extends Fragment implements ItemClickListener {
     MstDailyWiseAdapter mstDailyWiseAdapter;
     ApplicationClass mAppClass;
     int value = 0;
+    View viewMinus;
+    View viewPlus;
+    TextView currentDateMst;
+
 
     @Nullable
     @Override
@@ -47,8 +56,38 @@ public class MstListFragment extends Fragment implements ItemClickListener {
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.mst_menu, menu);
+        MenuItem actionViewItem = menu.findItem(R.id.mst_menu);
+        actionViewItem.setActionView(R.layout.date_plus_minus);
+        View v = MenuItemCompat.getActionView(actionViewItem);
+        viewMinus = v.findViewById(R.id.minus);
+        viewPlus = v.findViewById(R.id.plus);
+        currentDateMst = v.findViewById(R.id.currentdate);
+        currentDateMst.setText(mAppClass.getCurrentDateTime());
+        viewMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                value--;
+                previousNextDay(value);
+            }
+        });
+        viewPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                value++;
+                previousNextDay(value);
+            }
+        });
+
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mContext = getContext();
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
@@ -57,29 +96,19 @@ public class MstListFragment extends Fragment implements ItemClickListener {
         mstDao = db.mstDao();
         mstEntityList = mstDao.currentDate(mAppClass.getCurrentDateTime());
         mBinding.TotalSalesValue.setText(mstDao.totalSalesCard(mAppClass.getCurrentDateTime(), mAppClass.getCurrentDateTime()) + "");
+        mBinding.totalMstAmount.setText(mstDao.mstTotalAmount(mAppClass.getCurrentDateTime(), mAppClass.getCurrentDateTime()) + "");
         mstDailyWiseAdapter = new MstDailyWiseAdapter(mstEntityList, getContext(), this);
         mBinding.mstListRev.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.mstListRev.setAdapter(mstDailyWiseAdapter);
-        mBinding.currentdate.setText(mAppClass.getCurrentDateTime());
-      
 
-        mBinding.minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                value--;
-                previousNextDay(value);
-                Log.e("TAG", "onClick: " + value);
-            }
-        });
-        mBinding.plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                value++;
-                previousNextDay(value);
-                Log.e("TAG", "onClick: " + value);
-            }
-        });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+
+    }
+
 
     private void previousNextDay(int number) {
         String currentDate = mAppClass.getCurrentDateTime();
@@ -92,7 +121,7 @@ public class MstListFragment extends Fragment implements ItemClickListener {
         }
         c.add(Calendar.DATE, number);  // number of days to add
         currentDate = sdf.format(c.getTime());  // dt is now the new date
-        mBinding.currentdate.setText(currentDate);
+        currentDateMst.setText(currentDate);
         mstEntityList = new ArrayList<>();
         mstEntityList = mstDao.currentDate(currentDate);
         mstDailyWiseAdapter = new MstDailyWiseAdapter(mstEntityList, getContext(), this);

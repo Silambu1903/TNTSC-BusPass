@@ -20,4 +20,7 @@ public interface MstDao {
 
     @Query("SELECT SUM(total) FROM mstentity WHERE date BETWEEN :startDate AND :endDate")
     int totalSalesCard(String startDate, String endDate);
+
+    @Query("SELECT SUM(mstTotalAmount) FROM mstentity WHERE date BETWEEN :startDate AND :endDate")
+    int mstTotalAmount(String startDate, String endDate);
 }
