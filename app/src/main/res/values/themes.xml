@@ -43,4 +43,6 @@
     <style name="NavigationView">
         <item name="fontFamily">@font/google_font</item>
     </style>
+
+
 </resources>

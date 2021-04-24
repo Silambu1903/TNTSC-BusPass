@@ -12,7 +12,6 @@
     <string name="amount">AMOUNT</string>
     <string name="submit">SUBMIT</string>
     <string name="dashboard">Dashboard</string>
-    <string name="passentry">PassEntry</string>
     <string name="exp_del">EXP/DEL</string>
     <string name="cellnumber">CELL NUMBER</string>
     <string name="Month">Month</string>
@@ -56,6 +55,17 @@
     <string name="spare">SPARE</string>
     <string name="opening_no">OPENING NO</string>
     <string name="closing_no">CLOSING NO</string>
-    <string name="totalcard">TOTALCARD</string>
+
     <string name="_100">100</string>
+    <string name="opening">OPENING</string>
+    <string name="closing">CLOSING</string>
+    <string name="totalcard">TOTALCARD</string>
+    <string name="scales_amount">SCALES AMOUNT</string>
+    <string name="balance_card">BALANCE CARD</string>
+    <string name="start_balance_inventory">START BALANCE INVENTORY</string>
+    <string name="scales_details">SCALES DETAILS</string>
+    <string name="balance_details">BALANCE DETAILS</string>
+    <string name="month_open">MONTH OPEN</string>
+    <string name="passentry">PassEntry</string>
+    <string name="swipe">Swipe</string>
 </resources>

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.view.ActionMode;
 
 import android.view.animation.ScaleAnimation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -143,8 +144,7 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
             excelWorkBookWrite();
-        }
-        if (item.getItemId() == R.id.action_open) {
+        }else if (item.getItemId() == R.id.action_open) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
                     +  File.separator + "TNSTCBusPass" + File.separator);
@@ -214,10 +214,10 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             rowA.createCell(11).setCellValue(passEntityList.get(i).getCellNumber());
 
         }
+        File file;
         FileOutputStream fos = null;
         try {
             File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "TNSTCBusPass");
-            File file;
             file = new File(mediaStorageDir + File.separator, "TNSTCBusPass" + currentMonth + currentYear + ".xls");
             fos = new FileOutputStream(file);
             workbook.write(fos);

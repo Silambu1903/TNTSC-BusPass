@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_month"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/til_year"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/month_list_mst"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:hint="@string/Month"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_year"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/til_month"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/year_list_mst"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:hint="@string/Year"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horiznotalscroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cont_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view14"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintEnd_toEndOf="@id/month_mst_scales_bal_total_200"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view15"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view16"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <View
+                        android:id="@+id/view16"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintEnd_toEndOf="@id/month_mst_scales_bal_total_200"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/start_balance_inventory" />
+
+                    <TextView
+                        android:id="@+id/start_balance_inventory"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/start_balance_inventory"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintEnd_toStartOf="@+id/view6"
+                        app:layout_constraintStart_toEndOf="@id/view15"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <View
+                        android:id="@+id/view_start_balance_inventory"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view16"
+                        app:layout_constraintEnd_toEndOf="@+id/view6"
+                        app:layout_constraintStart_toStartOf="@+id/view6"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <TextView
+                        android:id="@+id/scale_details"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/scales_details"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintEnd_toStartOf="@+id/view_scale_details"
+                        app:layout_constraintStart_toEndOf="@+id/start_balance_inventory"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <View
+                        android:id="@+id/view_scale_details"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintStart_toStartOf="@+id/month_mst_scales_total_scales_amount_200"
+                        app:layout_constraintBottom_toBottomOf="@id/view16"
+                        app:layout_constraintEnd_toEndOf="@+id/month_mst_scales_total_scales_amount_200"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+
+                    <TextView
+                        android:id="@+id/Balance_Details"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/balance_details"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintEnd_toStartOf="@+id/view_Balance_Details"
+                        app:layout_constraintStart_toEndOf="@+id/view_scale_details"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <View
+                        android:id="@+id/view_Balance_Details"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view16"
+                        app:layout_constraintEnd_toEndOf="@+id/month_mst_scales_bal_total_200"
+                        app:layout_constraintTop_toBottomOf="@id/view14" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="0.0dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintEnd_toEndOf="@id/month_mst_scales_bal_total_200"
+                        app:layout_constraintStart_toStartOf="@id/month_mst_card_200"
+                        app:layout_constraintTop_toBottomOf="@id/month_mst_card_200" />
+
+                    <TextView
+                        android:id="@+id/month_mst_card_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="CARD"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view1"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_card_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_key_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="KEY"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view2"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_key_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_open_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/opening_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_key_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_open_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_close_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/closing_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view4"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_close_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_total_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/totalcard"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view5"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_total_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_total_open_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/opening_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view6"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_total_open_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_total_close_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/closing_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view7"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view8"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_total_close_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_total_scales_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/totalcard"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view8"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view9"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_total_scales_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_total_scales_amount_200"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/scales_amount"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view9"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view10"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_total_scales_amount_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_bal_open_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/opening_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view10"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view11"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_bal_open_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_bal_close_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/closing_no"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view11"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view12"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_bal_close_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_bal_card_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/balance_card"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view12"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+
+                    <View
+                        android:id="@+id/view13"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintStart_toEndOf="@id/month_mst_scales_bal_card_200"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/month_mst_scales_bal_total_200"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:text="@string/totalcard"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toEndOf="@id/view13"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <View
+                        android:id="@+id/view18"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorBlack"
+                        app:layout_constraintBottom_toBottomOf="@id/view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_mst_month"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cont_3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

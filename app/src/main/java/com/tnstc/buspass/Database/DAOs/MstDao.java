@@ -1,12 +1,13 @@
 package com.tnstc.buspass.Database.DAOs;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.tnstc.buspass.Database.Entity.MstEntity;
-import com.tnstc.buspass.Database.Entity.PassEntity;
+
 
 import java.util.List;
 
@@ -23,4 +24,23 @@ public interface MstDao {
 
     @Query("SELECT SUM(mstTotalAmount) FROM mstentity WHERE date BETWEEN :startDate AND :endDate")
     int mstTotalAmount(String startDate, String endDate);
+
+    @Query("SELECT min(opening) FROM mstentity WHERE month=:month and card=:card200 ")
+    int mstMonthOpen200(String month, int card200);
+
+    @Query("SELECT max(closing) FROM mstentity WHERE month=:month and card=:card200 ")
+    int mstMonthCloseMax200(String month, int card200);
+
+    @Query("SELECT max(closing) FROM mstentity WHERE month=:month and card=:card200 ")
+    int mstMonthClose200(String month, int card200);
+
+    @Query("SELECT sum(total) FROM mstentity WHERE month=:month and card=:card200 ")
+        int mstMonthTotalCard200(String month, int card200);
+
+
+    @Query("SELECT sum(mstTotalAmount) FROM mstentity WHERE month=:month and card=:card200 ")
+    int mstMonthTotalAmount200(String month, int card200);
+
+
+
 }

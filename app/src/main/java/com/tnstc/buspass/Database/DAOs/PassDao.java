@@ -8,7 +8,6 @@ import androidx.room.TypeConverter;
 import androidx.room.Update;
 import androidx.room.Dao;
 
-import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
 import java.text.DateFormat;

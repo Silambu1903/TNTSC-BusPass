@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_mst_list"
             app:destination="@id/mst_list" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_mst_month"
+            app:destination="@id/mst_month" />
     </fragment>
 
     <fragment
@@ -85,6 +88,14 @@
 
     </fragment>
 
+
+    <fragment
+        android:id="@+id/mst_month"
+        android:name="com.tnstc.buspass.Fragment.MstMonthWiseFragment"
+        tools:layout="@layout/mst_monthwise"
+        android:label="MSTLIST">
+
+    </fragment>
 
 
 </navigation>

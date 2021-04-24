@@ -15,9 +15,10 @@ import com.tnstc.buspass.Database.DAOs.MstDao;
 import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.MstEntity;
+import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 
-@Database(entities = {PassEntity.class, MstEntity.class}, version = 2,exportSchema = false)
+@Database(entities = {PassEntity.class, MstEntity.class, MstOpeningClosing.class}, version = 2, exportSchema = false)
 @TypeConverters(Converters.class)
 
 public abstract class TnstcBusPassDB extends RoomDatabase {
@@ -45,11 +46,11 @@ public abstract class TnstcBusPassDB extends RoomDatabase {
         }
         return INSTANCE;
     }
+    public abstract MstOpeningDao OpeningDao();
 
     public abstract PassDao passDao();
 
     public abstract MstDao mstDao();
 
-    public abstract MstOpeningDao mstOpeningDao();
 
 }

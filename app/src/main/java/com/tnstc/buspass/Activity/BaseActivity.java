@@ -1,11 +1,15 @@
 package com.tnstc.buspass.Activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -19,6 +23,7 @@ import com.tnstc.buspass.R;
 import com.tnstc.buspass.databinding.ActivityBaseBinding;
 
 public class BaseActivity extends AppCompatActivity {
+    private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
     ActivityBaseBinding mBinding;
     NavController navController;
     AppBarConfiguration mAppBarConfiguration;
@@ -37,8 +42,13 @@ public class BaseActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.dashboardFragment)
                 .build();
         setUpNavigationUI(mAppBarConfiguration);
-    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 111);
+        }
 
+    }
 
     public void setUpNavigationUI(AppBarConfiguration appBarConfiguration) {
         navController.setGraph(R.navigation.navigation);
