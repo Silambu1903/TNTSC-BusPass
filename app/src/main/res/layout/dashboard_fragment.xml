@@ -49,7 +49,7 @@
             android:id="@+id/icon_1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/boder_dashboard_icon"
+            android:background="@drawable/yellow_boder"
             app:layout_constraintBottom_toTopOf="@id/setting_icon"
             app:layout_constraintEnd_toEndOf="@id/dashboard_icon"
             app:layout_constraintStart_toStartOf="@id/dashboard_icon"
@@ -256,8 +256,8 @@
             android:id="@+id/ic_siwpe_icon_1"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:visibility="gone"
             android:background="@drawable/ic_left_arrow"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/ic_swipe"
             app:layout_constraintEnd_toEndOf="@id/ic_swipe"
             app:layout_constraintStart_toStartOf="@id/ic_swipe"
@@ -268,8 +268,8 @@
             android:id="@+id/txt_swipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:rotation="-90"
             android:padding="15dp"
+            android:rotation="-90"
             android:text="Swipee"
             android:textColor="@color/coloWhite"
             app:layout_constraintBottom_toTopOf="@id/ic_siwpe_icon"
@@ -282,17 +282,16 @@
             android:id="@+id/txt_swipe_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:rotation="-90"
             android:padding="15dp"
+            android:rotation="-90"
             android:text="Swipe"
-            android:visibility="gone"
             android:textColor="@color/coloWhite"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/ic_siwpe_icon_1"
             app:layout_constraintEnd_toEndOf="@id/ic_swipe"
             app:layout_constraintStart_toStartOf="@id/ic_swipe"
             app:layout_constraintTop_toTopOf="@+id/ic_swipe"
             app:layout_constraintVertical_bias="0.7" />
-
 
 
         <View
@@ -375,18 +374,18 @@
             android:layout_height="0dp"
             android:layout_margin="25dp"
             android:background="@drawable/blue_boder"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/pass_list_view"
             app:layout_constraintEnd_toEndOf="@+id/main_frame"
             app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/view6"
-
-            />
+            app:layout_constraintTop_toBottomOf="@+id/view6" />
 
         <View
             android:id="@+id/pass_list_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="25dp"
+            android:visibility="visible"
             android:background="@drawable/oragne_boder"
             app:layout_constraintBottom_toTopOf="@id/pass_monthly_view"
             app:layout_constraintEnd_toEndOf="@+id/main_frame"
@@ -401,6 +400,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="25dp"
+            android:visibility="visible"
             android:background="@drawable/voliet_boder"
             app:layout_constraintBottom_toBottomOf="@id/main_frame"
             app:layout_constraintEnd_toEndOf="@+id/main_frame"
@@ -423,6 +423,73 @@
 
 
         <View
+            android:id="@+id/ic_entry_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_line"
+            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            app:layout_constraintStart_toStartOf="@id/pass_entry_view"
+            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+
+        <View
+            android:id="@+id/lottie_pass_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            app:layout_constraintStart_toStartOf="@id/pass_entry_view"
+            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
+            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            app:layout_constraintStart_toEndOf="@id/lottie_pass_entry"
+            app:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
+
+
+        <View
+            android:id="@+id/lottie_pass_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_entry_txt_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
+            app:layout_constraintEnd_toStartOf="@id/lottie_pass_entry_1"
+            app:layout_constraintStart_toStartOf="@id/pass_entry_txt"
+            app:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
+
+        <View
             android:id="@+id/rigth_arrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -432,6 +499,199 @@
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toEndOf="@id/pass_entry_txt"
             app:layout_constraintTop_toTopOf="@id/pass_entry_txt" />
+
+
+        <TextView
+            android:id="@+id/pass_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/passdailylist"
+            android:textColor="@color/coloWhite"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/pass_list_view"
+            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="@id/pass_list_view"
+            app:layout_constraintTop_toTopOf="@id/pass_list_view"
+            app:layout_constraintVertical_bias="0.15" />
+
+
+        <View
+            android:id="@+id/rigth_liest_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/pass_list_txt"
+            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/pass_list_txt"
+            app:layout_constraintTop_toTopOf="@id/pass_list_txt" />
+
+        <View
+            android:id="@+id/lottie_pass_list_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:background="@drawable/ic_undraw_date_picker_gorr"
+            app:layout_constraintStart_toStartOf="@id/pass_list_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_list_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass Details"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_list_entry"
+            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            app:layout_constraintStart_toEndOf="@id/lottie_list_entry"
+            app:layout_constraintTop_toTopOf="@id/lottie_list_entry" />
+
+
+        <View
+            android:id="@+id/lottie_list_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_undraw_date_picker_gorr"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
+            app:layout_constraintEnd_toStartOf="@id/lottie_pass_list_1"
+            app:layout_constraintStart_toStartOf="@id/pass_list_view"
+            app:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
+
+
+        <View
+            android:id="@+id/ic_list_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_line"
+            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            app:layout_constraintStart_toStartOf="@id/pass_list_view"
+            app:layout_constraintTop_toBottomOf="@id/pass_list_txt" />
+
+        <TextView
+            android:id="@+id/pass_month_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/monthly_pass_report"
+            android:textColor="@color/coloWhite"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/pass_monthly_view"
+            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+            app:layout_constraintTop_toTopOf="@id/pass_monthly_view"
+            app:layout_constraintVertical_bias="0.15" />
+
+
+        <View
+            android:id="@+id/rigth_month_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/pass_month_txt"
+            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/pass_month_txt"
+            app:layout_constraintTop_toTopOf="@id/pass_month_txt" />
+
+        <View
+            android:id="@+id/ic_month_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_line"
+            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+            app:layout_constraintTop_toBottomOf="@id/pass_month_txt" />
+
+        <View
+            android:id="@+id/lottie_month_entry"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:background="@drawable/ic_undraw_mobile_posts_tlwg"
+            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_month_line" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_month_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass Details"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_month_entry"
+            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            app:layout_constraintStart_toEndOf="@id/lottie_month_entry"
+            app:layout_constraintTop_toTopOf="@id/lottie_month_entry" />
+
+
+        <View
+            android:id="@+id/lottie_pass_month_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_undraw_mobile_posts_tlwg"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_month_line" />
+
+
+        <TextView
+            android:id="@+id/sample_pass_month_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_month_1"
+            app:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
+            app:layout_constraintStart_toStartOf="@id/ic_month_line"
+            app:layout_constraintTop_toTopOf="@id/lottie_pass_month_1" />
+
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

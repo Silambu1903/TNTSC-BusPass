@@ -66,6 +66,8 @@
     <string name="scales_details">SCALES DETAILS</string>
     <string name="balance_details">BALANCE DETAILS</string>
     <string name="month_open">MONTH OPEN</string>
-    <string name="passentry">PassEntry</string>
+    <string name="passentry">Pass  Entry</string>
     <string name="swipe">Swipe</string>
+    <string name="passdailylist">Daily Report</string>
+    <string name="monthly_pass_report">Monthly Report</string>
 </resources>
