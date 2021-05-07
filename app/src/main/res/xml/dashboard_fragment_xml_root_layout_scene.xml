@@ -3,14 +3,15 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
+        android:id="@+id/transition"
         motion:constraintSetEnd="@+id/end"
-        motion:constraintSetStart="@id/start"
-        motion:duration="1000">
-        <KeyFrameSet></KeyFrameSet>
+        motion:constraintSetStart="@id/start">
         <OnSwipe
             motion:dragDirection="dragLeft"
-            motion:touchAnchorId="@+id/main_frame" />
+            motion:touchAnchorId="@id/ic_swipe" />
+        <OnClick motion:targetId="@+id/textView6" />
     </Transition>
+
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -36,9 +37,7 @@
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
-        <Constraint
-            android:id="@+id/textView2"
-            motion:layout_constraintEnd_toEndOf="@+id/pass_entry_view" />
+
         <Constraint
             android:id="@+id/view6"
             android:layout_width="0dp"
@@ -59,140 +58,14 @@
             motion:layout_constraintTop_toTopOf="@id/ic_swipe"
             motion:layout_constraintVertical_bias="0.85" />
         <Constraint
-            android:id="@+id/lottie_pass_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
-            motion:layout_constraintStart_toStartOf="@id/pass_entry_txt"
-            motion:layout_constraintTop_toBottomOf="@id/ic_entry_line" />
-
-
-        <Constraint
-            android:id="@+id/sample_pass_entry_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="15dp"
-            android:visibility="visible"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
-            motion:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            motion:layout_constraintStart_toEndOf="@id/lottie_pass_entry"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
-
-        <Constraint
-            android:id="@+id/lottie_pass_entry_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:id="@+id/pass_entry_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="gone"
-            motion:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            motion:layout_constraintTop_toBottomOf="@id/rigth_arrow" />
-
-        <Constraint
-            android:id="@+id/sample_pass_entry_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:visibility="gone"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
-            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_entry_1"
-            motion:layout_constraintStart_toStartOf="@id/pass_entry_txt"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
-        <Constraint
-            android:id="@+id/lottie_list_entry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:visibility="gone"
-            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
-            motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
-        <Constraint
-            android:id="@+id/sample_pass_list_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:visibility="gone"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_list_entry"
-            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            motion:layout_constraintStart_toEndOf="@id/lottie_list_entry"
-            motion:layout_constraintTop_toTopOf="@id/lottie_list_entry" />
-        <Constraint
-            android:id="@+id/lottie_pass_list_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="10dp"
-            android:visibility="visible"
-            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
-        <Constraint
-            android:id="@+id/sample_pass_list_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:visibility="visible"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
-            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_list_1"
-            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
-        <Constraint
-            android:id="@+id/lottie_month_entry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:visibility="visible"
-            android:layout_marginStart="10dp"
-            motion:layout_constraintTop_toBottomOf="@id/ic_month_line"
-            android:layout_marginLeft="20dp"
-            motion:layout_constraintStart_toStartOf="@id/pass_monthly_view"
-            android:layout_marginTop="10dp" />
-        <Constraint
-            android:id="@+id/sample_pass_month_txt"
-            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            motion:layout_constraintTop_toTopOf="@id/lottie_month_entry"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            motion:layout_constraintStart_toEndOf="@id/lottie_month_entry"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_month_entry"
-            android:layout_marginRight="10dp" />
-
-
-        <Constraint
-            android:id="@+id/lottie_pass_month_1"
-            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:visibility="gone"
-            motion:layout_constraintTop_toBottomOf="@id/ic_month_line"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp" />
-        <Constraint
-            android:id="@+id/sample_pass_month_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_month_1"
-            android:layout_marginLeft="10dp"
-            motion:layout_constraintStart_toStartOf="@id/ic_month_line"
-            android:layout_marginTop="10dp"
-            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_month_1"
-            android:layout_marginRight="10dp" />
+            motion:layout_constraintBottom_toTopOf="@id/pass_list_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/view6" />
 
 
     </ConstraintSet>
@@ -275,29 +148,98 @@
             motion:layout_constraintTop_toTopOf="@+id/ic_swipe"
             motion:layout_constraintVertical_bias="0.7" />
 
+
+    </ConstraintSet>
+    <ConstraintSet
+        android:id="@+id/Pass"
+        motion:deriveConstraintsFrom="@+id/end">
         <Constraint
-            android:id="@+id/lottie_pass_entry"
+            android:id="@+id/pass_entry_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/pass_list_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/view6" />
+        <Constraint
+            android:id="@+id/pass_list_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/pass_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/pass_entry_view" />
+        <Constraint
+            android:id="@+id/pass_monthly_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/pass_list_view" />
+        <Constraint
+            android:id="@+id/icon_2_2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/dashboard_icon"
+            motion:layout_constraintStart_toStartOf="@id/dashboard_icon"
+            motion:layout_constraintTop_toBottomOf="@id/icon_1" />
+        <Constraint
+            android:id="@+id/sample_pass_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_entry_1"
             motion:layout_constraintStart_toStartOf="@id/pass_entry_txt"
-            motion:layout_constraintTop_toBottomOf="@id/ic_entry_line" />
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry_1" />
         <Constraint
             android:id="@+id/lottie_pass_entry_1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:visibility="visible"
-            motion:layout_constraintEnd_toEndOf="@id/rigth_arrow"
-            motion:layout_constraintTop_toBottomOf="@id/ic_entry_line" />
+            motion:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
 
+        <Constraint
+            android:id="@+id/lottie_pass_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/pass_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
         <Constraint
             android:id="@+id/sample_pass_entry_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:visibility="gone"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
@@ -306,27 +248,298 @@
             motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
 
         <Constraint
+            android:id="@+id/txt_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toStartOf="@id/main_frame"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year"
+            motion:layout_constraintVertical_bias="0.06" />
+
+
+        <Constraint
+            android:id="@+id/txt_main_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toStartOf="@id/main_frame"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
+        <Constraint
+            android:id="@+id/view6"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/guideline"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_main_pass" />
+        <Constraint
+            android:id="@+id/sample_pass_list_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
+            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_pass_list_1"
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
+        <Constraint
+            android:id="@+id/lottie_pass_list_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+        <Constraint
+            android:id="@+id/lottie_pass_month_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="20dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_month_line" />
+        <Constraint
+            android:id="@+id/sample_pass_month_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_month_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
+            motion:layout_constraintStart_toStartOf="@id/ic_month_line"
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_month_1" />
+        <Constraint
+            android:id="@+id/horiznotalview_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintStart_toEndOf="@id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/view6"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/condutor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/horiznotalview_layout" />
+        <Constraint
+            android:id="@+id/busPass"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/otherduty"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/controlsection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/conductor_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/condutor"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/conductor_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/conductor_checkbox"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/busPass_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/buspass_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/otherduty_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/otherduty"
+            motion:layout_constraintStart_toStartOf="@+id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/otherduty_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@id/otherduty"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/txt_control_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+        <Constraint
+            android:id="@+id/controlsection_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetEnd="@+id/Pass"
+        motion:constraintSetStart="@+id/end"
+        motion:duration="1">
+        <OnClick motion:targetId="@+id/textView4" />
+    </Transition>
+
+    <ConstraintSet
+        android:id="@+id/PassEnd"
+        motion:deriveConstraintsFrom="@+id/Pass">
+        <Constraint
+            android:id="@+id/viewDash"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/dashboard_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            motion:layout_constraintBottom_toBottomOf="@id/viewDash"
+            motion:layout_constraintEnd_toEndOf="@id/viewDash"
+            motion:layout_constraintTop_toTopOf="@id/viewDash"
+            motion:layout_constraintVertical_bias="0.05" />
+        <Constraint
+            android:id="@+id/ic_swipe"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@id/icon_5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/icon_2" />
+
+        <Constraint
+            android:id="@+id/lottie_pass_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/pass_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+        <Constraint
+            android:id="@+id/sample_pass_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
+            motion:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_pass_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
+        <Constraint
             android:id="@+id/sample_pass_entry_txt_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:visibility="visible"
+            android:visibility="gone"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry_1"
             motion:layout_constraintEnd_toStartOf="@id/lottie_pass_entry_1"
             motion:layout_constraintStart_toStartOf="@id/pass_entry_txt"
             motion:layout_constraintTop_toTopOf="@id/lottie_pass_entry_1" />
         <Constraint
+            android:id="@+id/lottie_pass_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+        <Constraint
             android:id="@+id/lottie_list_entry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:visibility="visible"
-            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
+            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
             motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
         <Constraint
             android:id="@+id/sample_pass_list_txt"
@@ -337,78 +550,999 @@
             android:layout_marginRight="10dp"
             android:visibility="visible"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_list_entry"
-            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            motion:layout_constraintStart_toEndOf="@id/lottie_list_entry"
+
+            motion:layout_constraintEnd_toStartOf="@id/lottie_list_entry"
+            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
             motion:layout_constraintTop_toTopOf="@id/lottie_list_entry" />
-        <Constraint
-            android:id="@+id/lottie_pass_list_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp"
-            android:visibility="gone"
-            motion:layout_constraintEnd_toEndOf="@id/rigth_month_arrow"
-            motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+
         <Constraint
             android:id="@+id/sample_pass_list_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
+            motion:layout_constraintEnd_toEndOf="@id/pass_list_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_pass_list_1"
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
+        <Constraint
+            android:id="@+id/lottie_pass_list_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+        <Constraint
+            android:id="@+id/lottie_month_entry"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_month_line" />
+        <Constraint
+            android:id="@+id/sample_pass_month_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:visibility="gone"
-            motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
-            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_list_1"
-            motion:layout_constraintStart_toStartOf="@id/pass_list_view"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
-        <Constraint
-            android:id="@+id/lottie_month_entry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:visibility="gone"
-            motion:layout_constraintTop_toBottomOf="@id/ic_month_line"
-            android:layout_marginLeft="20dp"
-            motion:layout_constraintStart_toStartOf="@id/pass_monthly_view"
-            android:layout_marginTop="10dp" />
-        <Constraint
-            android:id="@+id/sample_pass_month_txt"
-            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            motion:layout_constraintTop_toTopOf="@id/lottie_month_entry"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            motion:layout_constraintStart_toEndOf="@id/lottie_month_entry"
+            android:visibility="visible"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_month_entry"
-            android:layout_marginRight="10dp" />
+            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_month_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_month_entry" />
 
         <Constraint
             android:id="@+id/lottie_pass_month_1"
-            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:visibility="visible"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            motion:layout_constraintTop_toBottomOf="@id/ic_month_line"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp" />
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_month_line" />
         <Constraint
             android:id="@+id/sample_pass_month_txt_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            motion:layout_constraintTop_toTopOf="@id/lottie_pass_month_1"
             android:layout_marginLeft="10dp"
-            motion:layout_constraintStart_toStartOf="@id/ic_month_line"
             android:layout_marginTop="10dp"
-            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_pass_month_1"
-            android:layout_marginRight="10dp" />
+            motion:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
+            motion:layout_constraintStart_toStartOf="@id/ic_month_line"
+            motion:layout_constraintTop_toTopOf="@id/lottie_pass_month_1" />
+
+
+        <Constraint
+            android:id="@+id/view6"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_main_pass" />
+
+
+    </ConstraintSet>
+
+
+    <Transition
+        motion:constraintSetEnd="@+id/PassEnd"
+        motion:constraintSetStart="@+id/Pass"
+        motion:duration="100">
+        <OnSwipe
+            motion:dragDirection="dragLeft"
+            motion:touchAnchorId="@+id/ic_swipe" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/Mst"
+        motion:deriveConstraintsFrom="@+id/end">
+
+        <Constraint
+            android:id="@+id/mst_entry_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/mst_list_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/view6" />
+
+        <Constraint
+            android:id="@+id/mst_list_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/mst_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/mst_entry_view" />
+        <Constraint
+            android:id="@+id/mst_monthly_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/mst_list_view" />
+        <Constraint
+            android:id="@+id/icon_3_3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/dashboard_icon"
+            motion:layout_constraintStart_toStartOf="@id/dashboard_icon"
+            motion:layout_constraintTop_toBottomOf="@id/icon_2" />
+        <Constraint
+            android:id="@+id/horiznotalview_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintStart_toEndOf="@id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/view6"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/condutor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/horiznotalview_layout" />
+        <Constraint
+            android:id="@+id/busPass"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/otherduty"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/controlsection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/conductor_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/condutor"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/conductor_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/conductor_checkbox"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/busPass_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/buspass_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/otherduty_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/otherduty"
+            motion:layout_constraintStart_toStartOf="@+id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/otherduty_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@id/otherduty"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/txt_control_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+        <Constraint
+            android:id="@+id/controlsection_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+
+        <Constraint
+            android:id="@+id/mst_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toTopOf="@id/mst_entry_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/rigth_mst_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_txt"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/mst_txt"
+            motion:layout_constraintTop_toTopOf="@id/mst_txt" />
+        <Constraint
+            android:id="@+id/ic_mst_month_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintStart_toStartOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/mst_txt" />
+        <Constraint
+            android:id="@+id/mst_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
+
+        <Constraint
+            android:id="@+id/sample_mst_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_icon"
+            motion:layout_constraintEnd_toStartOf="@id/mst_icon"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
+            motion:layout_constraintTop_toTopOf="@id/mst_icon" />
+        <Constraint
+            android:id="@+id/mst_daily_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_list_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_list_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/mst_list_view"
+            motion:layout_constraintTop_toTopOf="@id/mst_list_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/ic_mst_daily_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/mst_list_view"
+            motion:layout_constraintStart_toStartOf="@id/mst_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/mst_daily_txt" />
+        <Constraint
+            android:id="@+id/rigth_mst_daily_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_daily_txt"
+            motion:layout_constraintEnd_toEndOf="@id/mst_list_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/mst_daily_txt"
+            motion:layout_constraintTop_toTopOf="@id/mst_daily_txt" />
+        <Constraint
+            android:id="@+id/mst_daily_icon1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_list_view"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_daily_line"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
+        <Constraint
+            android:id="@+id/sample_mst_daily_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_daily_icon1"
+            motion:layout_constraintStart_toEndOf="@id/mst_daily_icon1"
+            motion:layout_constraintTop_toTopOf="@id/mst_daily_icon1" />
+        <Constraint
+            android:id="@+id/mst_month_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/mst_monthly_view"
+            motion:layout_constraintTop_toTopOf="@id/mst_monthly_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/ic_mst_monthly_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
+            motion:layout_constraintStart_toStartOf="@id/mst_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/mst_month_txt" />
+        <Constraint
+            android:id="@+id/rigth_mst_monthly_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_month_txt"
+            motion:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/mst_month_txt"
+            motion:layout_constraintTop_toTopOf="@id/mst_month_txt" />
+        <Constraint
+            android:id="@+id/mst_monthly_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
+        <Constraint
+            android:id="@+id/sample_mst_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_icon"
+            motion:layout_constraintEnd_toStartOf="@id/mst_monthly_icon"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_monthly_line"
+            motion:layout_constraintTop_toTopOf="@id/mst_monthly_icon" />
+        <Constraint
+            android:id="@+id/txt_main_mst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toStartOf="@id/main_frame"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
+        <Constraint
+            android:id="@+id/txt_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toStartOf="@id/main_frame"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year"
+            motion:layout_constraintVertical_bias="0.06" />
+
+        <Constraint
+            android:id="@+id/view6"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_main_mst" />
+
+    </ConstraintSet>
+
+
+    <Transition
+        motion:constraintSetEnd="@+id/Mst"
+        motion:constraintSetStart="@+id/end">
+        <OnClick motion:targetId="@+id/textView5" />
+    </Transition>
+
+    <ConstraintSet
+        android:id="@+id/MstEnd"
+        motion:deriveConstraintsFrom="@+id/Mst">
+
+        <Constraint
+            android:id="@+id/viewDash"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/dashboard_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            motion:layout_constraintBottom_toBottomOf="@id/viewDash"
+            motion:layout_constraintEnd_toEndOf="@id/viewDash"
+            motion:layout_constraintTop_toTopOf="@id/viewDash"
+            motion:layout_constraintVertical_bias="0.05" />
+        <Constraint
+            android:id="@+id/ic_swipe"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@id/icon_5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/icon_2" />
+
+        <Constraint
+            android:id="@+id/mst_icon1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
+        <Constraint
+            android:id="@+id/sample_mst_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_icon1"
+            motion:layout_constraintStart_toEndOf="@id/mst_icon1"
+            motion:layout_constraintTop_toTopOf="@id/mst_icon1" />
+
+        <Constraint
+            android:id="@+id/mst_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toTopOf="@id/mst_entry_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/rigth_mst_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_txt"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/mst_txt"
+            motion:layout_constraintTop_toTopOf="@id/mst_txt" />
+        <Constraint
+            android:id="@+id/ic_mst_month_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintStart_toStartOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/mst_txt" />
+        <Constraint
+            android:id="@+id/mst_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
+        <Constraint
+            android:id="@+id/sample_mst_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_icon"
+            motion:layout_constraintEnd_toStartOf="@id/mst_icon"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
+            motion:layout_constraintTop_toTopOf="@id/mst_icon" />
+        <Constraint
+            android:id="@+id/mst_icon2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
+
+        <Constraint
+            android:id="@+id/sample_mst_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_icon2"
+            motion:layout_constraintStart_toEndOf="@id/mst_icon2"
+            motion:layout_constraintTop_toTopOf="@id/mst_icon2" />
+
+        <Constraint
+            android:id="@+id/mst_daily_icon1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_list_view"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_daily_line"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
+
+        <Constraint
+            android:id="@+id/sample_mst_daily_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_daily_icon1"
+            motion:layout_constraintStart_toEndOf="@id/mst_daily_icon1"
+            motion:layout_constraintTop_toTopOf="@id/mst_daily_icon1" />
+
+        <Constraint
+            android:id="@+id/mst_daily_icon2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_list_view"
+            motion:layout_constraintEnd_toEndOf="@id/ic_mst_daily_line"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
+
+        <Constraint
+            android:id="@+id/sample_mst_daily_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_daily_icon2"
+            motion:layout_constraintEnd_toStartOf="@id/mst_daily_icon2"
+            motion:layout_constraintTop_toTopOf="@id/mst_daily_icon2" />
+
+        <Constraint
+            android:id="@+id/mst_monthly_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
+        <Constraint
+            android:id="@+id/sample_mst_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_icon"
+            motion:layout_constraintEnd_toStartOf="@id/mst_monthly_icon"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_monthly_line"
+            motion:layout_constraintTop_toTopOf="@id/mst_monthly_icon" />
+        <Constraint
+            android:id="@+id/mst_monthly_icon1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
+            motion:layout_constraintStart_toStartOf="@id/mst_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
+        <Constraint
+            android:id="@+id/sample_mst_monthly_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/mst_monthly_icon"
+            motion:layout_constraintEnd_toStartOf="@id/mst_monthly_icon"
+            motion:layout_constraintStart_toStartOf="@id/ic_mst_monthly_line"
+            motion:layout_constraintTop_toTopOf="@id/mst_monthly_icon" />
+
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@+id/MstEnd"
+        motion:constraintSetStart="@+id/Mst">
+        <OnSwipe
+            motion:dragDirection="dragLeft"
+            motion:touchAnchorId="@+id/ic_swipe" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/Sct"
+        motion:deriveConstraintsFrom="@+id/end">
+        <Constraint
+            android:id="@+id/sct_entry_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/sct_list_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/view6" />
+        <Constraint
+            android:id="@+id/sct_list_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/sct_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/sct_entry_view" />
+        <Constraint
+            android:id="@+id/sct_monthly_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@+id/sct_list_view" />
+        <Constraint
+            android:id="@+id/icon_4_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/dashboard_icon"
+            motion:layout_constraintStart_toStartOf="@id/dashboard_icon"
+            motion:layout_constraintTop_toBottomOf="@id/icon_3" />
+
+        <Constraint
+            android:id="@+id/horiznotalview_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            motion:layout_constraintStart_toEndOf="@id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/view6"
+            motion:layout_constraintVertical_bias="0.0" />
+        <Constraint
+            android:id="@+id/condutor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/horiznotalview_layout" />
+        <Constraint
+            android:id="@+id/busPass"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/otherduty"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toTopOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/busPass" />
+        <Constraint
+            android:id="@+id/controlsection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/main_frame"
+            motion:layout_constraintEnd_toEndOf="@+id/main_frame"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            motion:layout_constraintTop_toBottomOf="@id/otherduty" />
+        <Constraint
+            android:id="@+id/conductor_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/condutor"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+        <Constraint
+            android:id="@+id/conductor_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/conductor_checkbox"
+            motion:layout_constraintEnd_toEndOf="@id/condutor"
+            motion:layout_constraintStart_toStartOf="@id/condutor"
+            motion:layout_constraintTop_toTopOf="@id/condutor" />
+
+        <Constraint
+            android:id="@+id/busPass_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+
+        <Constraint
+            android:id="@+id/buspass_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/busPass"
+            motion:layout_constraintEnd_toEndOf="@id/busPass"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/busPass"
+            motion:layout_constraintTop_toTopOf="@id/busPass" />
+
+        <Constraint
+            android:id="@+id/otherduty_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@+id/otherduty"
+            motion:layout_constraintStart_toStartOf="@+id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+
+        <Constraint
+            android:id="@+id/otherduty_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/otherduty"
+            motion:layout_constraintEnd_toEndOf="@id/otherduty"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/otherduty"
+            motion:layout_constraintTop_toTopOf="@id/otherduty" />
+
+        <Constraint
+            android:id="@+id/txt_control_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+
+        <Constraint
+            android:id="@+id/controlsection_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/controlsection"
+            motion:layout_constraintEnd_toEndOf="@id/controlsection"
+            motion:layout_constraintHorizontal_bias="0.95"
+            motion:layout_constraintStart_toStartOf="@id/controlsection"
+            motion:layout_constraintTop_toTopOf="@id/controlsection" />
+        <Constraint
+            android:id="@+id/sct_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_entry_view"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/sct_entry_view"
+            motion:layout_constraintTop_toTopOf="@id/sct_entry_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/ic_sct_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintStart_toStartOf="@id/sct_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/sct_txt" />
+        <Constraint
+            android:id="@+id/lottie_sct_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/sct_txt"
+            motion:layout_constraintTop_toBottomOf="@id/sct_txt" />
+        <Constraint
+            android:id="@+id/sample_sct_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_entry" />
     </ConstraintSet>
     <Transition
-        motion:constraintSetEnd="@+id/end"
-        motion:constraintSetStart="@+id/start" />
+        motion:constraintSetEnd="@+id/Sct"
+        motion:constraintSetStart="@+id/end">
+        <OnClick
+            motion:clickAction="toggle"
+            motion:targetId="@+id/textView6" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/SctEnd"
+        motion:deriveConstraintsFrom="@+id/Sct">
+
+
+        <Constraint
+            android:id="@+id/viewDash"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/dashboard_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            motion:layout_constraintBottom_toBottomOf="@id/viewDash"
+            motion:layout_constraintEnd_toEndOf="@id/viewDash"
+            motion:layout_constraintTop_toTopOf="@id/viewDash"
+            motion:layout_constraintVertical_bias="0.05" />
+        <Constraint
+            android:id="@+id/ic_swipe"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@id/icon_5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/icon_2" />
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetEnd="@+id/SctEnd"
+        motion:constraintSetStart="@+id/Sct">
+        <OnSwipe
+            motion:dragDirection="dragLeft"
+            motion:touchAnchorId="@+id/main_frame"
+            motion:touchAnchorSide="left" />
+    </Transition>
+
+
 </MotionScene>

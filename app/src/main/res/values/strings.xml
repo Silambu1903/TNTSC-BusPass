@@ -70,4 +70,5 @@
     <string name="swipe">Swipe</string>
     <string name="passdailylist">Daily Report</string>
     <string name="monthly_pass_report">Monthly Report</string>
+    <string name="mst_entry">Mst Entry</string>
 </resources>

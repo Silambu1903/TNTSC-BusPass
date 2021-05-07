@@ -97,7 +97,11 @@ public class ApplicationClass extends Application {
         Date date = new Date();
         return Integer.valueOf(simpleDateFormat.format(date));
     }
-
+    public String getCurrentDateDay() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy.EE");
+        Date date = new Date();
+        return simpleDateFormat.format(date);
+    }
     public void showSnackBar(Context context, String message) {
         Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.root), message, Snackbar.LENGTH_SHORT);
         TextView tv = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
