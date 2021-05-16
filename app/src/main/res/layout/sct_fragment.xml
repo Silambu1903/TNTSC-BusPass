@@ -1,36 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
-        app:cardElevation="10dp">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_radio"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/monthly_data_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:buttonTint="@color/colorBlack"
+                    android:text="@string/month_open"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/month_mst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_txt"
+                android:padding="15dp"
+                android:text="@string/Month"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout_radio"
+                app:textAllCaps="true" />
+
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_txt"
+                android:gravity="center"
+                android:hint="@string/date"
+                android:padding="8dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/month_mst"
+                app:layout_constraintEnd_toStartOf="@+id/year_mst"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/month_mst"
+                app:layout_constraintTop_toTopOf="@+id/month_mst" />
+
+            <TextView
+                android:id="@+id/year_mst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_txt"
+                android:padding="15dp"
+                android:text="@string/Year"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/month_mst"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toTopOf="@+id/month_mst"
+                app:textAllCaps="true" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/card_value"
+                android:id="@+id/card_value100"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/opening_120"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/month_mst">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tei_card_value"
+                    android:id="@+id/tei_card_value100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/cardvalue"
@@ -38,72 +103,72 @@
                     android:inputType="number"
                     android:maxLength="10"
                     android:maxLines="1"
-                    android:text="@string/_200" />
+                    android:text="@string/_100" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/spare"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value"
+                 app:layout_constraintEnd_toStartOf="@+id/key"
+                 app:layout_constraintHorizontal_bias="0.5"
+                 app:layout_constraintStart_toEndOf="@+id/card_value"
+                 app:layout_constraintTop_toTopOf="@+id/card_value">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_spare"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/spare"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1"
+                     android:text="@string/_5" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/key"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value"
+                 app:layout_constraintEnd_toStartOf="@+id/opening"
+                 app:layout_constraintHorizontal_bias="0.5"
+                 app:layout_constraintStart_toEndOf="@+id/spare"
+                 app:layout_constraintTop_toTopOf="@+id/card_value">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_key"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/key"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1"
+                     android:text="@string/st" />
+             </com.google.android.material.textfield.TextInputLayout>-->
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/spare"
+                android:id="@+id/opening100"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-
-
-                app:layout_constraintEnd_toStartOf="@+id/key"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value100"
+                app:layout_constraintEnd_toStartOf="@+id/closing100"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_value">
+                app:layout_constraintStart_toEndOf="@+id/card_value100"
+                app:layout_constraintTop_toTopOf="@+id/card_value100">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tei_spare"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/spare"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:text="@string/_5" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/key"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/spare"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/spare"
-                app:layout_constraintTop_toTopOf="@+id/spare">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tei_key"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/key"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:text="@string/st" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/opening"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/closing"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spare">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tei_opening"
+                    android:id="@+id/tei_opening100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/opening_no"
@@ -114,19 +179,20 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/closing"
+                android:id="@+id/closing100"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/opening"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value100"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/opening"
-                app:layout_constraintTop_toTopOf="@+id/opening">
+                app:layout_constraintStart_toEndOf="@+id/opening100"
+                app:layout_constraintTop_toTopOf="@+id/card_value100">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tei_closing"
+                    android:id="@+id/tei_closing100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/closing_no"
@@ -136,9 +202,1564 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_120"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_120"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value100">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_120"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_120" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--  <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/spare_240"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_240"
+                  app:layout_constraintEnd_toStartOf="@+id/key_240"
+                  app:layout_constraintStart_toEndOf="@+id/card_value_240"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_240">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_spare_240"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/spare"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1"
+                      android:text="@string/_6" />
+              </com.google.android.material.textfield.TextInputLayout>
+
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/key_240"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_240"
+                  app:layout_constraintEnd_toStartOf="@+id/opening_240"
+                  app:layout_constraintStart_toEndOf="@+id/spare_240"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_240">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_key_240"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/key"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1"
+                      android:text="@string/uv" />
+              </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_120"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_120"
+                app:layout_constraintEnd_toStartOf="@+id/closing_120"
+                app:layout_constraintStart_toEndOf="@+id/card_value_120"
+                app:layout_constraintTop_toTopOf="@+id/card_value_120">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_120"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_120"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_120"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_120"
+                app:layout_constraintTop_toTopOf="@+id/card_value_120">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_120"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_140"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_140"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_120">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_140"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_140" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--  <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/spare_280"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_280"
+                  app:layout_constraintEnd_toStartOf="@+id/key_280"
+                  app:layout_constraintStart_toEndOf="@+id/card_value_280"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_280">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_spare_280"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/spare"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1"
+                      android:text="@string/_7" />
+              </com.google.android.material.textfield.TextInputLayout>
+
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/key_280"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_280"
+                  app:layout_constraintEnd_toStartOf="@+id/opening_280"
+                  app:layout_constraintStart_toEndOf="@+id/spare_280"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_280">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_key_280"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/key"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1"
+                      android:text="@string/_BA" />
+              </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_140"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_140"
+                app:layout_constraintEnd_toStartOf="@+id/closing_140"
+                app:layout_constraintStart_toEndOf="@+id/card_value_140"
+                app:layout_constraintTop_toTopOf="@+id/card_value_140">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_140"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_140"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_140"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_140"
+                app:layout_constraintTop_toTopOf="@+id/card_value_140">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_140"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_160"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_160"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_140">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_160"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_160" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--  <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/spare_320"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_320"
+                  app:layout_constraintEnd_toStartOf="@+id/key_320"
+                  app:layout_constraintStart_toEndOf="@+id/card_value_320"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_320">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_spare_320"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/spare"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1"
+                      android:text="@string/_8" />
+              </com.google.android.material.textfield.TextInputLayout>
+
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/key_320"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_320"
+                  app:layout_constraintEnd_toStartOf="@+id/opening_320"
+                  app:layout_constraintStart_toEndOf="@+id/spare_320"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_320">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_key_320"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/key"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:text="@string/bb"
+                      android:maxLines="1" />
+              </com.google.android.material.textfield.TextInputLayout>
+  -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_160"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_160"
+                app:layout_constraintEnd_toStartOf="@+id/closing_160"
+                app:layout_constraintStart_toEndOf="@+id/card_value_160"
+                app:layout_constraintTop_toTopOf="@+id/card_value_160">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_160"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_160"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_160"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_160"
+                app:layout_constraintTop_toTopOf="@+id/card_value_160">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_160"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_180"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_180"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_160">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_180"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_180" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--  <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/spare_360"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_360"
+                  app:layout_constraintEnd_toStartOf="@+id/key_360"
+                  app:layout_constraintStart_toEndOf="@+id/card_value_360"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_360">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_spare_360"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/spare"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:text="@string/_9"
+                      android:maxLines="1" />
+              </com.google.android.material.textfield.TextInputLayout>
+
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/key_360"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_360"
+                  app:layout_constraintEnd_toStartOf="@+id/opening_360"
+                  app:layout_constraintStart_toEndOf="@+id/spare_360"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_360">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_key_360"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/key"
+                      android:text="@string/bc"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1" />
+              </com.google.android.material.textfield.TextInputLayout>
+  -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_180"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_180"
+                app:layout_constraintEnd_toStartOf="@+id/closing_180"
+                app:layout_constraintStart_toEndOf="@+id/card_value_180"
+                app:layout_constraintTop_toTopOf="@+id/card_value_180">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_180"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_180"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_180"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_180"
+                app:layout_constraintTop_toTopOf="@+id/card_value_180">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_180"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_200"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_180">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_200"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_200" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/spare_400"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_400"
+                 app:layout_constraintEnd_toStartOf="@+id/key_400"
+                 app:layout_constraintStart_toEndOf="@+id/card_value_400"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_400">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_spare_400"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/spare"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/key_400"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_400"
+                 app:layout_constraintEnd_toStartOf="@+id/opening_400"
+                 app:layout_constraintStart_toEndOf="@+id/spare_400"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_400">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_key_400"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/key"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_200"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_200"
+                app:layout_constraintEnd_toStartOf="@+id/closing_200"
+                app:layout_constraintStart_toEndOf="@+id/card_value_200"
+                app:layout_constraintTop_toTopOf="@+id/card_value_200">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_200"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_200"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_200"
+                app:layout_constraintTop_toTopOf="@+id/card_value_200">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_200"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_220"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_220"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_200">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_220"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_220" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/spare_440"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_440"
+                 app:layout_constraintEnd_toStartOf="@+id/key_440"
+                 app:layout_constraintStart_toEndOf="@+id/card_value_440"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_440">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_spare_440"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/spare"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/key_440"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_440"
+                 app:layout_constraintEnd_toStartOf="@+id/opening_440"
+                 app:layout_constraintStart_toEndOf="@+id/spare_440"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_440">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_key_440"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/key"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>
+ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_220"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_220"
+                app:layout_constraintEnd_toStartOf="@+id/closing_220"
+                app:layout_constraintStart_toEndOf="@+id/card_value_220"
+                app:layout_constraintTop_toTopOf="@+id/card_value_220">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_220"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_220"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_220"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_220"
+                app:layout_constraintTop_toTopOf="@+id/card_value_220">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_220"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_240"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_240"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_220">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_240"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_240" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/spare_480"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_480"
+                 app:layout_constraintEnd_toStartOf="@+id/key_480"
+                 app:layout_constraintStart_toEndOf="@+id/card_value_480"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_480">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_spare_480"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/spare"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/key_480"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_480"
+                 app:layout_constraintEnd_toStartOf="@+id/opening_480"
+                 app:layout_constraintStart_toEndOf="@+id/spare_480"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_480">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_key_480"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/key"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_240"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_240"
+                app:layout_constraintEnd_toStartOf="@+id/closing_240"
+                app:layout_constraintStart_toEndOf="@+id/card_value_240"
+                app:layout_constraintTop_toTopOf="@+id/card_value_240">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_240"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_240"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_240"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_240"
+                app:layout_constraintTop_toTopOf="@+id/card_value_240">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_240"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_260"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_260"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_240">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_260"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_260" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/spare_520"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_520"
+                 app:layout_constraintEnd_toStartOf="@+id/key_520"
+                 app:layout_constraintStart_toEndOf="@+id/card_value_520"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_520">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_spare_520"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/spare"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>
+
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/key_520"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 app:layout_constraintBottom_toBottomOf="@+id/card_value_520"
+                 app:layout_constraintEnd_toStartOf="@+id/opening_520"
+                 app:layout_constraintStart_toEndOf="@+id/spare_520"
+                 app:layout_constraintTop_toTopOf="@+id/card_value_520">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tei_key_520"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:hint="@string/key"
+                     android:imeOptions="actionNext"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:maxLines="1" />
+             </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_260"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_260"
+                app:layout_constraintEnd_toStartOf="@+id/closing_260"
+                app:layout_constraintStart_toEndOf="@+id/card_value_260"
+                app:layout_constraintTop_toTopOf="@+id/card_value_260">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_260"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_260"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_260"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_260"
+                app:layout_constraintTop_toTopOf="@+id/card_value_260">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_260"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_280"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_280"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_260">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_280"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_280" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--  <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/spare_560"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_560"
+                  app:layout_constraintEnd_toStartOf="@+id/key_560"
+                  app:layout_constraintStart_toEndOf="@+id/card_value_560"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_560">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_spare_560"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/spare"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1" />
+              </com.google.android.material.textfield.TextInputLayout>
+
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/key_560"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/card_value_560"
+                  app:layout_constraintEnd_toStartOf="@+id/opening_560"
+                  app:layout_constraintStart_toEndOf="@+id/spare_560"
+                  app:layout_constraintTop_toTopOf="@+id/card_value_560">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/tei_key_560"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:hint="@string/key"
+                      android:imeOptions="actionNext"
+                      android:inputType="number"
+                      android:maxLength="10"
+                      android:maxLines="1" />
+              </com.google.android.material.textfield.TextInputLayout>
+  -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_280"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_280"
+                app:layout_constraintEnd_toStartOf="@+id/closing_280"
+                app:layout_constraintStart_toEndOf="@+id/card_value_280"
+                app:layout_constraintTop_toTopOf="@+id/card_value_280">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_280"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_280"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_280"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_280"
+                app:layout_constraintTop_toTopOf="@+id/card_value_280">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_280"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_300"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_280">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_300"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_300" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--           <com.google.android.material.textfield.TextInputLayout
+                           android:id="@+id/spare_600"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_margin="10dp"
+                           app:layout_constraintBottom_toBottomOf="@+id/card_value_600"
+                           app:layout_constraintEnd_toStartOf="@+id/key_600"
+                           app:layout_constraintStart_toEndOf="@+id/card_value_600"
+                           app:layout_constraintTop_toTopOf="@+id/card_value_600">
+
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:id="@+id/tei_spare_600"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:hint="@string/spare"
+                               android:imeOptions="actionNext"
+                               android:inputType="number"
+                               android:maxLength="10"
+                               android:maxLines="1" />
+                       </com.google.android.material.textfield.TextInputLayout>
+
+
+                       <com.google.android.material.textfield.TextInputLayout
+                           android:id="@+id/key_600"
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_margin="10dp"
+                           app:layout_constraintBottom_toBottomOf="@+id/card_value_600"
+                           app:layout_constraintEnd_toStartOf="@+id/opening_600"
+                           app:layout_constraintStart_toEndOf="@+id/spare_600"
+                           app:layout_constraintTop_toTopOf="@+id/card_value_600">
+
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:id="@+id/tei_key_600"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:hint="@string/key"
+                               android:imeOptions="actionNext"
+                               android:inputType="number"
+                               android:maxLength="10"
+                               android:maxLines="1" />
+                       </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_300"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_300"
+                app:layout_constraintEnd_toStartOf="@+id/closing_300"
+                app:layout_constraintStart_toEndOf="@+id/card_value_300"
+                app:layout_constraintTop_toTopOf="@+id/card_value_300">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_300"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_300"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_300"
+                app:layout_constraintTop_toTopOf="@+id/card_value_300">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_300"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_320"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_320"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_300">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_320"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_320" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--    <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/spare_640"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_value_640"
+                    app:layout_constraintEnd_toStartOf="@+id/key_640"
+                    app:layout_constraintStart_toEndOf="@+id/card_value_640"
+                    app:layout_constraintTop_toTopOf="@+id/card_value_640">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tei_spare_640"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/spare"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/key_640"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_value_640"
+                    app:layout_constraintEnd_toStartOf="@+id/opening_640"
+                    app:layout_constraintStart_toEndOf="@+id/spare_640"
+                    app:layout_constraintTop_toTopOf="@+id/card_value_640">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tei_key_640"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/key"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+    -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_320"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_320"
+                app:layout_constraintEnd_toStartOf="@+id/closing_320"
+                app:layout_constraintStart_toEndOf="@+id/card_value_320"
+                app:layout_constraintTop_toTopOf="@+id/card_value_320">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_320"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_320"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_320"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_320"
+                app:layout_constraintTop_toTopOf="@+id/card_value_320">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_320"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_340"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_340"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_320">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_340"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_340" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--   <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/spare_680"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   app:layout_constraintBottom_toBottomOf="@+id/card_value_680"
+                   app:layout_constraintEnd_toStartOf="@+id/key_680"
+                   app:layout_constraintStart_toEndOf="@+id/card_value_680"
+                   app:layout_constraintTop_toTopOf="@+id/card_value_680">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/tei_spare_680"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:hint="@string/spare"
+                       android:imeOptions="actionNext"
+                       android:inputType="number"
+                       android:maxLength="10"
+                       android:maxLines="1" />
+               </com.google.android.material.textfield.TextInputLayout>
+
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/key_680"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   app:layout_constraintBottom_toBottomOf="@+id/card_value_680"
+                   app:layout_constraintEnd_toStartOf="@+id/opening_680"
+                   app:layout_constraintStart_toEndOf="@+id/spare_680"
+                   app:layout_constraintTop_toTopOf="@+id/card_value_680">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/tei_key_680"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:hint="@string/key"
+                       android:imeOptions="actionNext"
+                       android:inputType="number"
+                       android:maxLength="10"
+                       android:maxLines="1" />
+               </com.google.android.material.textfield.TextInputLayout>
+   -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_340"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_340"
+                app:layout_constraintEnd_toStartOf="@+id/closing_340"
+                app:layout_constraintStart_toEndOf="@+id/card_value_340"
+                app:layout_constraintTop_toTopOf="@+id/card_value_340">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_340"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_340"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_340"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_340"
+                app:layout_constraintTop_toTopOf="@+id/card_value_340">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_340"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_360"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_360"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_340">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_360"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_360" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_360"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_360"
+                app:layout_constraintEnd_toStartOf="@+id/closing_360"
+                app:layout_constraintStart_toEndOf="@+id/card_value_360"
+                app:layout_constraintTop_toTopOf="@+id/card_value_360">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_360"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_360"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_360"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_360"
+                app:layout_constraintTop_toTopOf="@+id/card_value_360">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_360"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_380"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_380"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_360">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_380"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_380" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_380"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_380"
+                app:layout_constraintEnd_toStartOf="@+id/closing_380"
+                app:layout_constraintStart_toEndOf="@+id/card_value_380"
+                app:layout_constraintTop_toTopOf="@+id/card_value_380">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_380"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_380"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_380"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_380"
+                app:layout_constraintTop_toTopOf="@+id/card_value_380">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_380"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/card_value_400"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/opening_400"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_value_380">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_card_value_400"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/cardvalue"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/_400" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opening_400"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_400"
+                app:layout_constraintEnd_toStartOf="@+id/closing_400"
+                app:layout_constraintStart_toEndOf="@+id/card_value_400"
+                app:layout_constraintTop_toTopOf="@+id/card_value_400">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_opening_400"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/opening_no"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/closing_400"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_value_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opening_400"
+                app:layout_constraintTop_toTopOf="@+id/card_value_400">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tei_closing_400"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/closing_no"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mst_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/submit"
+                android:textColor="@color/coloWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/closing_400"
+                app:layout_constraintStart_toStartOf="@id/card_value_400"
+                app:layout_constraintTop_toBottomOf="@id/closing_400" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

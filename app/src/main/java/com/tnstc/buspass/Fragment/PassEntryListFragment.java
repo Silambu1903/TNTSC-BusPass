@@ -1,14 +1,12 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,16 +20,15 @@ import android.view.ViewGroup;
 import androidx.appcompat.view.ActionMode;
 
 import android.view.animation.ScaleAnimation;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.PassEntryAdapter;
 import com.tnstc.buspass.Database.DAOs.PassDao;
@@ -44,34 +41,18 @@ import com.tnstc.buspass.databinding.PassEntryListBinding;
 
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static org.apache.poi.hssf.usermodel.HSSFFont.FONT_ARIAL;
 
 public class PassEntryListFragment extends Fragment implements ItemClickListener {
     PassEntryListBinding mBinding;
@@ -106,6 +87,8 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
+        View windowDecorView = requireActivity().getWindow().getDecorView();
+        windowDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
@@ -143,13 +126,18 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
-            excelWorkBookWrite();
+            if (!(passEntityList ==null)){
+                excelWorkBookWrite();
+            }else {
+                mAppClass.showSnackBar(getContext(),"PassDetail is Empty");
+            }
+
         }else if (item.getItemId() == R.id.action_open) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                    +  File.separator + "TNSTCBusPass" + File.separator);
+                    +  File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
             intent.setDataAndType(uri, "*/*");
-            startActivity(Intent.createChooser(intent, "TNSTCBusPass"));
+            startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
         } else {
             BaseActivity activity = (BaseActivity) getActivity();
             activity.onSupportNavigateUp();
@@ -217,7 +205,10 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         File file;
         FileOutputStream fos = null;
         try {
-            File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "TNSTCBusPass");
+            File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/TNSTC BUS PASS DETAILS");
+            if (!mediaStorageDir.mkdirs()) {
+                mediaStorageDir.mkdirs();
+            }
             file = new File(mediaStorageDir + File.separator, "TNSTCBusPass" + currentMonth + currentYear + ".xls");
             fos = new FileOutputStream(file);
             workbook.write(fos);
@@ -289,6 +280,11 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
 
     }
 
+    @Override
+    public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
 
     private void startActionMode(int pos) {
         ActionMode.Callback passEntryDelete = new ActionMode.Callback() {
@@ -342,6 +338,8 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        View windowDecorView = requireActivity().getWindow().getDecorView();
+        windowDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }

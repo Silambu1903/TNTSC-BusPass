@@ -12,8 +12,8 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.tnstc.buspass.Fragment.DashboardFragment"
-        tools:layout="@layout/dashboard_fragment"
-        android:label="@string/dashboard">
+        android:label="@string/dashboard"
+        tools:layout="@layout/dashboard_fragment">
 
         <action
             android:id="@+id/action_dashboardFragment_to_passentry"
@@ -29,28 +29,34 @@
             app:destination="@id/mstsctentry" />
         <action
             android:id="@+id/action_dashboardFragment_to_sctentry"
-            app:destination="@id/sctentry" />
+            app:destination="@id/sct_entry" />
         <action
             android:id="@+id/action_dashboardFragment_to_mst_list"
             app:destination="@id/mst_list" />
         <action
             android:id="@+id/action_dashboardFragment_to_mst_month"
             app:destination="@id/mst_month" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_sct_list"
+            app:destination="@id/sct_list" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_sct_month"
+            app:destination="@id/sct_month" />
     </fragment>
 
     <fragment
         android:id="@+id/passentry"
         android:name="com.tnstc.buspass.Fragment.PassEntryFragment"
-        tools:layout="@layout/passentry"
-        android:label="@string/passentry">
+        android:label="@string/passentry"
+        tools:layout="@layout/passentry">
 
     </fragment>
 
     <fragment
         android:id="@+id/passentrylist"
         android:name="com.tnstc.buspass.Fragment.PassEntryListFragment"
-        tools:layout="@layout/pass_entry_list"
-        android:label="@string/passentry">
+        android:label="PassDailyReport"
+        tools:layout="@layout/pass_entry_list">
 
     </fragment>
 
@@ -58,33 +64,27 @@
     <fragment
         android:id="@+id/passmonthwiselist"
         android:name="com.tnstc.buspass.Fragment.PassMonthlyWiseFragment"
-        tools:layout="@layout/pass_monthly_wise_fragment"
-        android:label="@string/passentry">
+        android:label="PassMonthlyReport"
+        tools:layout="@layout/pass_monthly_wise_fragment">
 
     </fragment>
 
     <fragment
         android:id="@+id/mstsctentry"
         android:name="com.tnstc.buspass.Fragment.MstSctFragment"
-        tools:layout="@layout/mst_sct_entry"
-        android:label="@string/passentry">
+        android:label="MstEntry"
+        tools:layout="@layout/mst_sct_entry">
 
     </fragment>
 
-    <fragment
-        android:id="@+id/sctentry"
-        android:name="com.tnstc.buspass.Fragment.SctFragment"
-        tools:layout="@layout/sct_fragment"
-        android:label="@string/passentry">
 
-    </fragment>
 
 
     <fragment
         android:id="@+id/mst_list"
         android:name="com.tnstc.buspass.Fragment.MstListFragment"
-        tools:layout="@layout/mst_list_fragment"
-        android:label="MSTLIST">
+        android:label="MstDailyReport"
+        tools:layout="@layout/mst_list_fragment">
 
     </fragment>
 
@@ -92,10 +92,32 @@
     <fragment
         android:id="@+id/mst_month"
         android:name="com.tnstc.buspass.Fragment.MstMonthWiseFragment"
-        tools:layout="@layout/mst_monthwise"
-        android:label="MSTLIST">
+        android:label="MstMonthlyReport"
+        tools:layout="@layout/mst_monthwise">
 
     </fragment>
 
+    <fragment
+        android:id="@+id/sct_entry"
+        android:name="com.tnstc.buspass.Fragment.SctFragment"
+        android:label="SctEntry"
+        tools:layout="@layout/sct_fragment">
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/sct_list"
+        android:name="com.tnstc.buspass.Fragment.SctListFragment"
+        android:label="SctDailyReport"
+        tools:layout="@layout/sct_list_fragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/sct_month"
+        android:name="com.tnstc.buspass.Fragment.SctMonthWiseFragment"
+        android:label="SctMonthlyReport"
+        tools:layout="@layout/sct_monthwise">
+
+    </fragment>
 </navigation>

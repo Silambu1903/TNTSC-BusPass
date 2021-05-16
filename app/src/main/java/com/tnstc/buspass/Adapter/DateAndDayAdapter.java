@@ -54,14 +54,8 @@ public class DateAndDayAdapter extends RecyclerView.Adapter<DateAndDayAdapter.it
         Date date = new Date();
         currentDate = simpleDateFormat.format(date);
         if (CurrentDateAndDay.get(position).equals(currentDate)) {
-            holder.constraintLayout.setBackground(context.getResources().getDrawable(R.drawable.yellow_boder));
+            holder.constraintLayout.setBackground(context.getResources().getDrawable(R.drawable.rose_boder));
         }
-        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.constraintLayout.setBackground(context.getResources().getDrawable(R.drawable.yellow_boder));
-            }
-        });
         String[] handleData = CurrentDateAndDay.get(position).split("\\.");
         holder.date.setText(handleData[0]);
         holder.day.setText(handleData[3]);
@@ -92,8 +86,13 @@ public class DateAndDayAdapter extends RecyclerView.Adapter<DateAndDayAdapter.it
             date = itemView.findViewById(R.id.date_item);
             constraintLayout = itemView.findViewById(R.id.constraintLayout_date_day);
             day = itemView.findViewById(R.id.day_item);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.OnItemClickDate(v, getAdapterPosition(), CurrentDateAndDay,constraintLayout);
 
-
+                }
+            });
         }
     }
 

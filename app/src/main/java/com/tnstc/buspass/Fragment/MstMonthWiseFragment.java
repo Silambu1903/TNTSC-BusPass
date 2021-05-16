@@ -1,12 +1,19 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -21,6 +28,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.MstMonthWiseAdapter;
 import com.tnstc.buspass.Database.DAOs.MstDao;
 import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
@@ -28,9 +36,19 @@ import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
+import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.databinding.MstMonthwiseBinding;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +62,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
     MstDao dao;
     MstOpeningDao daoOpenClose;
     Context mContext;
+    ApplicationClass mAppClass;
     private SharedPreferences preferences;
     List<String> getYear;
     List<String> getMonth;
@@ -51,6 +70,8 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
     List<MstOpeningClosing> mstOpeningClosings;
     String month;
     String year;
+    String currentMonth;
+    String currentYear;
 
 
     int balOpen200, balClose200, TotalBalCard200, balCard200, maxMonthOpenCard200,
@@ -77,16 +98,48 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.users_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_download) {
+            if (!(mstOpeningClosings ==null)) {
+                excelWorkBookWrite();
+            }else {
+                mAppClass.showSnackBar(getContext(),"Please Select the Month and Year");
+            }
+
+        } else if (item.getItemId() == R.id.action_open) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+                    + File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
+            intent.setDataAndType(uri, "*/*");
+            startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
+        } else {
+            BaseActivity activity = (BaseActivity) getActivity();
+            activity.onSupportNavigateUp();
+        }
+        return true;
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
         View windowDecorView = requireActivity().getWindow().getDecorView();
         windowDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mContext = getContext();
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.mstDao();
         daoOpenClose = db.OpeningDao();
+
         if (!daoOpenClose.getMonthWiseMst("April", "2021").isEmpty()) {
             getMstEntry();
             mstOpeningClosings = new ArrayList<>();
@@ -99,10 +152,106 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
             mAdapter = new MstMonthWiseAdapter(mstOpeningClosings, getContext());
             mBinding.recyclerMstMonth.setLayoutManager(new LinearLayoutManager(getContext()));
             mBinding.recyclerMstMonth.setAdapter(mAdapter);
+        } else {
+            getMstEntry();
         }
         AdapterForMonthYear();
         mBinding.monthListMst.setOnItemClickListener(this);
         mBinding.yearListMst.setOnItemClickListener(this);
+
+    }
+
+
+    private void excelWorkBookWrite() {
+        currentMonth = String.valueOf(DateFormat.format("MMMM", new Date()));
+        currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet SecondSheet = workbook.createSheet("Mst" + month);
+        SecondSheet.setFitToPage(true);
+        HSSFRow row = SecondSheet.createRow(0);
+        HSSFCell cell1 = row.createCell(0);
+        SecondSheet.setColumnWidth(0, 25 * 60);
+        HSSFCell cell2 = row.createCell(1);
+        SecondSheet.setColumnWidth(1, 25 * 60);
+        HSSFCell cell3 = row.createCell(2);
+        SecondSheet.setColumnWidth(2, 25 * 70);
+        HSSFCell cell4 = row.createCell(3);
+        SecondSheet.setColumnWidth(3, 25 * 100);
+        HSSFCell cell5 = row.createCell(4);
+        SecondSheet.setColumnWidth(4, 25 * 100);
+        HSSFCell cell6 = row.createCell(5);
+        SecondSheet.setColumnWidth(5, 25 * 216);
+        HSSFCell cell7 = row.createCell(6);
+        SecondSheet.setColumnWidth(6, 25 * 100);
+        HSSFCell cell8 = row.createCell(7);
+        SecondSheet.setColumnWidth(7, 25 * 100);
+        HSSFCell cell9 = row.createCell(8);
+        SecondSheet.setColumnWidth(8, 25 * 100);
+        HSSFCell cell10 = row.createCell(9);
+        SecondSheet.setColumnWidth(9, 25 * 100);
+        HSSFCell cell11 = row.createCell(10);
+        SecondSheet.setColumnWidth(10, 25 * 100);
+        HSSFCell cell12 = row.createCell(11);
+        SecondSheet.setColumnWidth(11, 25 * 130);
+        HSSFCell cell13 = row.createCell(12);
+        SecondSheet.setColumnWidth(12, 25 * 130);
+        cell1.setCellValue(new HSSFRichTextString("CARD"));
+        cell2.setCellValue(new HSSFRichTextString("KEY"));
+        cell3.setCellValue(new HSSFRichTextString("OPENING NO"));
+        cell4.setCellValue(new HSSFRichTextString("CLOSING NO"));
+        cell5.setCellValue(new HSSFRichTextString("TOTAL CARD"));
+        cell6.setCellValue(new HSSFRichTextString("OPENING NO"));
+        cell7.setCellValue(new HSSFRichTextString("CLOSING NO"));
+        cell8.setCellValue(new HSSFRichTextString("TOTAL CARD"));
+        cell9.setCellValue(new HSSFRichTextString("SCALES AMOUNT"));
+        cell10.setCellValue(new HSSFRichTextString("OPENING NO"));
+        cell11.setCellValue(new HSSFRichTextString("CLOSING NO"));
+        cell12.setCellValue(new HSSFRichTextString("BALANCE CARD"));
+        cell13.setCellValue(new HSSFRichTextString("TOTAL CARD"));
+        for (int i = 0; i < mstOpeningClosings.size(); i++) {
+            HSSFRow rowA = SecondSheet.createRow(i + 1);
+            rowA.createCell(0).setCellValue(mstOpeningClosings.get(i).getMstCard());
+            rowA.createCell(1).setCellValue(mstOpeningClosings.get(i).getMstKey());
+            rowA.createCell(2).setCellValue(mstOpeningClosings.get(i).getMstOpening());
+            rowA.createCell(3).setCellValue(mstOpeningClosings.get(i).getMstClosing());
+            rowA.createCell(4).setCellValue(mstOpeningClosings.get(i).getMstTotal());
+            rowA.createCell(5).setCellValue(mstOpeningClosings.get(i).getMstOpenMax());
+            rowA.createCell(6).setCellValue(mstOpeningClosings.get(i).getMstCloseMax());
+            rowA.createCell(7).setCellValue(mstOpeningClosings.get(i).getMstTotalCard());
+            rowA.createCell(8).setCellValue(mstOpeningClosings.get(i).getMstTotalAmount());
+            rowA.createCell(9).setCellValue(mstOpeningClosings.get(i).getMstBalOpen());
+            rowA.createCell(10).setCellValue(mstOpeningClosings.get(i).getMstBalClose());
+            rowA.createCell(11).setCellValue(mstOpeningClosings.get(i).getMstBalCard());
+            rowA.createCell(12).setCellValue(mstOpeningClosings.get(i).getMstBalTotalCard());
+
+        }
+        FileOutputStream fos = null;
+        try {
+            File file;
+            File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/TNSTC BUS PASS DETAILS");
+            if (!folder.mkdirs()) {
+                folder.mkdirs();
+            }
+            file = new File(folder + File.separator, "TNSTCMst" + month + year + ".xls");
+            fos = new FileOutputStream(file);
+            workbook.write(fos);
+            mAppClass.showSnackBar(getContext(), "Excel Sheet Download Successfully");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "" + e, Toast.LENGTH_SHORT).show();
+            Log.e("TAG", "excelWorkBookWrite: " + e);
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.flush();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
 
     }
 
@@ -137,7 +286,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
         if (dao.mstMonthOpen200(monthMst, 200) != 0) {
             balOpen200 = dao.mstMonthCloseMax200(monthMst, 200) + 1;
             balClose200 = daoOpenClose.mstMonthBalClose200(monthMst, 200);
-            maxMonthOpenCard200 = dao.mstMonthCloseMax200(monthMst, 240);
+            maxMonthOpenCard200 = dao.mstMonthCloseMax200(monthMst, 200);
             balCard200 = daoOpenClose.mstMonthBalClose200(monthMst, 200) - maxMonthOpenCard200;
             TotalBalCard200 = dao.mstMonthTotalCard200(monthMst, 200) + balCard200;
         }

@@ -154,7 +154,7 @@ public class MstSctFragment extends Fragment {
         if (dao.mstMonthOpen200(monthMst, 200) != 0) {
             balOpen200 = dao.mstMonthCloseMax200(monthMst, 200) + 1;
             balClose200 = daoOpenClose.mstMonthBalClose200(monthMst, 200);
-            maxMonthOpenCard200 = dao.mstMonthCloseMax200(monthMst, 240);
+            maxMonthOpenCard200 = dao.mstMonthCloseMax200(monthMst, 200);
             balCard200 = daoOpenClose.mstMonthBalClose200(monthMst, 200) - maxMonthOpenCard200;
             TotalBalCard200 = dao.mstMonthTotalCard200(monthMst, 200) + balCard200;
         }
@@ -488,7 +488,7 @@ public class MstSctFragment extends Fragment {
                 Integer.parseInt(mBinding.teiCardValue560.getText().toString()), spare560, key560, TotalCard560, monthMst, yearMst, maxOpen560, maxClose560, maxTotalCard560, maxTotalSales560, balOpen560, balClose560, balCard560, TotalBalCard560);
 
         MstOpeningClosing MstOpeningClosing600 = new MstOpeningClosing(Date, Integer.parseInt(mBinding.teiOpening600.getText().toString()), Integer.parseInt(mBinding.teiClosing600.getText().toString()),
-                Integer.parseInt(mBinding.teiCardValue600.getText().toString()), spare560, key600, TotalCard600, monthMst, yearMst, maxOpen600, maxClose600, maxTotalCard600, maxTotalSales600, balOpen600, balClose600, balCard600, TotalBalCard600);
+                Integer.parseInt(mBinding.teiCardValue600.getText().toString()), spare600, key600, TotalCard600, monthMst, yearMst, maxOpen600, maxClose600, maxTotalCard600, maxTotalSales600, balOpen600, balClose600, balCard600, TotalBalCard600);
 
         MstOpeningClosing MstOpeningClosing640 = new MstOpeningClosing(Date, Integer.parseInt(mBinding.teiOpening640.getText().toString()), Integer.parseInt(mBinding.teiClosing640.getText().toString()),
                 Integer.parseInt(mBinding.teiCardValue640.getText().toString()), spare640, key640, TotalCard640, monthMst, yearMst, maxOpen640, maxClose640, maxTotalCard640, maxTotalSales640, balOpen640, balClose640, balCard640, TotalBalCard640);
@@ -735,7 +735,7 @@ public class MstSctFragment extends Fragment {
                 Integer.parseInt(mBinding.teiOpening280.getText().toString()), Integer.parseInt(mBinding.teiClosing280.getText().toString()), monthMst, yearMst, TotalCard280, totalAmount280, dateMst);
 
         MstEntity entity320 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue320.getText().toString()), spare320, key320,
-                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, TotalCard320, totalAmount320, dateMst);
+                Integer.parseInt(mBinding.teiOpening320.getText().toString()), Integer.parseInt(mBinding.teiClosing320.getText().toString()), monthMst, yearMst, TotalCard320, totalAmount320, dateMst);
 
         MstEntity entity360 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue360.getText().toString()), spare360, key360,
                 Integer.parseInt(mBinding.teiOpening360.getText().toString()), Integer.parseInt(mBinding.teiClosing360.getText().toString()), monthMst, yearMst, TotalCard360, totalAmount360, dateMst);
@@ -756,7 +756,7 @@ public class MstSctFragment extends Fragment {
                 Integer.parseInt(mBinding.teiOpening560.getText().toString()), Integer.parseInt(mBinding.teiClosing560.getText().toString()), monthMst, yearMst, TotalCard560, totalAmount560, dateMst);
 
         MstEntity entity600 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue600.getText().toString()), spare600, key600,
-                Integer.parseInt(mBinding.teiOpening.getText().toString()), Integer.parseInt(mBinding.teiClosing.getText().toString()), monthMst, yearMst, TotalCard600, totalAmount600, dateMst);
+                Integer.parseInt(mBinding.teiOpening600.getText().toString()), Integer.parseInt(mBinding.teiClosing600.getText().toString()), monthMst, yearMst, TotalCard600, totalAmount600, dateMst);
 
         MstEntity entity640 = new MstEntity(Date, Integer.parseInt(mBinding.teiCardValue640.getText().toString()), spare640, key640,
                 Integer.parseInt(mBinding.teiOpening640.getText().toString()), Integer.parseInt(mBinding.teiClosing640.getText().toString()), monthMst, yearMst, TotalCard640, totalAmount640, dateMst);

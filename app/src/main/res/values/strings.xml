@@ -56,7 +56,7 @@
     <string name="opening_no">OPENING NO</string>
     <string name="closing_no">CLOSING NO</string>
 
-    <string name="_100">100</string>
+
     <string name="opening">OPENING</string>
     <string name="closing">CLOSING</string>
     <string name="totalcard">TOTALCARD</string>
@@ -71,4 +71,15 @@
     <string name="passdailylist">Daily Report</string>
     <string name="monthly_pass_report">Monthly Report</string>
     <string name="mst_entry">Mst Entry</string>
+    <string name="_100">100</string>
+    <string name="_120">120</string>
+    <string name="_140">140</string>
+    <string name="_160">160</string>
+    <string name="_180">180</string>
+    <string name="_220">220</string>
+    <string name="_260">260</string>
+    <string name="_300">300</string>
+    <string name="_340">340</string>
+    <string name="_380">380</string>
+    <string name="_passlist">PassList</string>
 </resources>

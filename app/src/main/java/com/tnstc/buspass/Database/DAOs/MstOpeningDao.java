@@ -17,7 +17,7 @@ import java.util.List;
 @Dao
 public interface MstOpeningDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMstMonth(MstOpeningClosing... MstEntity);
+    void insertMstMonth(MstOpeningClosing... MstOpeningClosing);
 
 
     @Query("SELECT max(mstOpening) FROM mstopeningclosing WHERE mstMonth=:month and mstCard=:card200 ")

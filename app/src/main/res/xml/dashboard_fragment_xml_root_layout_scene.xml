@@ -36,7 +36,9 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent" />
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.0"
+            motion:layout_constraintHorizontal_bias="1.0" />
 
         <Constraint
             android:id="@+id/view6"
@@ -1471,8 +1473,8 @@
             android:id="@+id/ic_sct_line"
             android:layout_width="0dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginRight="10dp"
             android:visibility="visible"
             motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
@@ -1494,12 +1496,208 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:visibility="visible"
             motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry"
             motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
             motion:layout_constraintStart_toEndOf="@id/lottie_sct_entry"
             motion:layout_constraintTop_toTopOf="@id/lottie_sct_entry" />
+
+        <Constraint
+            android:id="@+id/rigth_sct_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_txt"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/sct_txt"
+            motion:layout_constraintTop_toTopOf="@id/sct_txt" />
+
+        <Constraint
+            android:id="@+id/sct_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_list_view"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toTopOf="@id/sct_list_view"
+            motion:layout_constraintVertical_bias="0.15" />
+
+        <Constraint
+            android:id="@+id/ic_sct_list_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/sct_list_txt" />
+        <Constraint
+            android:id="@+id/rigth_sct_list_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_list_txt"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/sct_list_txt"
+            motion:layout_constraintTop_toTopOf="@id/sct_list_txt" />
+        <Constraint
+            android:id="@+id/lottie_sct_list_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+        <Constraint
+            android:id="@+id/sample_sct_list_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_sct_list_entry_1"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry_1" />
+        <Constraint
+            android:id="@+id/lottie_sct_list_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_txt"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+        <Constraint
+            android:id="@+id/sample_sct_list_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_list_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry" />
+        <Constraint
+            android:id="@+id/sct_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_monthly_view"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintHorizontal_bias="0.1"
+            motion:layout_constraintStart_toStartOf="@id/sct_monthly_view"
+            motion:layout_constraintTop_toTopOf="@id/sct_monthly_view"
+            motion:layout_constraintVertical_bias="0.15" />
+        <Constraint
+            android:id="@+id/rigth_sct_monthly_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/sct_monthly_txt"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toEndOf="@id/sct_monthly_txt"
+            motion:layout_constraintTop_toTopOf="@id/sct_monthly_txt" />
+        <Constraint
+            android:id="@+id/ic_sct_monthly_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintStart_toStartOf="@id/sct_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/sct_monthly_txt" />
+        <Constraint
+            android:id="@+id/lottie_sct_monthly_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/sct_monthly_txt"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+        <Constraint
+            android:id="@+id/sample_sct_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_monthly_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_monthly_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_monthly_entry" />
+        <Constraint
+            android:id="@+id/lottie_sct_Monthly_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+
+        <Constraint
+            android:id="@+id/sample_sct_monthly_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_Monthly_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_sct_Monthly_entry_1"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_Monthly_entry_1" />
+
+
+        <Constraint
+            android:id="@+id/txt_main_sct"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="30dp"
+            motion:layout_constraintBottom_toTopOf="@id/view6"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year"
+            motion:layout_constraintHorizontal_bias="0.9"
+            motion:layout_constraintStart_toStartOf="@id/main_frame" />
+
+        <Constraint
+            android:id="@+id/view6"
+            motion:layout_constraintEnd_toEndOf="@+id/txt_main_sct"
+            motion:layout_constraintStart_toEndOf="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_main_sct"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+        <Constraint
+            android:id="@+id/txt_main"
+            motion:layout_constraintEnd_toEndOf="@id/main_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/main_frame"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.06"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_month_year"
+            motion:layout_constraintHorizontal_bias="0.9" />
     </ConstraintSet>
     <Transition
         motion:constraintSetEnd="@+id/Sct"
@@ -1536,14 +1734,161 @@
             motion:layout_constraintBottom_toTopOf="@id/icon_5"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/icon_2" />
+
+        <Constraint
+            android:id="@+id/lottie_sct_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/sct_txt"
+            motion:layout_constraintTop_toBottomOf="@id/sct_txt" />
+
+
+        <Constraint
+            android:id="@+id/sample_sct_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_entry" />
+        <Constraint
+            android:id="@+id/lottie_sct_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_line" />
+        <Constraint
+            android:id="@+id/sample_sct_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_sct_entry_1"
+            motion:layout_constraintStart_toStartOf="@id/sct_entry_view"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_entry_1" />
+
+        <Constraint
+            android:id="@+id/lottie_sct_list_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_txt"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+        <Constraint
+            android:id="@+id/sample_sct_list_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_list_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry" />
+
+        <Constraint
+            android:id="@+id/lottie_sct_list_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+        <Constraint
+            android:id="@+id/sample_sct_list_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_sct_list_entry_1"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry_1" />
+
+        <Constraint
+            android:id="@+id/sample_sct_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_monthly_entry"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintStart_toEndOf="@id/lottie_sct_monthly_entry"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_monthly_entry" />
+        <Constraint
+            android:id="@+id/lottie_sct_Monthly_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+
+        <Constraint
+            android:id="@+id/sample_sct_monthly_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/lottie_sct_Monthly_entry_1"
+            motion:layout_constraintEnd_toStartOf="@id/lottie_sct_Monthly_entry_1"
+            motion:layout_constraintStart_toStartOf="@id/sct_list_view"
+            motion:layout_constraintTop_toTopOf="@id/lottie_sct_Monthly_entry_1" />
+
+
+        <Constraint
+            android:id="@+id/lottie_sct_monthly_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            motion:layout_constraintStart_toStartOf="@id/sct_monthly_txt"
+            motion:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+
+
+        <Constraint
+            android:id="@+id/view6"
+            motion:layout_constraintEnd_toEndOf="@+id/txt_main_sct"
+            motion:layout_constraintStart_toEndOf="@+id/ic_swipe"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            motion:layout_constraintTop_toBottomOf="@+id/txt_main_sct"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
     </ConstraintSet>
     <Transition
         motion:constraintSetEnd="@+id/SctEnd"
         motion:constraintSetStart="@+id/Sct">
         <OnSwipe
             motion:dragDirection="dragLeft"
-            motion:touchAnchorId="@+id/main_frame"
-            motion:touchAnchorSide="left" />
+            motion:touchAnchorId="@+id/ic_swipe" />
+
+
     </Transition>
 
 

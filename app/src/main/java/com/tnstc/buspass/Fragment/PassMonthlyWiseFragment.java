@@ -1,11 +1,17 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,6 +37,15 @@ import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.TextWatcherWithInstance;
 import com.tnstc.buspass.databinding.PassMonthlyWiseFragmentBinding;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -54,6 +69,7 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
     String month;
     String year;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,8 +78,40 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.users_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_download) {
+            if (!(passEntityList ==null)){
+                excelWorkBookWrite();
+            }else {
+                mAppClass.showSnackBar(getContext(),"PassDetail is Empty");
+            }
+
+        }else if (item.getItemId() == R.id.action_open) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+                    +  File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
+            intent.setDataAndType(uri, "*/*");
+            startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
+        } else {
+            BaseActivity activity = (BaseActivity) getActivity();
+            activity.onSupportNavigateUp();
+        }
+        return true;
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
+        View windowDecorView = requireActivity().getWindow().getDecorView();
+        windowDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
@@ -75,6 +123,92 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
         AdapterForMonthYear();
         mBinding.monthList.setOnItemClickListener(this);
         mBinding.yearList.setOnItemClickListener(this);
+
+    }
+
+    private void excelWorkBookWrite() {
+
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet firstSheet = workbook.createSheet(month);
+        firstSheet.setFitToPage(true);
+        HSSFRow row = firstSheet.createRow(0);
+        HSSFCell cell1 = row.createCell(0);
+        firstSheet.setColumnWidth(0, 25 * 60);
+        HSSFCell cell2 = row.createCell(1);
+        firstSheet.setColumnWidth(1, 25 * 60);
+        HSSFCell cell3 = row.createCell(2);
+        firstSheet.setColumnWidth(2, 25 * 70);
+        HSSFCell cell4 = row.createCell(3);
+        firstSheet.setColumnWidth(3, 25 * 100);
+        HSSFCell cell5 = row.createCell(4);
+        firstSheet.setColumnWidth(4, 25 * 100);
+        HSSFCell cell6 = row.createCell(5);
+        firstSheet.setColumnWidth(5, 25 * 216);
+        HSSFCell cell7 = row.createCell(6);
+        firstSheet.setColumnWidth(6, 25 * 100);
+        HSSFCell cell8 = row.createCell(7);
+        firstSheet.setColumnWidth(7, 25 * 100);
+        HSSFCell cell9 = row.createCell(8);
+        firstSheet.setColumnWidth(8, 25 * 100);
+        HSSFCell cell10 = row.createCell(9);
+        firstSheet.setColumnWidth(9, 25 * 100);
+        HSSFCell cell11 = row.createCell(10);
+        firstSheet.setColumnWidth(10, 25 * 100);
+        HSSFCell cell12 = row.createCell(11);
+        firstSheet.setColumnWidth(11, 25 * 130);
+        cell1.setCellValue(new HSSFRichTextString("S.NO"));
+        cell2.setCellValue(new HSSFRichTextString("ID.NO"));
+        cell3.setCellValue(new HSSFRichTextString("REP NO"));
+        cell4.setCellValue(new HSSFRichTextString("NEW/OLD"));
+        cell5.setCellValue(new HSSFRichTextString("DATE"));
+        cell6.setCellValue(new HSSFRichTextString("NAME"));
+        cell7.setCellValue(new HSSFRichTextString("FORM"));
+        cell8.setCellValue(new HSSFRichTextString("TO"));
+        cell9.setCellValue(new HSSFRichTextString("BUSFARE"));
+        cell10.setCellValue(new HSSFRichTextString("AMOUNT"));
+        cell11.setCellValue(new HSSFRichTextString("EXP/DEL"));
+        cell12.setCellValue(new HSSFRichTextString("CELLNUMBER"));
+        for (int i = 0; i < passEntityList.size(); i++) {
+            HSSFRow rowA = firstSheet.createRow(i + 1);
+            rowA.createCell(0).setCellValue(passEntityList.get(i).getSno());
+            rowA.createCell(1).setCellValue(passEntityList.get(i).getiNo());
+            rowA.createCell(2).setCellValue(passEntityList.get(i).getRepNo());
+            rowA.createCell(3).setCellValue(passEntityList.get(i).getNewOld());
+            rowA.createCell(4).setCellValue(passEntityList.get(i).getDate());
+            rowA.createCell(5).setCellValue(passEntityList.get(i).getName());
+            rowA.createCell(6).setCellValue(passEntityList.get(i).getFromArea());
+            rowA.createCell(7).setCellValue(passEntityList.get(i).getToArea());
+            rowA.createCell(8).setCellValue(passEntityList.get(i).getBusFare());
+            rowA.createCell(9).setCellValue(passEntityList.get(i).getAmount());
+            rowA.createCell(10).setCellValue(passEntityList.get(i).getExpDel());
+            rowA.createCell(11).setCellValue(passEntityList.get(i).getCellNumber());
+
+        }
+        File file;
+        FileOutputStream fos = null;
+        try {
+            File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/TNSTC BUS PASS DETAILS");
+            if (!mediaStorageDir.mkdirs()) {
+                mediaStorageDir.mkdirs();
+            }
+            file = new File(mediaStorageDir + File.separator, "TNSTCBusPassMonthly" + month + year + ".xls");
+            fos = new FileOutputStream(file);
+            workbook.write(fos);
+            mAppClass.showSnackBar(getContext(), "Excel Sheet Download Successfully");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.flush();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
 
     }
 
@@ -119,12 +253,20 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        View windowDecorView = requireActivity().getWindow().getDecorView();
+        windowDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        mActivity.getSupportActionBar().show();
 
     }
+
+
 
 
     @Override

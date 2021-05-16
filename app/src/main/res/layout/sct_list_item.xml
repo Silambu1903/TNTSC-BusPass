@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0.0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="@id/view9"
+        app:layout_constraintStart_toStartOf="@id/item_date"
+        app:layout_constraintTop_toBottomOf="@id/item_date" />
+
+
+    <EditText
+        android:id="@+id/item_date"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="DATE"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_date"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_card_200"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/card"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_card_200"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_spare"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/spare"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_spare"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_key"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/key"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_key"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_opening"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/opening_no"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_opening"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_closing"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/closing_no"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view6"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_closing"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <EditText
+        android:id="@+id/item_total_card"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="@string/totalcard"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/item_total_card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+
+
+    <EditText
+        android:id="@+id/item_total"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="AMOUNT"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/view8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintStart_toEndOf="@id/item_total"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

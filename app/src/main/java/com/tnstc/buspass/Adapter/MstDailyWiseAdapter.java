@@ -40,8 +40,6 @@ public class MstDailyWiseAdapter extends RecyclerView.Adapter<MstDailyWiseAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MstDailyWiseAdapter.MstDailyViewHolder holder, int position) {
-        TnstcBusPassDB db = TnstcBusPassDB.getDatabase(mContext);
-        MstDao dao = db.mstDao();
         holder.date.setText(mstEntityList.get(position).date);
         holder.card.setText(mstEntityList.get(position).card+"");
         holder.key.setText(mstEntityList.get(position).key);

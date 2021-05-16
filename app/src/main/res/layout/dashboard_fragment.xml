@@ -431,6 +431,20 @@
             app:layout_constraintStart_toStartOf="@id/main_frame"
             app:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
 
+        <TextView
+            android:id="@+id/txt_main_sct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCT DETAILS"
+            android:textColor="@color/colorBlack"
+            android:textSize="35sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/view6"
+            app:layout_constraintEnd_toEndOf="@id/main_frame"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="@id/main_frame"
+            app:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
+
         <View
             android:id="@+id/view6"
             android:layout_width="0dp"
@@ -959,8 +973,8 @@
             android:id="@+id/rigth_mst_arrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:visibility="gone"
             android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_txt"
             app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
             app:layout_constraintHorizontal_bias="0.9"
@@ -973,9 +987,9 @@
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_line"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
             app:layout_constraintStart_toStartOf="@id/mst_entry_view"
             app:layout_constraintTop_toBottomOf="@id/mst_txt" />
@@ -985,8 +999,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
             app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
@@ -1013,8 +1027,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
             app:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
@@ -1035,14 +1049,13 @@
             app:layout_constraintTop_toTopOf="@id/mst_icon1" />
 
 
-
         <View
             android:id="@+id/mst_icon2"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
             app:layout_constraintEnd_toEndOf="@id/ic_mst_month_line"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
@@ -1101,9 +1114,9 @@
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_line"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/mst_list_view"
             app:layout_constraintStart_toStartOf="@id/mst_list_view"
             app:layout_constraintTop_toBottomOf="@id/mst_daily_txt" />
@@ -1112,8 +1125,8 @@
             android:id="@+id/rigth_mst_daily_arrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:visibility="gone"
             android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_daily_txt"
             app:layout_constraintEnd_toEndOf="@id/mst_list_view"
             app:layout_constraintHorizontal_bias="0.9"
@@ -1125,8 +1138,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_list_view"
             app:layout_constraintStart_toStartOf="@id/ic_mst_daily_line"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
@@ -1152,8 +1165,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_list_view"
             app:layout_constraintEnd_toEndOf="@id/ic_mst_daily_line"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
@@ -1186,7 +1199,6 @@
             app:layout_constraintTop_toBottomOf="@+id/mst_list_view" />
 
 
-
         <TextView
             android:id="@+id/mst_month_txt"
             android:layout_width="wrap_content"
@@ -1210,9 +1222,9 @@
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_line"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
             app:layout_constraintStart_toStartOf="@id/mst_monthly_view"
             app:layout_constraintTop_toBottomOf="@id/mst_month_txt" />
@@ -1221,8 +1233,8 @@
             android:id="@+id/rigth_mst_monthly_arrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:visibility="gone"
             android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_month_txt"
             app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
             app:layout_constraintHorizontal_bias="0.9"
@@ -1234,8 +1246,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
             app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
@@ -1262,8 +1274,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             android:background="@drawable/ic_undraw_businessman_97x4"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
             app:layout_constraintStart_toStartOf="@id/mst_monthly_view"
             app:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
@@ -1312,15 +1324,28 @@
             app:layout_constraintTop_toTopOf="@id/sct_entry_view"
             app:layout_constraintVertical_bias="0.15" />
 
+
+        <View
+            android:id="@+id/rigth_sct_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sct_txt"
+            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/sct_txt"
+            app:layout_constraintTop_toTopOf="@id/sct_txt" />
+
         <View
             android:id="@+id/ic_sct_line"
             android:layout_width="0dp"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
             android:layout_marginRight="10dp"
             android:background="@drawable/ic_line"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
             app:layout_constraintStart_toStartOf="@id/sct_entry_view"
             app:layout_constraintTop_toBottomOf="@id/sct_txt" />
@@ -1343,9 +1368,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-           android:textSize="12sp"
             android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
             android:textColor="@color/coloWhite"
+            android:textSize="11sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry"
             app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
@@ -1353,7 +1378,7 @@
             app:layout_constraintTop_toTopOf="@id/lottie_sct_entry" />
 
 
-        <View
+      <View
             android:id="@+id/lottie_sct_entry_1"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -1367,14 +1392,14 @@
 
         <TextView
             android:id="@+id/sample_sct_entry_txt_1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
             android:textColor="@color/coloWhite"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry_1"
             app:layout_constraintEnd_toStartOf="@id/lottie_sct_entry_1"
@@ -1395,6 +1420,106 @@
 
             />
 
+        <TextView
+            android:id="@+id/sct_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="SctList"
+            android:textColor="@color/coloWhite"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sct_list_view"
+            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="@id/sct_list_view"
+            app:layout_constraintTop_toTopOf="@id/sct_list_view"
+            app:layout_constraintVertical_bias="0.15" />
+
+
+        <View
+            android:id="@+id/rigth_sct_list_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sct_list_txt"
+            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/sct_list_txt"
+            app:layout_constraintTop_toTopOf="@id/sct_list_txt" />
+
+        <View
+            android:id="@+id/ic_sct_list_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_line"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            app:layout_constraintStart_toStartOf="@id/sct_list_view"
+            app:layout_constraintTop_toBottomOf="@id/sct_list_txt" />
+
+        <View
+            android:id="@+id/lottie_sct_list_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+
+
+        <TextView
+            android:id="@+id/sample_sct_list_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry_1"
+            app:layout_constraintEnd_toStartOf="@id/lottie_sct_list_entry_1"
+            app:layout_constraintStart_toStartOf="@id/sct_list_view"
+            app:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry_1" />
+
+
+        <View
+            android:id="@+id/lottie_sct_list_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/sct_list_txt"
+            app:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
+
+
+        <TextView
+            android:id="@+id/sample_sct_list_entry_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry"
+            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
+            app:layout_constraintStart_toEndOf="@id/lottie_sct_list_entry"
+            app:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry" />
+
+
+
         <View
             android:id="@+id/sct_monthly_view"
             android:layout_width="0dp"
@@ -1406,6 +1531,104 @@
             app:layout_constraintEnd_toEndOf="@+id/main_frame"
             app:layout_constraintStart_toEndOf="@+id/ic_swipe"
             app:layout_constraintTop_toBottomOf="@+id/sct_list_view" />
+
+        <TextView
+            android:id="@+id/sct_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Sct Month Report"
+            android:textColor="@color/coloWhite"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sct_monthly_view"
+            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="@id/sct_monthly_view"
+            app:layout_constraintTop_toTopOf="@id/sct_monthly_view"
+            app:layout_constraintVertical_bias="0.15" />
+
+
+        <View
+            android:id="@+id/rigth_sct_monthly_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_right_arrow"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sct_monthly_txt"
+            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/sct_monthly_txt"
+            app:layout_constraintTop_toTopOf="@id/sct_monthly_txt" />
+
+        <View
+            android:id="@+id/ic_sct_monthly_line"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_line"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            app:layout_constraintStart_toStartOf="@id/sct_monthly_view"
+            app:layout_constraintTop_toBottomOf="@id/sct_monthly_txt" />
+
+        <View
+            android:id="@+id/lottie_sct_monthly_entry"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/sct_monthly_txt"
+            app:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+
+
+        <TextView
+            android:id="@+id/sample_sct_monthly_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:textSize="11sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_monthly_entry"
+            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            app:layout_constraintStart_toEndOf="@id/lottie_sct_monthly_entry"
+            app:layout_constraintTop_toTopOf="@id/lottie_sct_monthly_entry" />
+
+
+        <View
+            android:id="@+id/lottie_sct_Monthly_entry_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_undraw_memory_storage_reh0"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
+            app:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
+
+
+        <TextView
+            android:id="@+id/sample_sct_monthly_entry_txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
+            android:textColor="@color/coloWhite"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_Monthly_entry_1"
+            app:layout_constraintEnd_toStartOf="@id/lottie_sct_Monthly_entry_1"
+            app:layout_constraintStart_toStartOf="@id/sct_list_view"
+            app:layout_constraintTop_toTopOf="@id/lottie_sct_Monthly_entry_1" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
