@@ -21,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.DateAndDayAdapter;
+import com.tnstc.buspass.Database.DAOs.DutyDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
+import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.ItemClickListener;
@@ -30,6 +33,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DashboardFragment extends Fragment implements ItemClickListener {
@@ -44,6 +48,10 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
     DateAndDayAdapter mAdapter;
     String Duty;
     List<String> dutySaved;
+    TnstcBusPassDB db;
+    DutyDao dutyDao;
+    List<DutyEntity> dutyEntityList;
+
 
     @Nullable
     @Override
@@ -60,6 +68,8 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
         activity = (BaseActivity) getActivity();
         activity.getSupportActionBar().hide();
         connectWifi();
+        db = TnstcBusPassDB.getDatabase(mContext);
+        dutyDao = db.dutyDao();
         beforeMin = new ArrayList<>();
         dutySaved = new ArrayList<>();
 
@@ -151,6 +161,12 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
                 mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_sct_month);
             }
         });
+        mBinding.textView7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_duty_list);
+            }
+        });
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MMMM.yyyy.EE");
         Calendar c = Calendar.getInstance();
         try {
@@ -185,18 +201,21 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
     public void onStop() {
         super.onStop();
         activity.getSupportActionBar().show();
+        Log.e("TAG", "onStop: ");
     }
 
     @Override
     public void onStart() {
         super.onStart();
         activity.getSupportActionBar().hide();
+        Log.e("TAG", "onStart: ");
     }
 
     @Override
     public void onResume() {
         super.onResume();
         activity.getSupportActionBar().hide();
+
     }
 
 
@@ -213,10 +232,12 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+        String month = (String) android.text.format.DateFormat.format("MMMM", new Date());
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        long dateMst = Long.parseLong((mAppClass.getCurrentDateDay()));
 
         if (Validation()) {
-            String position = String.valueOf(adapterPosition);
-            String Date = currentDateAndDay.get(adapterPosition);
+            String dutyDate = (currentDateAndDay.get(adapterPosition));
 
             if (mBinding.conductorCheckbox.isChecked() && mBinding.busPassCheckbox.isChecked()
                     && mBinding.otherdutyCheckbox.isChecked() && mBinding.controlsectionCheckbox.isChecked()) {
@@ -254,19 +275,50 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
             } else if (mBinding.controlsectionCheckbox.isChecked()) {
                 Duty = "ControlSection";
             }
-            if (!dutySaved.equals("")) {
-                if (dutySaved.contains("position" + position + "," + Date + "," + Duty)) {
-                    int Index = dutySaved.indexOf("position" + position + "," + Date + "," + Duty);
-                    dutySaved.remove(Index);
-                    constraintLayout.setBackground(getResources().getDrawable(R.drawable.whiteboder));
-                    Toast.makeText(mContext, "" + dutySaved.toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    dutySaved.add("position" + position + "," + Date + "," + Duty);
-                    Toast.makeText(mContext, "" + dutySaved.toString(), Toast.LENGTH_SHORT).show();
-                    constraintLayout.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
+
+            List<DutyEntity> mEntity = new ArrayList<>();
+            mEntity = dutyDao.getAllList();
+            Boolean breakFor =  false;
+            if (mEntity.isEmpty()){
+                Log.e("Test1", "OnItemClickDate: -> EMPTY ");
+                DutyEntity dutyEntity = new DutyEntity(dutyDate, Duty, month, year, dateMst);
+                dutyEntityList = new ArrayList<>();
+                dutyEntityList.add(dutyEntity);
+                updateDutyDao(dutyEntityList);
+                constraintLayout.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
+            }else{
+                for (int i = 0; i < mEntity.size(); i++) {
+                    if (mEntity.get(i).getDutyDate().equals(dutyDate)) {
+                        Log.e("Test1", "OnItemClickDate: -> IF ");
+                        breakFor = true;
+                        dutyDao.deleteDuty(dutyDate);
+                        constraintLayout.setBackground(getResources().getDrawable(R.drawable.whiteboder));
+                    } else {
+                        if (!breakFor){
+                            breakFor = false;
+                            Log.e("Test1", "OnItemClickDate: -> IF ELSE ");
+                            DutyEntity dutyEntity = new DutyEntity(dutyDate, Duty, month, year, dateMst);
+                            dutyEntityList = new ArrayList<>();
+                            dutyEntityList.add(dutyEntity);
+                            updateDutyDao(dutyEntityList);
+                            constraintLayout.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
+                        }
+                    }
                 }
             }
+
         }
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e("TAG", "onPause: ");
     }
 
     public boolean Validation() {
@@ -276,6 +328,11 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
             return false;
         }
         return true;
+    }
+
+    public void updateDutyDao(List<DutyEntity> entryList) {
+        dutyDao.insertDuty(entryList.toArray(new DutyEntity[0]));
+        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
     }
 }
 

@@ -545,7 +545,7 @@ public class SctFragment extends Fragment {
                 maxTotalCard380, maxTotalSales380, balOpen380, balClose380, balCard380, TotalBalCard380);
 
         SctOpeningClosing SctOpeningClosing400 = new SctOpeningClosing(Date, Integer.parseInt(mBinding.teiOpening400.getText().toString()), Integer.parseInt(mBinding.teiClosing400.getText().toString()),
-                Integer.parseInt(mBinding.teiCardValue400.getText().toString()), spare400, key400, TotalCard400, monthMst, yearMst, maxOpen380, maxClose380,
+                Integer.parseInt(mBinding.teiCardValue400.getText().toString()), spare400, key400, TotalCard400, monthMst, yearMst, maxOpen400, maxClose400,
                 maxTotalCard400, maxTotalSales400, balOpen400, balClose400, balCard400, TotalBalCard400);
 
 

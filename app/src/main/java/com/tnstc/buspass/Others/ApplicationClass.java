@@ -142,7 +142,7 @@ public class ApplicationClass extends Application {
     }
 
     public String getCurrentDateDay() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy.EE");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyhhmmss");
         Date date = new Date();
         return simpleDateFormat.format(date);
     }

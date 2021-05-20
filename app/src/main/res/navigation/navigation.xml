@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_sct_month"
             app:destination="@id/sct_month" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_duty_list"
+            app:destination="@id/duty_list" />
     </fragment>
 
     <fragment
@@ -118,6 +121,14 @@
         android:name="com.tnstc.buspass.Fragment.SctMonthWiseFragment"
         android:label="SctMonthlyReport"
         tools:layout="@layout/sct_monthwise">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/duty_list"
+        android:name="com.tnstc.buspass.Fragment.DutyListFragment"
+        android:label="DutyReport"
+        tools:layout="@layout/duty_list_fragment">
 
     </fragment>
 </navigation>

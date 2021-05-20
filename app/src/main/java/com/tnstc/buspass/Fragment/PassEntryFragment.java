@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -42,6 +43,7 @@ public class PassEntryFragment extends Fragment {
     public List<PassEntity> passEntityList;
     List<PassEntity> getIdList;
     int id;
+    MotionLayout motionLayout;
 
 
     @Nullable
@@ -56,7 +58,8 @@ public class PassEntryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
-
+        motionLayout = view.findViewById(R.id.pass_motion);
+   
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.passDao();
         mBinding.month.setText((String) android.text.format.DateFormat.format("MMMM", new Date()));
@@ -83,7 +86,7 @@ public class PassEntryFragment extends Fragment {
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validation()){
+                if (validation()) {
                     GetPassEntryDetails();
                 }
 
@@ -172,6 +175,11 @@ public class PassEntryFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
 
     private void adapterForAutoComplete() {
         ArrayAdapter busList = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, FORM_BUS_LIST);
@@ -207,7 +215,7 @@ public class PassEntryFragment extends Fragment {
             mBinding.teiSno.requestFocus();
             mBinding.teiSno.setError("Sno is empty");
             return false;
-        }  else if (mBinding.teiIno.getText().toString().equals("")) {
+        } else if (mBinding.teiIno.getText().toString().equals("")) {
             mBinding.teiIno.requestFocus();
             mBinding.teiIno.setError("Idno is empty");
             return false;
@@ -235,7 +243,7 @@ public class PassEntryFragment extends Fragment {
             mBinding.teiBusFare.requestFocus();
             mBinding.teiBusFare.setError("BusFare is empty");
             return false;
-        }  else if (mBinding.actExpDel.getText().toString().equals("")) {
+        } else if (mBinding.actExpDel.getText().toString().equals("")) {
             mBinding.actExpDel.requestFocus();
             mBinding.actExpDel.setError("ExpDel is empty");
             return false;

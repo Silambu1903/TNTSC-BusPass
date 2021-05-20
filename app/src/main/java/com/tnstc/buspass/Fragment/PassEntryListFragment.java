@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.PassEntryAdapter;
 import com.tnstc.buspass.Database.DAOs.PassDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
@@ -282,6 +283,11 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
 
     @Override
     public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
 
     }
 

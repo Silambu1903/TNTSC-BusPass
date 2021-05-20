@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tnstc.buspass.Adapter.SctDailyAdapter;
 import com.tnstc.buspass.Database.DAOs.SctDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.SctEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
@@ -135,6 +136,11 @@ public class SctListFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
 
     }
 

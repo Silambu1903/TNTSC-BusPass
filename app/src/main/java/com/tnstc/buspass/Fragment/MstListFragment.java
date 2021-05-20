@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tnstc.buspass.Adapter.MstDailyWiseAdapter;
 import com.tnstc.buspass.Database.DAOs.MstDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
@@ -150,6 +151,11 @@ public class MstListFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
 
     }
 }

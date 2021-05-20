@@ -11,18 +11,20 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.tnstc.buspass.Database.DAOs.DutyDao;
 import com.tnstc.buspass.Database.DAOs.MstDao;
 import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.DAOs.SctDao;
 import com.tnstc.buspass.Database.DAOs.SctOpeningDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.Entity.SctEntity;
 import com.tnstc.buspass.Database.Entity.SctOpeningClosing;
 
-@Database(entities = {PassEntity.class, MstEntity.class, MstOpeningClosing.class, SctEntity.class, SctOpeningClosing.class}, version = 2, exportSchema = false)
+@Database(entities = {PassEntity.class, MstEntity.class, MstOpeningClosing.class, SctEntity.class, SctOpeningClosing.class, DutyEntity.class}, version = 2, exportSchema = false)
 @TypeConverters(Converters.class)
 
 public abstract class TnstcBusPassDB extends RoomDatabase {
@@ -61,6 +63,6 @@ public abstract class TnstcBusPassDB extends RoomDatabase {
 
     public abstract SctOpeningDao sctOpeningDao();
 
-
+    public abstract DutyDao dutyDao();
 
 }
