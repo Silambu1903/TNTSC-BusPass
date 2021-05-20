@@ -41,6 +41,8 @@ public class DateAndDayAdapter extends RecyclerView.Adapter<DateAndDayAdapter.it
     List<DutyEntity> dutyEntityList;
 
 
+
+
     public DateAndDayAdapter(List<String> currentDateAndDay, ItemClickListener callback) {
         CurrentDateAndDay = currentDateAndDay;
         this.callback = callback;
