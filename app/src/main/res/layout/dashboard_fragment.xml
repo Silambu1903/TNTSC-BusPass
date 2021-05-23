@@ -282,7 +282,7 @@
             android:layout_height="0dp"
             android:background="@drawable/sipw_boder"
             app:layout_constraintBottom_toTopOf="@id/icon_5"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
+            app:layout_constraintStart_toEndOf="@id/viewDash"
             app:layout_constraintTop_toBottomOf="@id/icon_2" />
 
         <View
@@ -337,1298 +337,1190 @@
             app:layout_constraintTop_toTopOf="@+id/ic_swipe"
             app:layout_constraintVertical_bias="0.7" />
 
-
-        <View
-            android:id="@+id/main_frame"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/attendance_constraint"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="18"
-            android:textColor="@color/colorBlack"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.02" />
-
-        <TextView
-            android:id="@+id/txt_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="Mon"
-            android:textColor="#808080"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
-            app:layout_constraintEnd_toStartOf="@+id/textViewDate"
-            app:layout_constraintTop_toTopOf="@+id/textViewDate"
-            app:layout_constraintVertical_bias="0.3" />
-
-        <TextView
-            android:id="@+id/txt_month_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="April 2020"
-            android:textColor="#808080"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
-            app:layout_constraintEnd_toStartOf="@+id/textViewDate"
-            app:layout_constraintTop_toTopOf="@+id/textViewDate"
-            app:layout_constraintVertical_bias="0.8" />
-
-        <TextView
-            android:id="@+id/txt_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ATTENDANCE"
-            android:textColor="@color/colorBlack"
-            android:textSize="35sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
-            app:layout_constraintTop_toBottomOf="@+id/txt_month_year"
-            app:layout_constraintVertical_bias="0.06" />
-
-
-        <TextView
-            android:id="@+id/txt_main_pass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PASS DETAILS"
-            android:textColor="@color/colorBlack"
-            android:textSize="35sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/view6"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
-            app:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
-
-
-        <TextView
-            android:id="@+id/txt_main_mst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MST DETAILS"
-            android:textColor="@color/colorBlack"
-            android:textSize="35sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/view6"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
-            app:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
-
-        <TextView
-            android:id="@+id/txt_main_sct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SCT DETAILS"
-            android:textColor="@color/colorBlack"
-            android:textSize="35sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/view6"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="@id/main_frame"
-            app:layout_constraintTop_toBottomOf="@+id/txt_month_year" />
-
-        <View
-            android:id="@+id/view6"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ic_line"
-            app:layout_constraintEnd_toEndOf="@+id/txt_main"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/txt_main" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/horiznotalview_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/main_frame"
-            app:layout_constraintEnd_toEndOf="@id/main_frame"
             app:layout_constraintStart_toEndOf="@id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@id/view6"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="@color/colorBlack"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02" />
 
-        <View
-            android:id="@+id/condutor"
+            <TextView
+                android:id="@+id/txt_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Mon"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDate"
+                app:layout_constraintTop_toTopOf="@+id/textViewDate"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/txt_month_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="April 2020"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDate"
+                app:layout_constraintTop_toTopOf="@+id/textViewDate"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <TextView
+                android:id="@+id/txt_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATTENDANCE"
+                android:textColor="@color/colorBlack"
+                android:textSize="35sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_month_year"
+                app:layout_constraintVertical_bias="0.06" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@+id/txt_main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_main" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horiznotalview_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view6"
+                app:layout_constraintVertical_bias="0.0">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <View
+                android:id="@+id/condutor"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/lie_rose_boder"
+                app:layout_constraintBottom_toTopOf="@id/busPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horiznotalview_layout" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/conductor_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/coloWhite"
+                app:layout_constraintBottom_toBottomOf="@id/condutor"
+                app:layout_constraintEnd_toEndOf="@id/condutor"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/condutor"
+                app:layout_constraintTop_toTopOf="@id/condutor" />
+
+            <TextView
+                android:id="@+id/conductor_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Conductor"
+                android:textColor="@color/coloWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/conductor_checkbox"
+                app:layout_constraintEnd_toEndOf="@id/conductor_checkbox"
+                app:layout_constraintStart_toStartOf="@id/condutor"
+                app:layout_constraintTop_toTopOf="@id/conductor_checkbox" />
+
+            <View
+                android:id="@+id/busPass"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/yellow_boder"
+                app:layout_constraintBottom_toTopOf="@id/otherduty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/condutor" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/busPass_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/coloWhite"
+                app:layout_constraintBottom_toBottomOf="@id/busPass"
+                app:layout_constraintEnd_toEndOf="@id/busPass"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/busPass"
+                app:layout_constraintTop_toTopOf="@id/busPass" />
+
+            <TextView
+                android:id="@+id/buspass_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus Pass"
+                android:textColor="@color/coloWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/busPass"
+                app:layout_constraintEnd_toEndOf="@id/busPass"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/busPass"
+                app:layout_constraintTop_toTopOf="@id/busPass" />
+
+
+            <View
+                android:id="@+id/otherduty"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/voliet_boder"
+                app:layout_constraintBottom_toTopOf="@id/controlsection"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/busPass" />
+
+
+            <TextView
+                android:id="@+id/otherduty_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash Section"
+                android:textColor="@color/coloWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/otherduty"
+                app:layout_constraintEnd_toEndOf="@+id/otherduty"
+                app:layout_constraintStart_toStartOf="@+id/otherduty"
+                app:layout_constraintTop_toTopOf="@id/otherduty" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/otherduty_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorDisabledLight"
+                app:layout_constraintBottom_toBottomOf="@id/otherduty"
+                app:layout_constraintEnd_toEndOf="@id/otherduty"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/otherduty"
+                app:layout_constraintTop_toTopOf="@id/otherduty" />
+
+            <View
+                android:id="@+id/controlsection"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="12dp"
+                android:background="@drawable/oragne_boder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otherduty" />
+
+            <TextView
+                android:id="@+id/txt_control_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Control Section"
+                android:textColor="@color/coloWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/controlsection"
+                app:layout_constraintEnd_toEndOf="@id/controlsection"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/controlsection"
+                app:layout_constraintTop_toTopOf="@id/controlsection" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/controlsection_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorDisabledLight"
+                app:layout_constraintBottom_toBottomOf="@id/controlsection"
+                app:layout_constraintEnd_toEndOf="@id/controlsection"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@id/controlsection"
+                app:layout_constraintTop_toTopOf="@id/controlsection" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/passDetails_constraint"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="12dp"
-            android:background="@drawable/lie_rose_boder"
-            app:layout_constraintBottom_toTopOf="@id/busPass"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@id/horiznotalview_layout" />
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_swipe"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/conductor_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/coloWhite"
-            app:layout_constraintBottom_toBottomOf="@id/condutor"
-            app:layout_constraintEnd_toEndOf="@id/condutor"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="@id/condutor"
-            app:layout_constraintTop_toTopOf="@id/condutor" />
 
-        <TextView
-            android:id="@+id/conductor_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/textViewDatepass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="@color/colorBlack"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02" />
 
-            android:text="Conductor"
-            android:textColor="@color/coloWhite"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/conductor_checkbox"
-            app:layout_constraintEnd_toEndOf="@id/conductor_checkbox"
-            app:layout_constraintStart_toStartOf="@id/condutor"
-            app:layout_constraintTop_toTopOf="@id/conductor_checkbox" />
+            <TextView
+                android:id="@+id/txt_daypass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Mon"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDatepass"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDatepass"
+                app:layout_constraintTop_toTopOf="@+id/textViewDatepass"
+                app:layout_constraintVertical_bias="0.3" />
 
-        <View
-            android:id="@+id/busPass"
+            <TextView
+                android:id="@+id/txt_month_year_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="April 2020"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDatepass"
+                app:layout_constraintEnd_toEndOf="@+id/txt_daypass"
+                app:layout_constraintTop_toTopOf="@+id/textViewDatepass"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <TextView
+                android:id="@+id/txt_main_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PASS DETAILS"
+                android:textColor="@color/colorBlack"
+                android:textSize="35sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_month_year_pass"
+                app:layout_constraintVertical_bias="0.06" />
+
+            <View
+                android:id="@+id/view6_pass"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@+id/txt_main_pass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_main_pass" />
+
+            <View
+                android:id="@+id/pass_entry_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/blue_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/pass_list_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view6_pass" />
+
+            <View
+                android:id="@+id/pass_list_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/oragne_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_entry_view" />
+
+            <View
+                android:id="@+id/pass_monthly_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/voliet_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_list_view" />
+
+            <TextView
+                android:id="@+id/pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/passentry"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/pass_entry_view"
+                app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/pass_entry_view"
+                app:layout_constraintTop_toTopOf="@id/pass_entry_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/ic_entry_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+                app:layout_constraintStart_toStartOf="@id/pass_entry_view"
+                app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+
+            <View
+                android:id="@+id/lottie_pass_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_memory_storage_reh0"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_entry_view"
+                app:layout_constraintStart_toStartOf="@+id/pass_entry_txt"
+                app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/sample_pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
+                app:layout_constraintEnd_toEndOf="@+id/rigth_arrow"
+                app:layout_constraintStart_toEndOf="@id/lottie_pass_entry"
+                app:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
+
+
+            <View
+                android:id="@+id/rigth_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/pass_entry_txt"
+                app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/pass_entry_txt"
+                app:layout_constraintTop_toTopOf="@id/pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/passdailylist"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/pass_list_view"
+                app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/pass_list_view"
+                app:layout_constraintTop_toTopOf="@id/pass_list_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/rigth_liest_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/pass_list_txt"
+                app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/pass_list_txt" />
+
+
+            <View
+                android:id="@+id/lottie_list_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_undraw_date_picker_gorr"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/ic_list_line" />
+
+
+            <TextView
+                android:id="@+id/sample_pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text=" Manage Bus Pass Details Daily \n And View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/lottie_list_entry"
+                app:layout_constraintEnd_toStartOf="@id/lottie_list_entry"
+                app:layout_constraintStart_toStartOf="@+id/pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/lottie_list_entry" />
+
+
+            <View
+                android:id="@+id/ic_list_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/pass_list_view"
+                app:layout_constraintStart_toStartOf="@id/pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/pass_list_txt" />
+
+            <TextView
+                android:id="@+id/pass_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/monthly_pass_report"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+                app:layout_constraintTop_toTopOf="@id/pass_monthly_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/rigth_month_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/pass_month_txt"
+                app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/pass_month_txt"
+                app:layout_constraintTop_toTopOf="@id/pass_month_txt" />
+
+            <View
+                android:id="@+id/ic_month_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
+                app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
+                app:layout_constraintTop_toBottomOf="@id/pass_month_txt" />
+
+            <View
+                android:id="@+id/lottie_month_entry"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_mobile_posts_tlwg"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/pass_month_txt"
+                app:layout_constraintTop_toBottomOf="@id/ic_month_line" />
+
+
+            <TextView
+                android:id="@+id/sample_pass_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass "
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/lottie_month_entry"
+                app:layout_constraintEnd_toEndOf="@+id/rigth_month_arrow"
+                app:layout_constraintStart_toEndOf="@id/lottie_month_entry"
+                app:layout_constraintTop_toTopOf="@id/lottie_month_entry" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mst_Details_constraint"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="12dp"
-            android:background="@drawable/yellow_boder"
-            app:layout_constraintBottom_toTopOf="@id/otherduty"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@id/condutor" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_swipe"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewDate_mst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="@color/colorBlack"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02" />
+
+            <TextView
+                android:id="@+id/txt_day_mst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Mon"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate_mst"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDate_mst"
+                app:layout_constraintTop_toTopOf="@+id/textViewDate_mst"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/txt_month_year_mst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="April 2020"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate_mst"
+                app:layout_constraintEnd_toEndOf="@+id/txt_day_mst"
+                app:layout_constraintTop_toBottomOf="@+id/txt_day_mst"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <TextView
+                android:id="@+id/txt_main_mst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MST DETAILS"
+                android:textColor="@color/colorBlack"
+                android:textSize="35sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_month_year_mst"
+                app:layout_constraintVertical_bias="0.06" />
+
+            <View
+                android:id="@+id/view6_mst"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@+id/txt_main_mst"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_main_mst" />
 
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/busPass_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/coloWhite"
-            app:layout_constraintBottom_toBottomOf="@id/busPass"
-            app:layout_constraintEnd_toEndOf="@id/busPass"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="@id/busPass"
-            app:layout_constraintTop_toTopOf="@id/busPass" />
+            <View
+                android:id="@+id/mst_pass_entry_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/blue_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/mst_pass_list_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view6_mst" />
 
-        <TextView
-            android:id="@+id/buspass_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bus Pass"
-            android:textColor="@color/coloWhite"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/busPass"
-            app:layout_constraintEnd_toEndOf="@id/busPass"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/busPass"
-            app:layout_constraintTop_toTopOf="@id/busPass" />
+            <View
+                android:id="@+id/mst_pass_list_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/oragne_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/mst_pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mst_pass_entry_view" />
+
+            <View
+                android:id="@+id/mst_pass_monthly_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/voliet_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mst_pass_list_view" />
+
+            <TextView
+                android:id="@+id/mst_pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mst_entry"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_entry_view"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_entry_view"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_entry_view"
+                app:layout_constraintVertical_bias="0.15" />
 
 
-        <View
-            android:id="@+id/otherduty"
+            <View
+                android:id="@+id/mst_ic_entry_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_entry_view"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_entry_view"
+                app:layout_constraintTop_toBottomOf="@id/mst_pass_entry_txt" />
+
+            <View
+                android:id="@+id/mst_lottie_pass_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_memory_storage_reh0"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/mst_pass_entry_view"
+                app:layout_constraintStart_toStartOf="@+id/mst_pass_entry_txt"
+                app:layout_constraintTop_toBottomOf="@id/mst_pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/mst_sample_pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/mst_lottie_pass_entry"
+                app:layout_constraintEnd_toEndOf="@+id/mst_rigth_arrow"
+                app:layout_constraintStart_toEndOf="@id/mst_lottie_pass_entry"
+                app:layout_constraintTop_toTopOf="@id/mst_lottie_pass_entry" />
+
+
+            <View
+                android:id="@+id/mst_rigth_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_entry_txt"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/mst_pass_entry_txt"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/mst_pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="MST Daily Report"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_list_view"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_list_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_list_view"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_list_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/mst_rigth_liest_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_list_txt"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_list_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/mst_pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_list_txt" />
+
+
+            <View
+                android:id="@+id/mst_lottie_list_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_undraw_date_picker_gorr"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/mst_ic_list_line" />
+
+
+            <TextView
+                android:id="@+id/mst_sample_pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text=" Manage Bus Pass Details Daily \n And View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/mst_lottie_list_entry"
+                app:layout_constraintEnd_toStartOf="@id/mst_lottie_list_entry"
+                app:layout_constraintStart_toStartOf="@+id/mst_pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/mst_lottie_list_entry" />
+
+
+            <View
+                android:id="@+id/mst_ic_list_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_list_view"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/mst_pass_list_txt" />
+
+            <TextView
+                android:id="@+id/mst_pass_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="MST Monthly Report"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_monthly_view"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_monthly_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/mst_rigth_month_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/mst_pass_month_txt"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/mst_pass_month_txt"
+                app:layout_constraintTop_toTopOf="@id/mst_pass_month_txt" />
+
+            <View
+                android:id="@+id/mst_ic_month_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/mst_pass_monthly_view"
+                app:layout_constraintStart_toStartOf="@id/mst_pass_monthly_view"
+                app:layout_constraintTop_toBottomOf="@id/mst_pass_month_txt" />
+
+            <View
+                android:id="@+id/mst_lottie_month_entry"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_mobile_posts_tlwg"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/mst_pass_month_txt"
+                app:layout_constraintTop_toBottomOf="@id/mst_ic_month_line" />
+
+
+            <TextView
+                android:id="@+id/mst_sample_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass "
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/mst_lottie_month_entry"
+                app:layout_constraintEnd_toEndOf="@+id/mst_rigth_month_arrow"
+                app:layout_constraintStart_toEndOf="@id/mst_lottie_month_entry"
+                app:layout_constraintTop_toTopOf="@id/mst_lottie_month_entry" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sct_Details_constraint"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="12dp"
-            android:background="@drawable/voliet_boder"
-            app:layout_constraintBottom_toTopOf="@id/controlsection"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@id/busPass" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_swipe"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewDate_sct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="@color/colorBlack"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02" />
+
+            <TextView
+                android:id="@+id/txt_day_sct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Mon"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate_sct"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDate_sct"
+                app:layout_constraintTop_toTopOf="@+id/textViewDate_sct"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/txt_month_year_sct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="April 2020"
+                android:textColor="#808080"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDate_sct"
+                app:layout_constraintEnd_toEndOf="@+id/txt_day_sct"
+                app:layout_constraintTop_toBottomOf="@+id/txt_day_sct"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <TextView
+                android:id="@+id/txt_main_sct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCT DETAILS"
+                android:textColor="@color/colorBlack"
+                android:textSize="35sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_month_year_sct"
+                app:layout_constraintVertical_bias="0.06" />
+
+            <View
+                android:id="@+id/view6_sct"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@+id/txt_main_sct"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_main_sct" />
 
 
-        <TextView
-            android:id="@+id/otherduty_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cash Section"
-            android:textColor="@color/coloWhite"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/otherduty"
-            app:layout_constraintEnd_toEndOf="@+id/otherduty"
-            app:layout_constraintStart_toStartOf="@+id/otherduty"
-            app:layout_constraintTop_toTopOf="@id/otherduty" />
+            <View
+                android:id="@+id/sct_pass_entry_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/blue_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/sct_pass_list_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view6_sct" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/otherduty_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/colorDisabledLight"
-            app:layout_constraintBottom_toBottomOf="@id/otherduty"
-            app:layout_constraintEnd_toEndOf="@id/otherduty"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="@id/otherduty"
-            app:layout_constraintTop_toTopOf="@id/otherduty" />
+            <View
+                android:id="@+id/sct_pass_list_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/oragne_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/sct_pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sct_pass_entry_view" />
 
-        <View
-            android:id="@+id/controlsection"
+            <View
+                android:id="@+id/sct_pass_monthly_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/voliet_boder"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sct_pass_list_view" />
+
+            <TextView
+                android:id="@+id/sct_pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCT Entry"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_entry_view"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_entry_view"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_entry_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/sct_ic_entry_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_entry_view"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_entry_view"
+                app:layout_constraintTop_toBottomOf="@id/sct_pass_entry_txt" />
+
+            <View
+                android:id="@+id/sct_lottie_pass_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_memory_storage_reh0"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/sct_pass_entry_view"
+                app:layout_constraintStart_toStartOf="@+id/sct_pass_entry_txt"
+                app:layout_constraintTop_toBottomOf="@id/sct_pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/sct_sample_pass_entry_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/sct_lottie_pass_entry"
+                app:layout_constraintEnd_toEndOf="@+id/sct_rigth_arrow"
+                app:layout_constraintStart_toEndOf="@id/sct_lottie_pass_entry"
+                app:layout_constraintTop_toTopOf="@id/sct_lottie_pass_entry" />
+
+
+            <View
+                android:id="@+id/sct_rigth_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_entry_txt"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_entry_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/sct_pass_entry_txt"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_entry_txt" />
+
+
+            <TextView
+                android:id="@+id/sct_pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="SCT Daily Report"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_list_view"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_list_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_list_view"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_list_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/sct_rigth_liest_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_list_txt"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_list_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/sct_pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_list_txt" />
+
+
+            <View
+                android:id="@+id/sct_lottie_list_entry"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_undraw_date_picker_gorr"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/sct_ic_list_line" />
+
+
+            <TextView
+                android:id="@+id/sct_sample_pass_list_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text=" Manage Bus Pass Details Daily \n And View Old Pass"
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/sct_lottie_list_entry"
+                app:layout_constraintEnd_toStartOf="@id/sct_lottie_list_entry"
+                app:layout_constraintStart_toStartOf="@+id/sct_pass_list_txt"
+                app:layout_constraintTop_toTopOf="@id/sct_lottie_list_entry" />
+
+
+            <View
+                android:id="@+id/sct_ic_list_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_list_view"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_list_view"
+                app:layout_constraintTop_toBottomOf="@id/sct_pass_list_txt" />
+
+            <TextView
+                android:id="@+id/sct_pass_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="SCT Monthly Report"
+                android:textColor="@color/coloWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_monthly_view"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_monthly_view"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_monthly_view"
+                app:layout_constraintVertical_bias="0.15" />
+
+
+            <View
+                android:id="@+id/sct_rigth_month_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/sct_pass_month_txt"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_monthly_view"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@id/sct_pass_month_txt"
+                app:layout_constraintTop_toTopOf="@id/sct_pass_month_txt" />
+
+            <View
+                android:id="@+id/sct_ic_month_line"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_line"
+                app:layout_constraintEnd_toEndOf="@id/sct_pass_monthly_view"
+                app:layout_constraintStart_toStartOf="@id/sct_pass_monthly_view"
+                app:layout_constraintTop_toBottomOf="@id/sct_pass_month_txt" />
+
+            <View
+                android:id="@+id/sct_lottie_month_entry"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_undraw_mobile_posts_tlwg"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/sct_pass_month_txt"
+                app:layout_constraintTop_toBottomOf="@id/sct_ic_month_line" />
+
+
+            <TextView
+                android:id="@+id/sct_sample_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass "
+                android:textColor="@color/coloWhite"
+                android:textSize="10sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/sct_lottie_month_entry"
+                app:layout_constraintEnd_toEndOf="@+id/sct_rigth_month_arrow"
+                app:layout_constraintStart_toEndOf="@id/sct_lottie_month_entry"
+                app:layout_constraintTop_toTopOf="@id/sct_lottie_month_entry" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/main_host"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="12dp"
-            android:background="@drawable/oragne_boder"
-            app:layout_constraintBottom_toBottomOf="@id/main_frame"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@id/otherduty" />
-
-        <TextView
-            android:id="@+id/txt_control_section"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Control Section"
-            android:textColor="@color/coloWhite"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/controlsection"
-            app:layout_constraintEnd_toEndOf="@id/controlsection"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/controlsection"
-            app:layout_constraintTop_toTopOf="@id/controlsection" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/controlsection_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/colorDisabledLight"
-            app:layout_constraintBottom_toBottomOf="@id/controlsection"
-            app:layout_constraintEnd_toEndOf="@id/controlsection"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="@id/controlsection"
-            app:layout_constraintTop_toTopOf="@id/controlsection" />
-
-        <View
-            android:id="@+id/pass_entry_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/blue_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/pass_list_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-        <View
-            android:id="@+id/pass_list_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/oragne_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/pass_monthly_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/pass_entry_view" />
-
-        <View
-            android:id="@+id/pass_monthly_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/voliet_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/main_frame"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/pass_list_view" />
-
-        <TextView
-            android:id="@+id/pass_entry_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/passentry"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/pass_entry_view"
-            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/pass_entry_view"
-            app:layout_constraintTop_toTopOf="@id/pass_entry_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/ic_entry_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            app:layout_constraintStart_toStartOf="@id/pass_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
-
-        <View
-            android:id="@+id/lottie_pass_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/pass_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_entry_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
-            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_pass_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
-
-
-        <View
-            android:id="@+id/lottie_pass_entry_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/pass_entry_txt" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_entry_txt_1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_entry"
-            app:layout_constraintEnd_toStartOf="@id/lottie_pass_entry_1"
-            app:layout_constraintStart_toStartOf="@id/pass_entry_txt"
-            app:layout_constraintTop_toTopOf="@id/lottie_pass_entry" />
-
-        <View
-            android:id="@+id/rigth_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@id/pass_entry_txt"
-            app:layout_constraintEnd_toEndOf="@id/pass_entry_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/pass_entry_txt"
-            app:layout_constraintTop_toTopOf="@id/pass_entry_txt" />
-
-
-        <TextView
-            android:id="@+id/pass_list_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/passdailylist"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/pass_list_view"
-            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/pass_list_view"
-            app:layout_constraintTop_toTopOf="@id/pass_list_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_liest_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@id/pass_list_txt"
-            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/pass_list_txt"
-            app:layout_constraintTop_toTopOf="@id/pass_list_txt" />
-
-        <View
-            android:id="@+id/lottie_pass_list_1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_undraw_date_picker_gorr"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/pass_list_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_list_line" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_list_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text="Manage Bus Pass Details\nDaily And View Old  Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_list_entry"
-            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_list_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_list_entry" />
-
-
-        <View
-            android:id="@+id/lottie_list_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ic_undraw_date_picker_gorr"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_list_line" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_list_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily \n And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="14dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_list_1"
-            app:layout_constraintEnd_toStartOf="@id/lottie_pass_list_1"
-            app:layout_constraintStart_toStartOf="@id/pass_list_view"
-            app:layout_constraintTop_toTopOf="@id/lottie_pass_list_1" />
-
-
-        <View
-            android:id="@+id/ic_list_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            app:layout_constraintEnd_toEndOf="@id/pass_list_view"
-            app:layout_constraintStart_toStartOf="@id/pass_list_view"
-            app:layout_constraintTop_toBottomOf="@id/pass_list_txt" />
-
-        <TextView
-            android:id="@+id/pass_month_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/monthly_pass_report"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/pass_monthly_view"
-            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
-            app:layout_constraintTop_toTopOf="@id/pass_monthly_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_month_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@id/pass_month_txt"
-            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/pass_month_txt"
-            app:layout_constraintTop_toTopOf="@id/pass_month_txt" />
-
-        <View
-            android:id="@+id/ic_month_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/pass_month_txt" />
-
-        <View
-            android:id="@+id/lottie_month_entry"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_undraw_mobile_posts_tlwg"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/pass_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_month_line" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_month_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass "
-            android:textColor="@color/coloWhite"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_month_entry"
-            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_month_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_month_entry" />
-
-
-        <View
-            android:id="@+id/lottie_pass_month_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ic_undraw_mobile_posts_tlwg"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/pass_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_month_line" />
-
-
-        <TextView
-            android:id="@+id/sample_pass_month_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_pass_month_1"
-            app:layout_constraintEnd_toStartOf="@id/lottie_pass_month_1"
-            app:layout_constraintStart_toStartOf="@id/ic_month_line"
-            app:layout_constraintTop_toTopOf="@id/lottie_pass_month_1" />
-
-
-        <View
-            android:id="@+id/mst_entry_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/ash_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/mst_list_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-        <TextView
-            android:id="@+id/mst_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="MstEntry"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
-            app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/mst_entry_view"
-            app:layout_constraintTop_toTopOf="@id/mst_entry_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_mst_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_txt"
-            app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/mst_txt"
-            app:layout_constraintTop_toTopOf="@id/mst_txt" />
-
-        <View
-            android:id="@+id/ic_mst_month_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
-            app:layout_constraintStart_toStartOf="@id/mst_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/mst_txt" />
-
-        <View
-            android:id="@+id/mst_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
-            app:layout_constraintEnd_toEndOf="@id/mst_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_icon"
-            app:layout_constraintEnd_toStartOf="@id/mst_icon"
-            app:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
-            app:layout_constraintTop_toTopOf="@id/mst_icon" />
-
-
-        <View
-            android:id="@+id/mst_icon1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
-            app:layout_constraintStart_toStartOf="@id/ic_mst_month_line"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="14dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_icon1"
-            app:layout_constraintStart_toEndOf="@id/mst_icon1"
-            app:layout_constraintTop_toTopOf="@id/mst_icon1" />
-
-
-        <View
-            android:id="@+id/mst_icon2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_entry_view"
-            app:layout_constraintEnd_toEndOf="@id/ic_mst_month_line"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_month_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_txt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_icon2"
-            app:layout_constraintEnd_toStartOf="@id/mst_icon2"
-            app:layout_constraintTop_toTopOf="@id/mst_icon2" />
-
-
-        <View
-            android:id="@+id/mst_list_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/lie_rose_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/mst_monthly_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/mst_entry_view"
-
-            />
-
-
-        <TextView
-            android:id="@+id/mst_daily_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="MST DAILY"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_list_view"
-            app:layout_constraintEnd_toEndOf="@id/mst_list_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/mst_list_view"
-            app:layout_constraintTop_toTopOf="@id/mst_list_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/ic_mst_daily_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/mst_list_view"
-            app:layout_constraintStart_toStartOf="@id/mst_list_view"
-            app:layout_constraintTop_toBottomOf="@id/mst_daily_txt" />
-
-        <View
-            android:id="@+id/rigth_mst_daily_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_daily_txt"
-            app:layout_constraintEnd_toEndOf="@id/mst_list_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/mst_daily_txt"
-            app:layout_constraintTop_toTopOf="@id/mst_daily_txt" />
-
-        <View
-            android:id="@+id/mst_daily_icon1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_list_view"
-            app:layout_constraintStart_toStartOf="@id/ic_mst_daily_line"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_daily_txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_daily_icon1"
-            app:layout_constraintStart_toEndOf="@id/mst_daily_icon1"
-            app:layout_constraintTop_toTopOf="@id/mst_daily_icon1" />
-
-
-        <View
-            android:id="@+id/mst_daily_icon2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_list_view"
-            app:layout_constraintEnd_toEndOf="@id/ic_mst_daily_line"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_daily_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_daily_txt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_daily_icon2"
-            app:layout_constraintEnd_toStartOf="@id/mst_daily_icon2"
-            app:layout_constraintTop_toTopOf="@id/mst_daily_icon2" />
-
-        <View
-            android:id="@+id/mst_monthly_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/lite_yellow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/main_frame"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/mst_list_view" />
-
-
-        <TextView
-            android:id="@+id/mst_month_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="MST MONTHLY"
-            android:textColor="@color/coloWhite"
-            android:textSize="16sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
-            app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/mst_monthly_view"
-            app:layout_constraintTop_toTopOf="@id/mst_monthly_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/ic_mst_monthly_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
-            app:layout_constraintStart_toStartOf="@id/mst_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/mst_month_txt" />
-
-        <View
-            android:id="@+id/rigth_mst_monthly_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_month_txt"
-            app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/mst_month_txt"
-            app:layout_constraintTop_toTopOf="@id/mst_month_txt" />
-
-        <View
-            android:id="@+id/mst_monthly_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
-            app:layout_constraintEnd_toEndOf="@id/mst_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_monthly_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_monthly_icon"
-            app:layout_constraintEnd_toStartOf="@id/mst_monthly_icon"
-            app:layout_constraintStart_toStartOf="@id/ic_mst_monthly_line"
-            app:layout_constraintTop_toTopOf="@id/mst_monthly_icon" />
-
-
-        <View
-            android:id="@+id/mst_monthly_icon1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_businessman_97x4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_monthly_view"
-            app:layout_constraintStart_toStartOf="@id/mst_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_mst_monthly_line" />
-
-        <TextView
-            android:id="@+id/sample_mst_monthly_txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mst_monthly_icon"
-            app:layout_constraintEnd_toStartOf="@id/mst_monthly_icon"
-            app:layout_constraintStart_toStartOf="@id/ic_mst_monthly_line"
-            app:layout_constraintTop_toTopOf="@id/mst_monthly_icon" />
-
-        <View
-            android:id="@+id/sct_entry_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/lie_rose_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/sct_list_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-        <TextView
-            android:id="@+id/sct_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="SctEntry"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_entry_view"
-            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/sct_entry_view"
-            app:layout_constraintTop_toTopOf="@id/sct_entry_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_sct_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_txt"
-            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/sct_txt"
-            app:layout_constraintTop_toTopOf="@id/sct_txt" />
-
-        <View
-            android:id="@+id/ic_sct_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
-            app:layout_constraintStart_toStartOf="@id/sct_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/sct_txt" />
-
-        <View
-            android:id="@+id/lottie_sct_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/sct_txt"
-            app:layout_constraintTop_toBottomOf="@id/sct_txt" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_entry_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="11sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry"
-            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_sct_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_entry" />
-
-
-      <View
-            android:id="@+id/lottie_sct_entry_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_entry_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_sct_line" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_entry_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_entry_1"
-            app:layout_constraintEnd_toStartOf="@id/lottie_sct_entry_1"
-            app:layout_constraintStart_toStartOf="@id/sct_entry_view"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_entry_1" />
-
-        <View
-            android:id="@+id/sct_list_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/ash_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/sct_monthly_view"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/sct_entry_view"
-
-            />
-
-        <TextView
-            android:id="@+id/sct_list_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="SctList"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_list_view"
-            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/sct_list_view"
-            app:layout_constraintTop_toTopOf="@id/sct_list_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_sct_list_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_list_txt"
-            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/sct_list_txt"
-            app:layout_constraintTop_toTopOf="@id/sct_list_txt" />
-
-        <View
-            android:id="@+id/ic_sct_list_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
-            app:layout_constraintStart_toStartOf="@id/sct_list_view"
-            app:layout_constraintTop_toBottomOf="@id/sct_list_txt" />
-
-        <View
-            android:id="@+id/lottie_sct_list_entry_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_list_entry_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="12sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry_1"
-            app:layout_constraintEnd_toStartOf="@id/lottie_sct_list_entry_1"
-            app:layout_constraintStart_toStartOf="@id/sct_list_view"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry_1" />
-
-
-        <View
-            android:id="@+id/lottie_sct_list_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/sct_list_txt"
-            app:layout_constraintTop_toBottomOf="@id/ic_sct_list_line" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_list_entry_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_list_entry"
-            app:layout_constraintEnd_toEndOf="@id/sct_list_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_sct_list_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_list_entry" />
-
-
-
-        <View
-            android:id="@+id/sct_monthly_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="25dp"
-            android:background="@drawable/blue_boder"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/main_frame"
-            app:layout_constraintEnd_toEndOf="@+id/main_frame"
-            app:layout_constraintStart_toEndOf="@+id/ic_swipe"
-            app:layout_constraintTop_toBottomOf="@+id/sct_list_view" />
-
-        <TextView
-            android:id="@+id/sct_monthly_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Sct Month Report"
-            android:textColor="@color/coloWhite"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_monthly_view"
-            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@id/sct_monthly_view"
-            app:layout_constraintTop_toTopOf="@id/sct_monthly_view"
-            app:layout_constraintVertical_bias="0.15" />
-
-
-        <View
-            android:id="@+id/rigth_sct_monthly_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_right_arrow"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sct_monthly_txt"
-            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@id/sct_monthly_txt"
-            app:layout_constraintTop_toTopOf="@id/sct_monthly_txt" />
-
-        <View
-            android:id="@+id/ic_sct_monthly_line"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_line"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
-            app:layout_constraintStart_toStartOf="@id/sct_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/sct_monthly_txt" />
-
-        <View
-            android:id="@+id/lottie_sct_monthly_entry"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/sct_monthly_txt"
-            app:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_monthly_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details Daily\nAnd View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="11sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_monthly_entry"
-            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
-            app:layout_constraintStart_toEndOf="@id/lottie_sct_monthly_entry"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_monthly_entry" />
-
-
-        <View
-            android:id="@+id/lottie_sct_Monthly_entry_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_undraw_memory_storage_reh0"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/sct_monthly_view"
-            app:layout_constraintTop_toBottomOf="@id/ic_sct_monthly_line" />
-
-
-        <TextView
-            android:id="@+id/sample_sct_monthly_entry_txt_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text=" Manage Bus Pass Details\n Daily And View Old Pass"
-            android:textColor="@color/coloWhite"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/lottie_sct_Monthly_entry_1"
-            app:layout_constraintEnd_toStartOf="@id/lottie_sct_Monthly_entry_1"
-            app:layout_constraintStart_toStartOf="@id/sct_list_view"
-            app:layout_constraintTop_toTopOf="@id/lottie_sct_Monthly_entry_1" />
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_swipe"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

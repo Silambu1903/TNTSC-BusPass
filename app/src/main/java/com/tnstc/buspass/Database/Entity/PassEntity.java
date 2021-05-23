@@ -9,11 +9,9 @@ import androidx.room.PrimaryKey;
 public class PassEntity {
 
 
-
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sNo")
     public int sno;
-
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "iNo")
     public int iNo;
 
@@ -71,9 +69,6 @@ public class PassEntity {
         this.month = month;
         this.year = year;
     }
-
-
-
 
 
     public int getSno() {

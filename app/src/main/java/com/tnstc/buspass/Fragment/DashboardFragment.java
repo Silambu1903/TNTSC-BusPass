@@ -36,7 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DashboardFragment extends Fragment implements ItemClickListener {
+public class DashboardFragment extends Fragment implements View.OnClickListener {
 
     DashboardFragmentBinding mBinding;
     ApplicationClass mAppClass;
@@ -51,6 +51,7 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
     TnstcBusPassDB db;
     DutyDao dutyDao;
     List<DutyEntity> dutyEntityList;
+    boolean pass = false;
 
 
     @Nullable
@@ -67,120 +68,25 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
         mContext = getContext();
         activity = (BaseActivity) getActivity();
         activity.getSupportActionBar().hide();
+        changedState(new AttendanceDesignFragment(), mBinding.textView3, mBinding.textView4, mBinding.textView5, mBinding.textView6);
         connectWifi();
-        db = TnstcBusPassDB.getDatabase(mContext);
-        dutyDao = db.dutyDao();
-        beforeMin = new ArrayList<>();
-        dutySaved = new ArrayList<>();
 
-        currentDatetoPrevious = new ArrayList();
-        for (int i = 15; i >= 1; i--) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy.EE");
-            Calendar c = Calendar.getInstance();
-            try {
-                c.setTime(sdf.parse(mAppClass.getCurrentDateTime()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            c.add(Calendar.DATE, -i);  // number of days to add
-            String currentDates = sdf.format(c.getTime());
-            currentDatetoPrevious.add(currentDates);
 
-        }
-        currentDate = new ArrayList();
-        for (int i = 0; i <= 15; i++) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy.EE");
-            Calendar c = Calendar.getInstance();
-            try {
-                c.setTime(sdf.parse(mAppClass.getCurrentDateTime()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            c.add(Calendar.DATE, i);  // number of days to add
-            String currentDates = sdf.format(c.getTime());
-            currentDate.add(currentDates);
-        }
-        currentDatetoPrevious.addAll(currentDate);
-        mAdapter = new DateAndDayAdapter(currentDatetoPrevious, this);
-        mBinding.horiznotalviewLayout.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
-        mBinding.horiznotalviewLayout.setAdapter(mAdapter);
-        mBinding.horiznotalviewLayout.smoothScrollToPosition(17);
-        mBinding.passEntryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_passentry);
-            }
-        });
-        mBinding.passListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_passentrylist);
-            }
-        });
-        mBinding.passMonthlyView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_passmonthwiselist);
-            }
-        });
 
-        mBinding.mstEntryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_mstsctentry);
-            }
-        });
 
-        mBinding.mstListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_mst_list);
-            }
-        });
-        mBinding.mstMonthlyView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_mst_month);
-            }
-        });
-        mBinding.sctEntryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_sctentry);
-            }
-        });
-        mBinding.sctListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_sct_list);
-            }
-        });
-        mBinding.sctMonthlyView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_sct_month);
-            }
-        });
         mBinding.textView7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAppClass.navigate(getActivity(),R.id.action_dashboardFragment_to_duty_list);
+                mAppClass.navigate(getActivity(), R.id.action_dashboardFragment_to_duty_list);
             }
         });
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MMMM.yyyy.EE");
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(mAppClass.getCurrentDateTime()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        c.add(Calendar.DATE, 0);  // number of days to add
-        String currentDates = sdf.format(c.getTime());
-        String[] date = currentDates.split("\\.");
-        mBinding.textViewDate.setText(date[0]);
-        mBinding.txtDay.setText(date[3]);
-        String monthYear = date[1] + " " + date[2];
-        mBinding.txtMonthYear.setText(monthYear);
+
+        mBinding.textView3.setOnClickListener(this);
+        mBinding.textView4.setOnClickListener(this);
+        mBinding.textView5.setOnClickListener(this);
+        mBinding.textView6.setOnClickListener(this);
+
+
     }
 
     private void connectWifi() {
@@ -215,125 +121,62 @@ public class DashboardFragment extends Fragment implements ItemClickListener {
     public void onResume() {
         super.onResume();
         activity.getSupportActionBar().hide();
-
-    }
-
-
-    @Override
-    public void OnItemClick(View v, int pos) {
-
+        if (pass) {
+        }
 
     }
 
     @Override
-    public void OnItemLongClick(View v, int pos) {
-
+    public void onDetach() {
+        super.onDetach();
+        Log.e("TAG", "onDetach: ");
     }
 
     @Override
-    public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
-        String month = (String) android.text.format.DateFormat.format("MMMM", new Date());
-        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-        long dateMst = Long.parseLong((mAppClass.getCurrentDateDay()));
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("TAG", "onDestroy: ");
+    }
 
-        if (Validation()) {
-            String dutyDate = (currentDateAndDay.get(adapterPosition));
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e("TAG", "onDestroyView: ");
+    }
 
-            if (mBinding.conductorCheckbox.isChecked() && mBinding.busPassCheckbox.isChecked()
-                    && mBinding.otherdutyCheckbox.isChecked() && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "Conductor,BusPass,CashSection,ControlSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.busPassCheckbox.isChecked()
-                    && mBinding.otherdutyCheckbox.isChecked()) {
-                Duty = "Conductor,BusPass,CashSection";
-            } else if (mBinding.busPassCheckbox.isChecked() && mBinding.otherdutyCheckbox.isChecked()
-                    && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "BusPass,CashSection,ControlSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.busPassCheckbox.isChecked()
-                    && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "Conductor,BusPass,ControlSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.otherdutyCheckbox.isChecked()
-                    && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "Conductor,CashSection,ControlSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.busPassCheckbox.isChecked()) {
-                Duty = "Conductor,BusPass";
-            } else if (mBinding.controlsectionCheckbox.isChecked() && mBinding.otherdutyCheckbox.isChecked()) {
-                Duty = "ControlSection,CashSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.otherdutyCheckbox.isChecked()) {
-                Duty = "Conductor,CashSection";
-            } else if (mBinding.busPassCheckbox.isChecked() && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "BusPass,ControlSection";
-            } else if (mBinding.conductorCheckbox.isChecked() && mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "Conductor,ControlSection";
-            } else if (mBinding.busPassCheckbox.isChecked() && mBinding.otherdutyCheckbox.isChecked()) {
-                Duty = "BusPass,CashSection";
-            } else if (mBinding.conductorCheckbox.isChecked()) {
-                Duty = "Conductor";
-            } else if (mBinding.busPassCheckbox.isChecked()) {
-                Duty = "BusPass";
-            } else if (mBinding.otherdutyCheckbox.isChecked()) {
-                Duty = "CashSection";
-            } else if (mBinding.controlsectionCheckbox.isChecked()) {
-                Duty = "ControlSection";
-            }
 
-            List<DutyEntity> mEntity = new ArrayList<>();
-            mEntity = dutyDao.getAllList();
-            Boolean breakFor =  false;
-            if (mEntity.isEmpty()){
-                Log.e("Test1", "OnItemClickDate: -> EMPTY ");
-                DutyEntity dutyEntity = new DutyEntity(dutyDate, Duty, month, year, dateMst);
-                dutyEntityList = new ArrayList<>();
-                dutyEntityList.add(dutyEntity);
-                updateDutyDao(dutyEntityList);
-                constraintLayout.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
-            }else{
-                for (int i = 0; i < mEntity.size(); i++) {
-                    if (mEntity.get(i).getDutyDate().equals(dutyDate)) {
-                        Log.e("Test1", "OnItemClickDate: -> IF ");
-                        breakFor = true;
-                        dutyDao.deleteDuty(dutyDate);
-                        constraintLayout.setBackground(getResources().getDrawable(R.drawable.whiteboder));
-                    } else {
-                        if (!breakFor){
-                            breakFor = false;
-                            Log.e("Test1", "OnItemClickDate: -> IF ELSE ");
-                            DutyEntity dutyEntity = new DutyEntity(dutyDate, Duty, month, year, dateMst);
-                            dutyEntityList = new ArrayList<>();
-                            dutyEntityList.add(dutyEntity);
-                            updateDutyDao(dutyEntityList);
-                            constraintLayout.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
-                        }
-                    }
-                }
-            }
 
+
+
+
+
+
+    public void changedState(Fragment fragment, View view, View view1, View view2, View view3) {
+        getParentFragmentManager().beginTransaction().replace(mBinding.mainHost.getId(), fragment).commit();
+        view.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
+        view1.setBackground(getResources().getDrawable(R.drawable.boder_dashboard_icon));
+        view2.setBackground(getResources().getDrawable(R.drawable.boder_dashboard_icon));
+        view3.setBackground(getResources().getDrawable(R.drawable.boder_dashboard_icon));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.textView3:
+                changedState(new AttendanceDesignFragment(), mBinding.textView3, mBinding.textView4, mBinding.textView5, mBinding.textView6);
+                break;
+            case R.id.textView4:
+                changedState(new PassDesignFragment(), mBinding.textView4, mBinding.textView3, mBinding.textView5, mBinding.textView6);
+                break;
+            case R.id.textView5:
+                changedState(new MstDesignFragment(), mBinding.textView5, mBinding.textView3, mBinding.textView4, mBinding.textView6);
+                break;
+            case R.id.textView6:
+                changedState(new SctDesignFragment(), mBinding.textView6, mBinding.textView5, mBinding.textView3, mBinding.textView4);
+                break;
         }
     }
 
-    @Override
-    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e("TAG", "onPause: ");
-    }
-
-    public boolean Validation() {
-        if (!mBinding.conductorCheckbox.isChecked() && !mBinding.busPassCheckbox.isChecked()
-                && !mBinding.otherdutyCheckbox.isChecked() && !mBinding.controlsectionCheckbox.isChecked()) {
-            mAppClass.showSnackBar(getContext(), "Select one of the duty");
-            return false;
-        }
-        return true;
-    }
-
-    public void updateDutyDao(List<DutyEntity> entryList) {
-        dutyDao.insertDuty(entryList.toArray(new DutyEntity[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
-    }
 }
 
 
