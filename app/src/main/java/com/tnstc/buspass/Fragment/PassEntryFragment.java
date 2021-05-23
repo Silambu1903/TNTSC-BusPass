@@ -43,7 +43,7 @@ public class PassEntryFragment extends Fragment {
     public List<PassEntity> passEntityList;
     List<PassEntity> getIdList;
     int id;
-    MotionLayout motionLayout;
+
 
 
     @Nullable
