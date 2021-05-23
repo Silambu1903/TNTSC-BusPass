@@ -47,6 +47,7 @@ public class PassEntryFragment extends Fragment {
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
