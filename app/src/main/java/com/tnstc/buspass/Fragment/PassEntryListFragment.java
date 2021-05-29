@@ -3,10 +3,18 @@ package com.tnstc.buspass.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PrintManager;
+import android.print.pdf.PrintedPdfDocument;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +28,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.view.ActionMode;
 
 import android.view.animation.ScaleAnimation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +55,10 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Table;
+import org.apache.poi.ss.usermodel.TableStyleInfo;
+import org.apache.poi.ss.util.CellReference;
+import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,6 +67,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
 
 public class PassEntryListFragment extends Fragment implements ItemClickListener {
     PassEntryListBinding mBinding;
@@ -73,6 +88,8 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     PassDao dao;
     String currentMonth;
     String currentYear;
+    int startYPosition;
+    int pageSize;
 
 
     @Nullable
@@ -115,6 +132,91 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             }
         });
 
+        pdf();
+    }
+
+    private void pdf() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            PdfDocument document = new PdfDocument();
+            Paint paint = new Paint();
+            pageSize = passEntityList.size();
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(297, 210, 1).create();
+            PdfDocument.Page page = document.startPage(pageInfo);
+            Canvas canvas = page.getCanvas();
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setTextSize(3.0f);
+            paint.setColor(Color.BLACK);
+            int startXPosition = 10;
+            int endXPosition = pageInfo.getPageWidth() - 10;
+            startYPosition = 60;
+
+            canvas.drawText("S.NO", 18, 45, paint);
+            canvas.drawText("ID.NO", 33, 45, paint);
+            canvas.drawText("REP.NO", 48, 45, paint);
+            canvas.drawText("NEW/OLD", 67, 45, paint);
+            canvas.drawText("DATE", 90, 45, paint);
+            canvas.drawText("NAME", 133, 45, paint);
+            canvas.drawText("FROM", 180, 45, paint);
+            canvas.drawText("TO", 210, 45, paint);
+            canvas.drawText("FARE", 232, 45, paint);
+            canvas.drawText("AMOUNT", 251, 45, paint);
+            canvas.drawText("EXP/DEL", 276, 45, paint);
+
+            for (int i = 0; i < passEntityList.size(); i++) {
+                if (i < 10) {
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getSno()), 18, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getiNo()), 32, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getRepNo()), 50, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getNewOld()), 66, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getDate()), 90, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getName()), 135, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getFromArea()), 180, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getToArea()), 208, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getBusFare()), 230, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getAmount()), 250, startYPosition, paint);
+                    canvas.drawText(String.valueOf(passEntityList.get(i).getExpDel()), 275, startYPosition, paint);
+                    canvas.drawLine(startXPosition, startYPosition + 3, endXPosition + 3, startYPosition + 3, paint);
+                    startYPosition += 15;
+                }
+
+            }
+            canvas.drawLine(startXPosition, 40, endXPosition + 3, 40, paint);
+            canvas.drawLine(startXPosition, 50, endXPosition + 3, 50, paint);
+            canvas.drawLine(10, 40, 10, 198, paint);
+            canvas.drawLine(25, 40, 25, 198, paint);
+            canvas.drawLine(40, 40, 40, 198, paint);
+            canvas.drawLine(58, 40, 58, 198, paint);
+            canvas.drawLine(75, 40, 75, 198, paint);
+            canvas.drawLine(105, 40, 105, 198, paint);
+            canvas.drawLine(165, 40, 165, 198, paint);
+            canvas.drawLine(195, 40, 195, 198, paint);
+            canvas.drawLine(223, 40, 223, 198, paint);
+            canvas.drawLine(240, 40, 240, 198, paint);
+            canvas.drawLine(260, 40, 260, 198, paint);
+            canvas.drawLine(290, 40, 290, 198, paint);
+
+
+            document.finishPage(page);
+            String directory_path = Environment.getExternalStorageDirectory().getAbsolutePath();
+            File file = new File(directory_path);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            String targetPdf = directory_path + PINTER_FILE_NAME;
+            File filePath = new File(targetPdf);
+            try {
+                document.writeTo(new FileOutputStream(filePath));
+
+                Toast.makeText(getContext(), "Done", Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                Log.e("main", "error " + e.toString());
+                Toast.makeText(getContext(), "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+            }
+
+            document.close();
+
+        }
 
     }
 
@@ -127,16 +229,16 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
-            if (!(passEntityList ==null)){
+            if (!(passEntityList == null)) {
                 excelWorkBookWrite();
-            }else {
-                mAppClass.showSnackBar(getContext(),"PassDetail is Empty");
+            } else {
+                mAppClass.showSnackBar(getContext(), "PassDetail is Empty");
             }
 
-        }else if (item.getItemId() == R.id.action_open) {
+        } else if (item.getItemId() == R.id.action_open) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                    +  File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
+                    + File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
             intent.setDataAndType(uri, "*/*");
             startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
         } else {
@@ -206,7 +308,7 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         File file;
         FileOutputStream fos = null;
         try {
-            File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/TNSTC BUS PASS DETAILS");
+            File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/TNSTC BUS PASS DETAILS");
             if (!mediaStorageDir.mkdirs()) {
                 mediaStorageDir.mkdirs();
             }

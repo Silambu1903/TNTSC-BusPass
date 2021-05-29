@@ -208,7 +208,7 @@ public class AttendanceDesignFragment extends Fragment implements ItemClickListe
 
     public void updateDutyDao(List<DutyEntity> entryList) {
         dutyDao.insertDuty(entryList.toArray(new DutyEntity[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(),"Updated successfully");
     }
 
     @Override

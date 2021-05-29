@@ -61,7 +61,7 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtBusFare.setText(passEntityList.get(position).busFare + "");
         holder.txtAmount.setText(passEntityList.get(position).amount + "");
         holder.txtExpDel.setText(passEntityList.get(position).expDel);
-        holder.txtCelNo.setText(passEntityList.get(position).amount + "");
+        holder.txtCelNo.setText(passEntityList.get(position).cellNumber + "");
 
         holder.txtID.addTextChangedListener(new TextWatcher() {
             @Override

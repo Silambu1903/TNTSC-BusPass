@@ -12,17 +12,17 @@
             android:id="@+id/month"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_txt"
-            android:text="@string/Month"
             android:layout_marginLeft="10dp"
-            android:padding="15dp"
-            android:textStyle="bold"
-            app:textAllCaps="true"
             android:layout_marginTop="10dp"
+            android:background="@drawable/background_txt"
+            android:padding="15dp"
+            android:text="@string/Month"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/year"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true" />
 
 
         <TextView
@@ -32,14 +32,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_txt"
-            android:text="@string/Year"
             android:padding="15dp"
-            app:textAllCaps="true"
+            android:text="@string/Year"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/til_repno"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/month"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_sno"
@@ -56,9 +56,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/s_no"
-                android:maxLength="10"
                 android:imeOptions="actionNext"
                 android:inputType="number"
+                android:maxLength="10"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/id_no"
-                android:maxLength="10"
                 android:imeOptions="actionNext"
                 android:inputType="number"
+                android:maxLength="10"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,11 +98,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/receipt_no"
-                android:maxLength="10"
                 android:imeOptions="actionNext"
-                android:nextFocusForward="@string/name"
                 android:inputType="number"
-                android:maxLines="1" />
+                android:maxLength="10"
+                android:maxLines="1"
+                android:nextFocusForward="@string/name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -120,24 +120,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:editable="false"
-                android:hint="@string/new_old" />
+                android:focusable="false"
+                android:hint="@string/new_old"
+                android:inputType="none"
+                android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_txt"
-                android:drawableRight="@drawable/ic_calendar_interface_symbol_tool"
-                android:gravity="center"
-                android:hint="@string/date"
-                android:padding="8dp"
-                app:layout_constraintBottom_toBottomOf="@id/til_new_old"
-                app:layout_constraintEnd_toEndOf="@id/til_repno"
-                app:layout_constraintStart_toEndOf="@+id/til_new_old"
-                app:layout_constraintTop_toTopOf="@id/til_new_old" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_txt"
+            android:drawableRight="@drawable/ic_calendar_interface_symbol_tool"
+            android:gravity="center"
+            android:hint="@string/date"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/til_new_old"
+            app:layout_constraintEnd_toEndOf="@id/til_repno"
+            app:layout_constraintStart_toEndOf="@+id/til_new_old"
+            app:layout_constraintTop_toTopOf="@id/til_new_old" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_name"
@@ -155,9 +158,9 @@
                 android:layout_height="match_parent"
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
-                android:nextFocusForward="@string/bus_fare"
                 android:inputType="textPersonName"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:nextFocusForward="@string/bus_fare" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -176,7 +179,10 @@
                 android:layout_height="match_parent"
                 android:cursorVisible="false"
                 android:editable="false"
-                android:hint="@string/form" />
+                android:textSize="12sp"
+                android:focusable="false"
+                android:hint="@string/form"
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -196,7 +202,10 @@
                 android:layout_height="match_parent"
                 android:cursorVisible="false"
                 android:editable="false"
-                android:hint="@string/to" />
+                android:focusable="false"
+                android:textSize="12sp"
+                android:hint="@string/to"
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -215,10 +224,10 @@
                 android:layout_height="match_parent"
                 android:hint="@string/bus_fare"
                 android:imeOptions="actionNext"
-                android:nextFocusForward="@string/cellnumber"
                 android:inputType="number"
                 android:maxLength="10"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:nextFocusForward="@string/cellnumber" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -232,6 +241,7 @@
             android:gravity="center"
             android:hint="@string/amount"
             android:padding="8dp"
+
             app:layout_constraintBottom_toBottomOf="@+id/til_bus_fare"
             app:layout_constraintEnd_toEndOf="@id/til_to"
             app:layout_constraintStart_toEndOf="@+id/til_bus_fare"
@@ -254,7 +264,10 @@
                 android:layout_height="match_parent"
                 android:cursorVisible="false"
                 android:editable="false"
-                android:hint="@string/exp_del" />
+                android:focusable="false"
+                android:hint="@string/exp_del"
+                android:textSize="12sp"
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -273,9 +286,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/cellnumber"
-                android:maxLength="10"
                 android:imeOptions="actionDone"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 

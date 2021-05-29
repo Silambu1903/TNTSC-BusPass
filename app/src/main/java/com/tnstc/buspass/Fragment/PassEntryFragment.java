@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Database.DAOs.PassDao;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
@@ -37,15 +38,13 @@ import static com.tnstc.buspass.Others.ApplicationClass.NEW_OLD_LIST;
 public class PassEntryFragment extends Fragment {
     PassentryBinding mBinding;
     ApplicationClass mAppClass;
+    BaseActivity mActivity;
     Context mContext;
     TnstcBusPassDB db;
     PassDao dao;
     public List<PassEntity> passEntityList;
     List<PassEntity> getIdList;
     int id;
-
-
-
 
 
     @Nullable
@@ -60,7 +59,7 @@ public class PassEntryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
         mContext = getContext();
-
+        mActivity = (BaseActivity) getActivity();
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.passDao();
         mBinding.month.setText((String) android.text.format.DateFormat.format("MMMM", new Date()));
@@ -87,9 +86,11 @@ public class PassEntryFragment extends Fragment {
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validation()) {
+              /*  if (validation()) {
                     GetPassEntryDetails();
-                }
+                }*/
+
+                mActivity.printDocument();
 
             }
         });
@@ -208,7 +209,7 @@ public class PassEntryFragment extends Fragment {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(getContext());
         PassDao dao = db.passDao();
         dao.insert(entryList.toArray(new PassEntity[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(), "Updated successfully");
     }
 
     public boolean validation() {
@@ -225,8 +226,8 @@ public class PassEntryFragment extends Fragment {
             mBinding.teiRepno.setError("Repno is empty");
             return false;
         } else if (mBinding.actNewOld.getText().toString().equals("")) {
-            mBinding.teiRepno.requestFocus();
-            mBinding.teiRepno.setError("NewOld is empty");
+            mBinding.actNewOld.requestFocus();
+            mBinding.actNewOld.setError("NewOld is empty");
             return false;
         } else if (mBinding.teiName.getText().toString().equals("")) {
             mBinding.teiName.requestFocus();
@@ -251,6 +252,10 @@ public class PassEntryFragment extends Fragment {
         } else if (mBinding.teiCellNumber.getText().toString().equals("")) {
             mBinding.teiCellNumber.requestFocus();
             mBinding.teiCellNumber.setError("CellNumber is empty");
+            return false;
+        } else if (mBinding.teiCellNumber.getText().toString().length() < 10) {
+            mBinding.teiCellNumber.requestFocus();
+            mBinding.teiCellNumber.setError("Invaild cellNumner");
             return false;
         }
         return true;

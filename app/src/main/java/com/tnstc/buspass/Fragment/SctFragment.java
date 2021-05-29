@@ -859,12 +859,12 @@ public class SctFragment extends Fragment {
 
     public void updateSctEntryToDb(List<SctEntity> entryList) {
         dao.insertSctEntry(entryList.toArray(new SctEntity[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(),"Updated successfully");
     }
 
     public void updateSctMonthEntryToDb(List<SctOpeningClosing> entryList) {
         sctOpeningDao.insertSctMonth(entryList.toArray(new SctOpeningClosing[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(),"Updated successfully");
     }
 
     private boolean validation() {

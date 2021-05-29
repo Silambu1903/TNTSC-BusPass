@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.print.PrintManager;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.tnstc.buspass.Adapter.PrintAdapter;
 import com.tnstc.buspass.R;
 
 import java.text.SimpleDateFormat;
@@ -23,8 +25,8 @@ public class ApplicationClass extends Application {
     public static String[] FORM_BUS_LIST = {"AMBUR", "VELLORE", "MADHANUR", "VANIYAMBADI", "PALIKONDA", "KRISHNAGIRI", "THIRUPATHUR", "WALAJA"};
     public static String[] NEW_OLD_LIST = {"NEW", "OLD"};
     public static String[] EXP_DEL = {"EXPRESS", "DELUXE"};
-    public static String[] MONTH = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
 
+    public static String PINTER_FILE_NAME = "/printFile.pdf";
     public int spare200 = 5, spare240 = 6, spare280 = 7, spare320 = 8, spare360 = 9, spare400 = 10, spare440 = 11, spare480 = 12,
             spare520 = 13, spare560 = 14, spare600 = 15, spare640 = 16, spare680 = 17, spare720 = 18, spare760 = 19;
 
@@ -153,4 +155,6 @@ public class ApplicationClass extends Application {
         tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
+
+
 }

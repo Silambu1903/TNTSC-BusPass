@@ -793,14 +793,14 @@ public class MstSctFragment extends Fragment {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(getContext());
         MstDao dao = db.mstDao();
         dao.insertMstEntry(entryList.toArray(new MstEntity[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(),"Updated successfully");
     }
 
     public void updateMstMonthEntryToDb(List<MstOpeningClosing> entryList) {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(getContext());
         MstOpeningDao dao = db.OpeningDao();
         dao.insertMstMonth(entryList.toArray(new MstOpeningClosing[0]));
-        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+        mAppClass.showSnackBar(getContext(),"Updated successfully");
     }
 
     private boolean validation() {

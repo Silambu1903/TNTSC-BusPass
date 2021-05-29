@@ -3,6 +3,7 @@ package com.tnstc.buspass.Fragment;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.print.PrintManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -82,8 +83,9 @@ public class MstListFragment extends Fragment implements ItemClickListener {
             }
         });
 
-
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

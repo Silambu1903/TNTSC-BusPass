@@ -52,6 +52,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     DutyDao dutyDao;
     List<DutyEntity> dutyEntityList;
     boolean pass = false;
+    boolean mst = false;
+    boolean sct = false;
 
 
     @Nullable
@@ -69,9 +71,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         activity = (BaseActivity) getActivity();
         activity.getSupportActionBar().hide();
         changedState(new AttendanceDesignFragment(), mBinding.textView3, mBinding.textView4, mBinding.textView5, mBinding.textView6);
-        connectWifi();
-
-
+        // connectWifi();
 
 
         mBinding.textView7.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
             WifiManager wifiManager = (WifiManager) mContext.getSystemService(mContext.WIFI_SERVICE);
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            wifiManager.setWifiEnabled(false);
+            wifiManager.setWifiEnabled(true);
             String ssid = wifiInfo.getSSID();
             Log.e("TAG", "connectWifi: " + ssid);
         }
@@ -122,6 +122,14 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         super.onResume();
         activity.getSupportActionBar().hide();
         if (pass) {
+            pass = false;
+            changedState(new PassDesignFragment(), mBinding.textView4, mBinding.textView3, mBinding.textView5, mBinding.textView6);
+        } else if (mst) {
+            mst = false;
+            changedState(new MstDesignFragment(), mBinding.textView5, mBinding.textView3, mBinding.textView4, mBinding.textView6);
+        } else if (sct) {
+            sct = false;
+            changedState(new SctDesignFragment(), mBinding.textView6, mBinding.textView5, mBinding.textView3, mBinding.textView4);
         }
 
     }
@@ -145,12 +153,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
 
-
-
-
-
-
-
     public void changedState(Fragment fragment, View view, View view1, View view2, View view3) {
         getParentFragmentManager().beginTransaction().replace(mBinding.mainHost.getId(), fragment).commit();
         view.setBackground(getResources().getDrawable(R.drawable.yellow_boder));
@@ -166,13 +168,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 changedState(new AttendanceDesignFragment(), mBinding.textView3, mBinding.textView4, mBinding.textView5, mBinding.textView6);
                 break;
             case R.id.textView4:
+                pass = true;
                 changedState(new PassDesignFragment(), mBinding.textView4, mBinding.textView3, mBinding.textView5, mBinding.textView6);
                 break;
             case R.id.textView5:
                 changedState(new MstDesignFragment(), mBinding.textView5, mBinding.textView3, mBinding.textView4, mBinding.textView6);
+                mst = true;
                 break;
             case R.id.textView6:
                 changedState(new SctDesignFragment(), mBinding.textView6, mBinding.textView5, mBinding.textView3, mBinding.textView4);
+                sct = true;
                 break;
         }
     }

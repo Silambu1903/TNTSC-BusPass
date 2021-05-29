@@ -6,8 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.print.PrintManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +21,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.tnstc.buspass.Adapter.PrintAdapter;
 import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
 import com.tnstc.buspass.databinding.ActivityBaseBinding;
+
+import java.io.File;
+
+import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
 
 public class BaseActivity extends AppCompatActivity {
     private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
@@ -29,6 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     AppBarConfiguration mAppBarConfiguration;
     public Context mContext;
     ApplicationClass appClass;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +52,7 @@ public class BaseActivity extends AppCompatActivity {
                 .build();
         setUpNavigationUI(mAppBarConfiguration);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_WIFI_STATE,
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_WIFI_STATE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE}, 111);
         }
@@ -61,5 +70,18 @@ public class BaseActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    public void printDocument() {
+        PrintManager printManager = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            printManager = (PrintManager) getBaseContext().getSystemService(Context.PRINT_SERVICE);
+            String jobName = this.getString(R.string.app_name) + " Document";
+            printManager.print(jobName, new PrintAdapter(), null);
+        }
+
+    }
+
+
 
 }
