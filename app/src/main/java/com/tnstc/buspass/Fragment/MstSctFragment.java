@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,7 @@ public class MstSctFragment extends Fragment {
     TnstcBusPassDB db;
     MstDao dao;
     MstOpeningDao daoOpenClose;
-
+    String monthMst;
     public int spare200, spare240, spare280, spare320, spare360, spare400, spare440, spare480,
             spare520, spare560, spare600, spare640, spare680, spare720, spare760;
 
@@ -85,14 +86,19 @@ public class MstSctFragment extends Fragment {
         mBinding.mstSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (daoOpenClose.mstMonthEmptyCheck(mBinding.monthMst.getText().toString()) != null) {
+                    mBinding.monthlyDataRadio.setChecked(false);
+                }
                 if (mBinding.monthlyDataRadio.isChecked()) {
                     if (validation()) {
                         mstMonthEntry();
                     }
-
                 } else {
-                    if (validation()) {
+                    if (validation()
+                            && daoOpenClose.mstMonthEmptyCheck(mBinding.monthMst.getText().toString()) != null) {
                         MstEntry();
+                    } else {
+                        mAppClass.showSnackBar(getContext(), mBinding.monthMst.getText().toString() + " Data is Empty");
                     }
                 }
 
@@ -524,7 +530,7 @@ public class MstSctFragment extends Fragment {
     private void MstEntry() {
 
         long Date = Long.valueOf(new SimpleDateFormat("ddMMyyyy").format(new Date()));
-        String monthMst = mBinding.monthMst.getText().toString();
+        monthMst = mBinding.monthMst.getText().toString();
         String yearMst = mBinding.yearMst.getText().toString();
         String dateMst = mAppClass.getCurrentDateTime();
         spare200 = preferences.getInt("spare200", 0);
@@ -793,14 +799,14 @@ public class MstSctFragment extends Fragment {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(getContext());
         MstDao dao = db.mstDao();
         dao.insertMstEntry(entryList.toArray(new MstEntity[0]));
-        mAppClass.showSnackBar(getContext(),"Updated successfully");
+        mAppClass.showSnackBar(getContext(), "Updated successfully");
     }
 
     public void updateMstMonthEntryToDb(List<MstOpeningClosing> entryList) {
         TnstcBusPassDB db = TnstcBusPassDB.getDatabase(getContext());
         MstOpeningDao dao = db.OpeningDao();
         dao.insertMstMonth(entryList.toArray(new MstOpeningClosing[0]));
-        mAppClass.showSnackBar(getContext(),"Updated successfully");
+        mAppClass.showSnackBar(getContext(), "Updated successfully");
     }
 
     private boolean validation() {
@@ -814,7 +820,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing.getText().toString()))) {
             mBinding.teiOpening.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening240.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening240.getText().toString().isEmpty()) {
             mBinding.teiOpening240.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing240.getText().toString().isEmpty()) {
@@ -824,7 +830,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing240.getText().toString())) {
             mBinding.teiOpening240.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening280.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening280.getText().toString().isEmpty()) {
             mBinding.teiOpening280.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing280.getText().toString().isEmpty()) {
@@ -834,7 +840,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing280.getText().toString())) {
             mBinding.teiOpening280.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening320.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening320.getText().toString().isEmpty()) {
             mBinding.teiOpening320.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing320.getText().toString().isEmpty()) {
@@ -844,7 +850,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing320.getText().toString())) {
             mBinding.teiOpening320.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening360.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening360.getText().toString().isEmpty()) {
             mBinding.teiOpening360.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing360.getText().toString().isEmpty()) {
@@ -854,7 +860,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing360.getText().toString())) {
             mBinding.teiOpening360.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening400.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening400.getText().toString().isEmpty()) {
             mBinding.teiOpening400.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing400.getText().toString().isEmpty()) {
@@ -864,7 +870,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing400.getText().toString())) {
             mBinding.teiOpening400.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening440.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening440.getText().toString().isEmpty()) {
             mBinding.teiOpening440.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing440.getText().toString().isEmpty()) {
@@ -874,17 +880,17 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing440.getText().toString())) {
             mBinding.teiOpening440.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening480.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening480.getText().toString().isEmpty()) {
             mBinding.teiOpening400.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing480.getText().toString().isEmpty()) {
             mBinding.teiClosing480.setError(" Closing is Empty");
             return false;
         } else if (Integer.parseInt(mBinding.teiOpening480.getText().toString())
-                >Integer.parseInt(mBinding.teiClosing480.getText().toString())) {
+                > Integer.parseInt(mBinding.teiClosing480.getText().toString())) {
             mBinding.teiOpening480.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening520.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening520.getText().toString().isEmpty()) {
             mBinding.teiOpening520.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing520.getText().toString().isEmpty()) {
@@ -894,7 +900,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing520.getText().toString())) {
             mBinding.teiOpening520.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening560.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening560.getText().toString().isEmpty()) {
             mBinding.teiOpening560.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing560.getText().toString().isEmpty()) {
@@ -904,7 +910,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing560.getText().toString())) {
             mBinding.teiOpening560.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening600.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening600.getText().toString().isEmpty()) {
             mBinding.teiOpening600.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing600.getText().toString().isEmpty()) {
@@ -914,7 +920,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing600.getText().toString())) {
             mBinding.teiOpening600.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening640.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening640.getText().toString().isEmpty()) {
             mBinding.teiOpening640.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing640.getText().toString().isEmpty()) {
@@ -924,7 +930,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing640.getText().toString())) {
             mBinding.teiOpening640.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening680.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening680.getText().toString().isEmpty()) {
             mBinding.teiOpening680.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing680.getText().toString().isEmpty()) {
@@ -934,8 +940,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing680.getText().toString())) {
             mBinding.teiOpening680.setError("Opening is Greater than Closing");
             return false;
-        }
-        else if (mBinding.teiOpening720.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening720.getText().toString().isEmpty()) {
             mBinding.teiOpening720.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing720.getText().toString().isEmpty()) {
@@ -946,7 +951,7 @@ public class MstSctFragment extends Fragment {
                 > Integer.parseInt(mBinding.teiClosing720.getText().toString())) {
             mBinding.teiOpening720.setError("Opening is Greater than Closing");
             return false;
-        }else if (mBinding.teiOpening760.getText().toString().isEmpty()) {
+        } else if (mBinding.teiOpening760.getText().toString().isEmpty()) {
             mBinding.teiOpening760.setError("Opening  is Empty");
             return false;
         } else if (mBinding.teiClosing760.getText().toString().isEmpty()) {
@@ -960,6 +965,5 @@ public class MstSctFragment extends Fragment {
 
         return true;
     }
-
 
 }

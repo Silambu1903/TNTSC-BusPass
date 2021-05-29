@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PrintAttributes;
 import android.print.PrintManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -73,15 +74,16 @@ public class BaseActivity extends AppCompatActivity {
 
 
     public void printDocument() {
-        PrintManager printManager = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            printManager = (PrintManager) getBaseContext().getSystemService(Context.PRINT_SERVICE);
-            String jobName = this.getString(R.string.app_name) + " Document";
-            printManager.print(jobName, new PrintAdapter(), null);
+            PrintManager printManager = (PrintManager) getBaseContext().getSystemService(Context.PRINT_SERVICE);
+            String printName = this.getString(R.string.app_name) + " Document";
+            PrintAttributes attributes = new PrintAttributes.Builder()
+                    .setMediaSize(PrintAttributes.MediaSize.UNKNOWN_LANDSCAPE)
+                    .build();
+            printManager.print(printName, new PrintAdapter(), attributes);
         }
 
     }
-
 
 
 }

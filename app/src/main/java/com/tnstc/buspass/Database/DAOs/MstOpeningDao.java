@@ -4,12 +4,9 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
 
-import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
-import com.tnstc.buspass.Database.Entity.PassEntity;
 
 
 import java.util.List;
@@ -56,4 +53,8 @@ public interface MstOpeningDao {
 
     @Query("SELECT *FROM mstopeningclosing WHERE mstMonth=:monthwise and mstYear=:yearwise")
     List<MstOpeningClosing> getMonthWiseMst(String monthwise, String yearwise);
+
+
+    @Query("SELECT (mstMonth) FROM mstopeningclosing WHERE mstMonth=:month")
+    String mstMonthEmptyCheck(String month);
 }

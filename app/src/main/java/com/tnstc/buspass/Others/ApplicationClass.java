@@ -138,7 +138,7 @@ public class ApplicationClass extends Application {
     }
 
     public Integer getCurrentDateTimeSec() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM.dd.yyyyHH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMddyyyy");
         Date date = new Date();
         return Integer.valueOf(simpleDateFormat.format(date));
     }

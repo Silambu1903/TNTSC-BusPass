@@ -81,5 +81,4 @@ public class PrintAdapter extends PrintDocumentAdapter {
         super.onFinish();
         deleteFile();
     }
-
 }

@@ -6,13 +6,20 @@
         android:id="@+id/action_open"
         android:icon="@drawable/ic_download_open_folder"
         android:title="Download Sample Format"
-        android:tooltipText="Download Sample Format"
+        android:tooltipText="File Manager"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_download"
         android:icon="@drawable/ic_excel_file"
         android:title="Download Sample Format"
-        android:tooltipText="Download Sample Format"
+        android:tooltipText="Download Excel"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_print"
+        android:icon="@drawable/ic_printer"
+        android:title="Download Sample Format"
+        android:tooltipText="Print"
         app:showAsAction="always" />
 
 
