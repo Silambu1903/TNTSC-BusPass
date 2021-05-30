@@ -6,15 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.graphics.fonts.Font;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.print.PrintManager;
-import android.print.pdf.PrintedPdfDocument;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -26,17 +22,15 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.appcompat.view.ActionMode;
-
 import android.view.animation.ScaleAnimation;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,16 +46,11 @@ import com.tnstc.buspass.R;
 import com.tnstc.buspass.callback.ItemClickListener;
 import com.tnstc.buspass.databinding.PassEntryListBinding;
 
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Table;
-import org.apache.poi.ss.usermodel.TableStyleInfo;
-import org.apache.poi.ss.util.CellReference;
-import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,12 +62,13 @@ import java.util.List;
 
 import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
 
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class PassEntryListFragment extends Fragment implements ItemClickListener {
     PassEntryListBinding mBinding;
     ApplicationClass mAppClass;
     Context mContext;
     PassEntryAdapter passEntryAdapter;
-    public List<PassEntity> passEntityList;
+    public ArrayList<PassEntity> passEntityList;
     BaseActivity mActivity;
     private ScaleGestureDetector mScaleDetector;
     GestureDetector detector;
@@ -93,6 +83,13 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     String currentYear;
     int startYPosition;
     int pageSize;
+
+    //
+    PdfDocument mPDFDocument;
+    PdfDocument.Page mPDFPage;
+    Paint mPaint;
+    int mStartXPosition = 10;
+    int mEndXPosition;
 
 
     @Nullable
@@ -119,35 +116,40 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
         dao = db.passDao();
         currentMonth = String.valueOf(DateFormat.format("MMMM", new Date()));
         currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-        passEntityList = dao.currentMonth(currentMonth, currentYear);
+        // passEntityList = dao.currentMonth(currentMonth, currentYear);
+        for (int i = 0; i <= 15; i++) {
+            passEntityList.add(new PassEntity(1, 1, 1, "Test", "Test", "Test", "Test", "Test", 1, 1, "Test", "Test", "Test", "Test"));
+        }
+
         passEntryAdapter = new PassEntryAdapter(getContext(), passEntityList, this);
         mBinding.entryList.setLayoutManager(new LinearLayoutManager(mContext));
         mBinding.entryList.setAdapter(passEntryAdapter);
         totalAndDailyEntry();
+
+        pitchZoom();
+        mBinding.getRoot().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mScaleDetector.onTouchEvent(event);
+                detector.onTouchEvent(event);
+                return detector.onTouchEvent(event);
+            }
+        });
+        createPDF();
+        /*pdf();*/
     }
 
-    private void printerPdf() {
+
+    private void pdf() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             PdfDocument document = new PdfDocument();
             Paint paint = new Paint();
             pageSize = passEntityList.size();
             PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(297, 210, 1).create();
+
             PdfDocument.Page page = document.startPage(pageInfo);
             Canvas canvas = page.getCanvas();
-            Typeface currentTypeFace = paint.getTypeface();
-            Typeface bold = Typeface.create(currentTypeFace, Typeface.BOLD);
-            Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.google_font);
-            paint.setTypeface(typeface);
-            paint.setTypeface(bold);
-            paint.setColor(Color.BLACK);
-            paint.setTextSize(12.f);
-            paint.setTextAlign(Paint.Align.CENTER);
-            canvas.drawText("TNSTC AMBUR DEPOT", pageInfo.getPageWidth() / 2, 15, paint);
-            paint.setTextSize(8.f);
-            paint.setTextAlign(Paint.Align.CENTER);
-            paint.setColor(Color.BLACK);
-            canvas.drawText("STUDENT BUS PASS DETAILS -- " + currentMonth + " " + currentYear, pageInfo.getPageWidth() / 2, 28, paint);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setTextSize(3.0f);
             paint.setColor(Color.BLACK);
@@ -166,9 +168,10 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             canvas.drawText("FARE", 232, 45, paint);
             canvas.drawText("AMOUNT", 251, 45, paint);
             canvas.drawText("EXP/DEL", 276, 45, paint);
-            Typeface Normal = Typeface.create(currentTypeFace, Typeface.NORMAL);
-            paint.setTypeface(Normal);
-           for (int i = 0; i < passEntityList.size(); i++) {
+
+            for (int i = 0; i < passEntityList.size(); i++) {
+
+
                 if (i < 10) {
                     canvas.drawText(String.valueOf(passEntityList.get(i).getSno()), 18, startYPosition, paint);
                     canvas.drawText(String.valueOf(passEntityList.get(i).getiNo()), 32, startYPosition, paint);
@@ -186,8 +189,6 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
                 }
 
             }
-
-
             canvas.drawLine(startXPosition, 40, endXPosition + 3, 40, paint);
             canvas.drawLine(startXPosition, 50, endXPosition + 3, 50, paint);
             canvas.drawLine(10, 40, 10, 198, paint);
@@ -214,17 +215,107 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             File filePath = new File(targetPdf);
             try {
                 document.writeTo(new FileOutputStream(filePath));
-                mActivity.printDocument();
+
+                Toast.makeText(getContext(), "Done", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 Log.e("main", "error " + e.toString());
                 Toast.makeText(getContext(), "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
             }
-
             document.close();
 
         }
 
     }
+
+
+    private void createPDF() {
+        if (passEntityList.size() <= 0) {
+            return;
+        }
+        int itemPerPage = 10;
+        List<List<PassEntity>> printablePages = splitIntoParts(passEntityList, itemPerPage);
+        mPDFDocument = new PdfDocument();
+        mPaint = new Paint();
+        Canvas pdfPage;
+        for (int i = 0; i < printablePages.size(); i++) {
+            pdfPage = startPage(i + 1);
+            List<PassEntity> entities = printablePages.get(i);
+            for (int j = 0; j < entities.size(); j++) {
+                pdfPage.drawText(String.valueOf(entities.get(i).getSno()), 18, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getiNo()), 32, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getRepNo()), 50, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getNewOld()), 66, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getDate()), 90, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getName()), 135, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getFromArea()), 180, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getToArea()), 208, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getBusFare()), 230, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getAmount()), 250, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getExpDel()), 275, startYPosition, mPaint);
+                pdfPage.drawLine(mStartXPosition, startYPosition + 3, mEndXPosition + 3, startYPosition + 3, mPaint);
+                startYPosition += 15;
+            }
+            endPage(pdfPage);
+        }
+        File mypath=new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"filename.pdf");
+        try {
+            mPDFDocument.writeTo(new FileOutputStream(mypath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mPDFDocument.close();
+    }
+
+    public List<List<PassEntity>> splitIntoParts(List<PassEntity> passEntities, int itemsPerList) {
+        List<List<PassEntity>> splittedList = new ArrayList<>();
+        for (int i = 0; i < passEntities.size(); i += itemsPerList) {
+            splittedList.add(passEntities.subList(i, Math.min(passEntities.size(), i + itemsPerList)));
+        }
+        return splittedList;
+    }
+
+    Canvas startPage(int pageNo) {
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(297, 210, pageNo).create();
+        mPDFPage = mPDFDocument.startPage(pageInfo);
+        Canvas canvas = mPDFPage.getCanvas();
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(3.0f);
+        mPaint.setColor(Color.BLACK);
+        mEndXPosition = pageInfo.getPageWidth() - 10;
+        startYPosition = 60;
+        canvas.drawText("S.NO", 18, 45, mPaint);
+        canvas.drawText("ID.NO", 33, 45, mPaint);
+        canvas.drawText("REP.NO", 48, 45, mPaint);
+        canvas.drawText("NEW/OLD", 67, 45, mPaint);
+        canvas.drawText("DATE", 90, 45, mPaint);
+        canvas.drawText("NAME", 133, 45, mPaint);
+        canvas.drawText("FROM", 180, 45, mPaint);
+        canvas.drawText("TO", 210, 45, mPaint);
+        canvas.drawText("FARE", 232, 45, mPaint);
+        canvas.drawText("AMOUNT", 251, 45, mPaint);
+        canvas.drawText("EXP/DEL", 276, 45, mPaint);
+        return canvas;
+    }
+
+    void endPage(Canvas page) {
+        int endPos = startYPosition -12;
+        page.drawLine(mStartXPosition, 40, mEndXPosition + 3, 40, mPaint);
+        page.drawLine(mStartXPosition, 50, mEndXPosition + 3, 50, mPaint);
+        page.drawLine(10, 40, 10, endPos, mPaint);
+        page.drawLine(25, 40, 25, endPos, mPaint);
+        page.drawLine(40, 40, 40, endPos, mPaint);
+        page.drawLine(58, 40, 58, endPos, mPaint);
+        page.drawLine(75, 40, 75, endPos, mPaint);
+        page.drawLine(105, 40, 105, endPos, mPaint);
+        page.drawLine(165, 40, 165, endPos, mPaint);
+        page.drawLine(195, 40, 195, endPos, mPaint);
+        page.drawLine(223, 40, 223, endPos, mPaint);
+        page.drawLine(240, 40, 240, endPos, mPaint);
+        page.drawLine(260, 40, 260, endPos, mPaint);
+        page.drawLine(290, 40, 290, endPos, mPaint);
+        mPDFDocument.finishPage(mPDFPage);
+    }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -247,8 +338,6 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
                     + File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
             intent.setDataAndType(uri, "*/*");
             startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
-        } else if (item.getItemId() == R.id.action_print) {
-            printerPdf();
         } else {
             BaseActivity activity = (BaseActivity) getActivity();
             activity.onSupportNavigateUp();
@@ -353,6 +442,28 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     }
 
 
+    private void pitchZoom() {
+        detector = new GestureDetector(getContext(), new GestureListener());
+
+        mScaleDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                float scale = 1 - detector.getScaleFactor();
+                float prevScale = mScale;
+                mScale += scale;
+
+                if (mScale > 10f)
+                    mScale = 10f;
+
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.5f / prevScale, 0.5f / mScale, 0.5f / prevScale, 0.5f / mScale, detector.getFocusX(), detector.getFocusY());
+                scaleAnimation.setDuration(0);
+                scaleAnimation.setFillAfter(true);
+                mBinding.horiznotalscroll.startAnimation(scaleAnimation);
+                return true;
+            }
+        });
+    }
+
     @Override
     public void OnItemClick(View v, int pos) {
 
@@ -377,6 +488,55 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     @Override
     public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
 
+    }
+
+
+    private void startActionMode(int pos) {
+        ActionMode.Callback passEntryDelete = new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                actionMode = actionMode;
+                mMultiSelect = true;
+                menu.add(R.string.selectAll);
+                menu.add(R.string.delete).setIcon(R.drawable.ic_baseline_delete_24).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                actionMode = actionMode;
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                actionMode = actionMode;
+                mMultiSelect = false;
+
+                actionMode.finish();
+            }
+        };
+        ((AppCompatActivity) mContext).startSupportActionMode(passEntryDelete);
+    }
+
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDown(MotionEvent e) {
+
+            return true;
+        }
+
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            return true;
+        }
     }
 
 
