@@ -4,14 +4,14 @@ import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-@Entity
+@Entity(primaryKeys = {"iNo"})
 public class PassEntity {
 
 
     @ColumnInfo(name = "sNo")
     public int sno;
-    @PrimaryKey(autoGenerate = true)
+
+
     @ColumnInfo(name = "iNo")
     public int iNo;
 

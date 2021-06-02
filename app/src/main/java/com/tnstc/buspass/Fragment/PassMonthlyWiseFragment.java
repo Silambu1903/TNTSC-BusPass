@@ -3,7 +3,13 @@ package com.tnstc.buspass.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.format.DateFormat;
@@ -20,6 +26,8 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,6 +63,8 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
+
 public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnItemClickListener {
     PassMonthlyWiseFragmentBinding mBinding;
     ApplicationClass mAppClass;
@@ -68,6 +78,12 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
     PassMonthWiseListAdapter mAdapter;
     String month;
     String year;
+    int startYPosition;
+    PdfDocument mPDFDocument;
+    PdfDocument.Page mPDFPage;
+    Paint mPaint;
+    int mStartXPosition = 10;
+    int mEndXPosition;
 
 
     @Nullable
@@ -83,6 +99,7 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
         inflater.inflate(R.menu.users_menu, menu);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
@@ -98,7 +115,9 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
                     +  File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
             intent.setDataAndType(uri, "*/*");
             startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
-        } else {
+        } else if (item.getItemId() == R.id.action_print) {
+            createPDF();
+        }else {
             BaseActivity activity = (BaseActivity) getActivity();
             activity.onSupportNavigateUp();
         }
@@ -124,6 +143,113 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
         mBinding.monthList.setOnItemClickListener(this);
         mBinding.yearList.setOnItemClickListener(this);
 
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void createPDF() {
+        if (passEntityList.size() <= 0) {
+            return;
+        }
+        int itemPerPage = 10;
+        List<List<PassEntity>> printablePages = splitIntoParts(passEntityList, itemPerPage);
+        mPDFDocument = new PdfDocument();
+        mPaint = new Paint();
+        Canvas pdfPage;
+        for (int i = 0; i < printablePages.size(); i++) {
+            pdfPage = startPage(i + 1);
+            List<PassEntity> entities = printablePages.get(i);
+            for (int j = 0; j < entities.size(); j++) {
+                pdfPage.drawText(String.valueOf(entities.get(j).getSno()), 18, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getiNo()), 32, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getRepNo()), 50, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getNewOld()), 66, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getDate()), 90, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getName()), 135, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getFromArea()), 180, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getToArea()), 208, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getBusFare()), 230, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getAmount()), 250, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getExpDel()), 275, startYPosition, mPaint);
+                pdfPage.drawLine(mStartXPosition, startYPosition + 3, mEndXPosition + 3, startYPosition + 3, mPaint);
+                startYPosition += 15;
+            }
+            endPage(pdfPage);
+        }
+        File mypath=new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME);
+        try {
+            mPDFDocument.writeTo(new FileOutputStream(mypath));
+            mActivity.printDocument();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mPDFDocument.close();
+    }
+
+    public List<List<PassEntity>> splitIntoParts(List<PassEntity> passEntities, int itemsPerList) {
+        List<List<PassEntity>> splittedList = new ArrayList<>();
+        for (int i = 0; i < passEntities.size(); i += itemsPerList) {
+            splittedList.add(passEntities.subList(i, Math.min(passEntities.size(), i + itemsPerList)));
+        }
+        return splittedList;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    Canvas startPage(int pageNo) {
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(297, 210, pageNo).create();
+        mPDFPage = mPDFDocument.startPage(pageInfo);
+        Canvas canvas = mPDFPage.getCanvas();
+        Typeface currentTypeFace = mPaint.getTypeface();
+        Typeface bold = Typeface.create(currentTypeFace, Typeface.BOLD);
+        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.google_font);
+        mPaint.setTypeface(typeface);
+        mPaint.setTypeface(bold);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setTextSize(12.f);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("TNSTC AMBUR DEPOT", pageInfo.getPageWidth() / 2, 15, mPaint);
+        mPaint.setTextSize(8.f);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setColor(Color.BLACK);
+        canvas.drawText("STUDENT BUS PASS DETAILS -- " + month + " " + year, pageInfo.getPageWidth() / 2, 28, mPaint);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(3.0f);
+        mPaint.setColor(Color.BLACK);
+        mEndXPosition = pageInfo.getPageWidth() - 10;
+        startYPosition = 60;
+        canvas.drawText("S.NO", 18, 45, mPaint);
+        canvas.drawText("ID.NO", 33, 45, mPaint);
+        canvas.drawText("REP.NO", 48, 45, mPaint);
+        canvas.drawText("NEW/OLD", 67, 45, mPaint);
+        canvas.drawText("DATE", 90, 45, mPaint);
+        canvas.drawText("NAME", 133, 45, mPaint);
+        canvas.drawText("FROM", 180, 45, mPaint);
+        canvas.drawText("TO", 210, 45, mPaint);
+        canvas.drawText("FARE", 232, 45, mPaint);
+        canvas.drawText("AMOUNT", 251, 45, mPaint);
+        canvas.drawText("EXP/DEL", 276, 45, mPaint);
+        return canvas;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    void endPage(Canvas page) {
+        int endPos = startYPosition -12;
+        page.drawLine(mStartXPosition, 40, mEndXPosition + 3, 40, mPaint);
+        page.drawLine(mStartXPosition, 50, mEndXPosition + 3, 50, mPaint);
+        page.drawLine(10, 40, 10, endPos, mPaint);
+        page.drawLine(25, 40, 25, endPos, mPaint);
+        page.drawLine(40, 40, 40, endPos, mPaint);
+        page.drawLine(58, 40, 58, endPos, mPaint);
+        page.drawLine(75, 40, 75, endPos, mPaint);
+        page.drawLine(105, 40, 105, endPos, mPaint);
+        page.drawLine(165, 40, 165, endPos, mPaint);
+        page.drawLine(195, 40, 195, endPos, mPaint);
+        page.drawLine(223, 40, 223, endPos, mPaint);
+        page.drawLine(240, 40, 240, endPos, mPaint);
+        page.drawLine(260, 40, 260, endPos, mPaint);
+        page.drawLine(290, 40, 290, endPos, mPaint);
+        mPDFDocument.finishPage(mPDFPage);
     }
 
     private void excelWorkBookWrite() {

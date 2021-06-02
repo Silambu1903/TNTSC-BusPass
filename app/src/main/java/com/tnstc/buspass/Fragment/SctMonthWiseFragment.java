@@ -4,7 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -22,6 +28,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +42,7 @@ import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
 import com.tnstc.buspass.Database.DAOs.SctDao;
 import com.tnstc.buspass.Database.DAOs.SctOpeningDao;
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
+import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.Entity.SctOpeningClosing;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
@@ -56,6 +65,8 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
+
 public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItemClickListener {
     SctMonthwiseBinding mBinding;
     TnstcBusPassDB db;
@@ -72,6 +83,13 @@ public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItem
     String year;
     String currentMonth;
     String currentYear;
+    BaseActivity mActivity;
+    int startYPosition;
+    PdfDocument mPDFDocument;
+    PdfDocument.Page mPDFPage;
+    Paint mPaint;
+    int mStartXPosition = 10;
+    int mEndXPosition;
 
     int balOpen100, balClose100, TotalBalCard100, balCard100, maxMonthOpenCard100,
             balOpen120, balClose120, TotalBalCard120, balCard120, maxMonthOpenCard120,
@@ -104,6 +122,7 @@ public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItem
         inflater.inflate(R.menu.users_menu, menu);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
@@ -119,7 +138,9 @@ public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItem
                     + File.separator + "TNSTC BUS PASS DETAILS" + File.separator);
             intent.setDataAndType(uri, "*/*");
             startActivity(Intent.createChooser(intent, "TNSTC BUS PASS DETAILS"));
-        } else {
+        }  else if (item.getItemId() == R.id.action_print) {
+            createPDF();
+        }else {
             BaseActivity activity = (BaseActivity) getActivity();
             activity.onSupportNavigateUp();
         }
@@ -136,6 +157,7 @@ public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItem
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mContext = getContext();
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
+        mActivity = (BaseActivity)getActivity();
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.sctDao();
@@ -160,6 +182,125 @@ public class SctMonthWiseFragment extends Fragment implements AdapterView.OnItem
         mBinding.yearListMst.setOnItemClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void createPDF() {
+        if (sctOpeningClosing.size() <= 0) {
+            return;
+        }
+        int itemPerPage = 10;
+        List<List<SctOpeningClosing>> printablePages = splitIntoParts(sctOpeningClosing, itemPerPage);
+        mPDFDocument = new PdfDocument();
+        mPaint = new Paint();
+        Canvas pdfPage;
+        for (int i = 0; i < printablePages.size(); i++) {
+            pdfPage = startPage(i + 1);
+            List<SctOpeningClosing> entities = printablePages.get(i);
+            for (int j = 0; j < entities.size(); j++) {
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctCard()), 18, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctKey()), 34, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctOpening()), 50, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctClosing()), 66, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctTotal()), 95, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctOpenMax()), 122, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctCloseMax()), 148, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(i).getSctTotalCard()), 175, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctTotalAmount()), 196, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctBalOpen()), 215, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctBalClose()), 238, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctBalCard()), 260, startYPosition, mPaint);
+                pdfPage.drawText(String.valueOf(entities.get(j).getSctBalTotalCard()), 280, startYPosition, mPaint);
+                pdfPage.drawLine(mStartXPosition, startYPosition + 3, mEndXPosition + 3, startYPosition + 3, mPaint);
+                startYPosition += 15;
+            }
+            endPage(pdfPage);
+        }
+        File mypath=new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME);
+        try {
+            mPDFDocument.writeTo(new FileOutputStream(mypath));
+            mActivity.printDocument();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mPDFDocument.close();
+    }
+
+    public List<List<SctOpeningClosing>> splitIntoParts(List<SctOpeningClosing> Entities, int itemsPerList) {
+        List<List<SctOpeningClosing>> splittedList = new ArrayList<>();
+        for (int i = 0; i < Entities.size(); i += itemsPerList) {
+            splittedList.add(Entities.subList(i, Math.min(Entities.size(), i + itemsPerList)));
+        }
+        return splittedList;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    Canvas startPage(int pageNo) {
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(297, 210, pageNo).create();
+        mPDFPage = mPDFDocument.startPage(pageInfo);
+        Canvas canvas = mPDFPage.getCanvas();
+        Typeface currentTypeFace = mPaint.getTypeface();
+        Typeface bold = Typeface.create(currentTypeFace, Typeface.BOLD);
+        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.google_font);
+        mPaint.setTypeface(typeface);
+        mPaint.setTypeface(bold);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setTextSize(12.f);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("TNSTC AMBUR DEPOT", pageInfo.getPageWidth() / 2, 10, mPaint);
+        mPaint.setTextSize(8.f);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setColor(Color.BLACK);
+        canvas.drawText("SCT BUS PASS DETAILS -- " + currentMonth + " " + currentYear, pageInfo.getPageWidth() / 2, 20, mPaint);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        mPaint.setTextSize(3.0f);
+        mPaint.setColor(Color.BLACK);
+        mEndXPosition = pageInfo.getPageWidth() - 10;
+        startYPosition = 60;
+
+
+        canvas.drawText("START BAL INVENTORY", 70, 35, mPaint);
+        canvas.drawText("SCALES DETAILS", 160, 35, mPaint);
+        canvas.drawText("BALANCE DETAILS", 250, 35, mPaint);
+
+        canvas.drawText("CARD", 18, 45, mPaint);
+        canvas.drawText("KEY", 33, 45, mPaint);
+        canvas.drawText("OPEN", 48, 45, mPaint);
+        canvas.drawText("CLOSE", 67, 45, mPaint);
+        canvas.drawText("TOTAL", 93, 45, mPaint);
+        canvas.drawText("OPEN", 122, 45, mPaint);
+        canvas.drawText("CLOSE", 148, 45, mPaint);
+        canvas.drawText("TOTAL", 175, 45, mPaint);
+        canvas.drawText("AMOUNT", 196, 45, mPaint);
+        canvas.drawText("OPEN", 215, 45, mPaint);
+        canvas.drawText("CLOSE", 238, 45, mPaint);
+        canvas.drawText("BALANCE", 260, 45, mPaint);
+        canvas.drawText("TOTAL", 280, 45, mPaint);
+        return canvas;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    void endPage(Canvas page) {
+        int endPos = startYPosition -12;
+        page.drawLine(mStartXPosition, 30, mEndXPosition + 3, 30, mPaint);
+        page.drawLine(mStartXPosition, 40, mEndXPosition + 3, 40, mPaint);
+        page.drawLine(mStartXPosition, 50, mEndXPosition + 3, 50, mPaint);
+        page.drawLine(10, 30, 10, endPos, mPaint);
+        page.drawLine(25, 40, 25, endPos, mPaint);
+        page.drawLine(40, 40, 40, endPos, mPaint);
+        page.drawLine(58, 40, 58, endPos, mPaint);
+        page.drawLine(80, 40, 80, endPos, mPaint);
+        page.drawLine(110, 30, 110, endPos, mPaint);
+        page.drawLine(135, 40, 135, endPos, mPaint);
+        page.drawLine(160, 40, 160, endPos, mPaint);
+        page.drawLine(185, 40, 185, endPos, mPaint);
+        page.drawLine(205, 30, 205, endPos, mPaint);
+        page.drawLine(225, 40, 225, endPos, mPaint);
+        page.drawLine(250, 40, 250, endPos, mPaint);
+        page.drawLine(270, 40, 270, endPos, mPaint);
+        page.drawLine(290, 30, 290, endPos, mPaint);
+
+        mPDFDocument.finishPage(mPDFPage);
+    }
 
     private void excelWorkBookWrite() {
         currentMonth = String.valueOf(DateFormat.format("MMMM", new Date()));

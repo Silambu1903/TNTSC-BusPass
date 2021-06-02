@@ -45,7 +45,7 @@ public class PrintAdapter extends PrintDocumentAdapter {
         InputStream input = null;
         OutputStream output = null;
         try {
-            input = new FileInputStream(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + PINTER_FILE_NAME));
+            input = new FileInputStream(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME));
             output = new FileOutputStream(destination.getFileDescriptor());
             byte[] buf = new byte[1024];
             int bytesRead;
@@ -68,7 +68,7 @@ public class PrintAdapter extends PrintDocumentAdapter {
 
     public void deleteFile() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            File file = new File(Environment.getExternalStorageDirectory(), PINTER_FILE_NAME);
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME);
             if (file.exists()) {
                 file.delete();
             }

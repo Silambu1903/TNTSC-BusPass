@@ -25,7 +25,7 @@ import com.tnstc.buspass.callback.TextWatcherWithInstance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder>  {
+public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.PassEntryViewHolder> {
 
     public List<PassEntity> passEntityList;
 
@@ -63,25 +63,7 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         holder.txtExpDel.setText(passEntityList.get(position).expDel);
         holder.txtCelNo.setText(passEntityList.get(position).cellNumber + "");
 
-        holder.txtID.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!holder.txtID.getText().toString().equals("")) {
-                    dao.updateino(Integer.parseInt(holder.txtID.getText().toString()),
-                            passEntityList.get(position).getSno());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         holder.txtRepNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -276,6 +258,7 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
         });
 
     }
+
 
     public int getItemCount() {
         return passEntityList.size();
