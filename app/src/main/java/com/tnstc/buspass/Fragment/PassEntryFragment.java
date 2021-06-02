@@ -69,10 +69,11 @@ public class PassEntryFragment extends Fragment {
         materialDateBuilder.setTitleText("SELECT A DATE");
         materialDateBuilder.setTheme(R.style.Canlder);
         final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+
         initialValueset();
         adapterForAutoComplete();
         totalAmount();
-        //getDataFromDb();
+        getDataFromDb();
         mBinding.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,9 +86,13 @@ public class PassEntryFragment extends Fragment {
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (validation()) {
+                GetPassEntryDetails();
+              /*  if (validation()) {
                     GetPassEntryDetails();
-                }
+                }*/
+
+               // mActivity.printDocument();
+
             }
         });
     }
@@ -102,10 +107,7 @@ public class PassEntryFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
                 if (!mBinding.teiIno.getText().toString().equals("")) {
                     id = Integer.parseInt(mBinding.teiIno.getText().toString());
                     getIdList = new ArrayList<>();
@@ -128,6 +130,11 @@ public class PassEntryFragment extends Fragment {
                     mBinding.actExpDel.setText("");
                     mBinding.teiCellNumber.setText("");
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }
