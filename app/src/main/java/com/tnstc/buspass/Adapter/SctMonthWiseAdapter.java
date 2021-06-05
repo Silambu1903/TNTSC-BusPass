@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
 import com.tnstc.buspass.Database.Entity.SctOpeningClosing;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 
 import java.util.List;
 
@@ -19,12 +21,11 @@ public class SctMonthWiseAdapter extends RecyclerView.Adapter<SctMonthWiseAdapte
 
 
     public List<SctOpeningClosing> SctOpeningClosing;
-    private Context mContext;
+    ItemClickListener itemClickListener;
 
-
-    public SctMonthWiseAdapter(List<SctOpeningClosing> SctOpeningClosing, Context mContext) {
-        this.SctOpeningClosing = SctOpeningClosing;
-        this.mContext = mContext;
+    public SctMonthWiseAdapter(List<SctOpeningClosing> sctOpeningClosing, ItemClickListener itemClickListener) {
+        SctOpeningClosing = sctOpeningClosing;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -57,10 +58,12 @@ public class SctMonthWiseAdapter extends RecyclerView.Adapter<SctMonthWiseAdapte
     }
 
     public class itemViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout constraintLayout;
         TextView mstMonthCard, mstMonthKey, mstMonthOpening, mstMonthClosing, mstTotalCard,
                 getOpen, getClose, getTotalCard, getTotalAmount, balOpen, balClose, balCard, balTotalScale;
         public itemViewHolder(@NonNull View itemView) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.con_sct);
             mstMonthCard = itemView.findViewById(R.id.month_mst_card_200);
             mstMonthKey = itemView.findViewById(R.id.month_mst_key_200);
             mstMonthOpening = itemView.findViewById(R.id.month_mst_open_200);
@@ -74,6 +77,13 @@ public class SctMonthWiseAdapter extends RecyclerView.Adapter<SctMonthWiseAdapte
             balClose = itemView.findViewById(R.id.month_mst_scales_bal_close_200);
             balCard = itemView.findViewById(R.id.month_mst_scales_bal_card_200);
             balTotalScale = itemView.findViewById(R.id.month_mst_scales_bal_total_200);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickListener.OnItemLongClick(v,getAdapterPosition(),constraintLayout);
+                }
+            });
         }
     }
 }

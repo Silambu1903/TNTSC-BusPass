@@ -104,7 +104,7 @@ public class DutyListFragment extends Fragment implements ItemClickListener, Ada
     }
 
     @Override
-    public void OnItemLongClick(View v, int pos) {
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
 
     }
 

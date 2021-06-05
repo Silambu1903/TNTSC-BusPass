@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,18 +43,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     ApplicationClass mAppClass;
     Context mContext;
     BaseActivity activity;
-    List<Calendar> beforeMin;
-    List<String> currentDate;
-    List<String> currentDatetoPrevious;
-    DateAndDayAdapter mAdapter;
-    String Duty;
-    List<String> dutySaved;
-    TnstcBusPassDB db;
-    DutyDao dutyDao;
-    List<DutyEntity> dutyEntityList;
     boolean pass = false;
     boolean mst = false;
     boolean sct = false;
+    Parcelable state;
 
 
     @Nullable
@@ -121,6 +114,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         activity.getSupportActionBar().hide();
+       //mBinding.horiznotalviewLayout.getLayoutManager().onRestoreInstanceState(state);
         if (pass) {
             pass = false;
             changedState(new PassDesignFragment(), mBinding.textView4, mBinding.textView3, mBinding.textView5, mBinding.textView6);
@@ -138,6 +132,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onDetach() {
         super.onDetach();
         Log.e("TAG", "onDetach: ");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        state=new Bundle();
+        //state = mBinding.horiznotalviewLayout.getLayoutManager().onSaveInstanceState();
     }
 
     @Override

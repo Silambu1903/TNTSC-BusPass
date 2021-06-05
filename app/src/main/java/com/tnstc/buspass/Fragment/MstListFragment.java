@@ -3,7 +3,6 @@ package com.tnstc.buspass.Fragment;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.print.PrintManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -147,7 +146,7 @@ public class MstListFragment extends Fragment implements ItemClickListener {
     }
 
     @Override
-    public void OnItemLongClick(View v, int pos) {
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
 
     }
 

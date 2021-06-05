@@ -7,6 +7,7 @@ import androidx.room.Query;
 
 
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
+import com.tnstc.buspass.Database.Entity.PassEntity;
 
 
 import java.util.List;
@@ -57,4 +58,8 @@ public interface MstOpeningDao {
 
     @Query("SELECT (mstMonth) FROM mstopeningclosing WHERE mstMonth=:month")
     String mstMonthEmptyCheck(String month);
+
+
+    void delete(MstOpeningClosing mstOpeningClosing);
+
 }

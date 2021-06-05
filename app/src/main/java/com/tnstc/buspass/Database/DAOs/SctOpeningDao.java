@@ -52,4 +52,6 @@ public interface SctOpeningDao {
 
     @Query("SELECT *FROM sctopeningclosing WHERE sctMonth=:monthwise and sctYear=:yearwise")
     List<SctOpeningClosing> getMonthWisesct(String monthwise, String yearwise);
+
+    void delete(SctOpeningClosing sctOpeningClosing);
 }

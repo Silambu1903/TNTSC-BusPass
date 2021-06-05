@@ -1,37 +1,28 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.graphics.fonts.Font;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.print.PrintManager;
-import android.print.pdf.PrintedPdfDocument;
 import android.text.format.DateFormat;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.ActionMode;
-
-import android.view.animation.ScaleAnimation;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +33,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.PassEntryAdapter;
 import com.tnstc.buspass.Database.DAOs.PassDao;
@@ -59,10 +51,6 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Table;
-import org.apache.poi.ss.usermodel.TableStyleInfo;
-import org.apache.poi.ss.util.CellReference;
-import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,27 +69,20 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     PassEntryAdapter passEntryAdapter;
     public List<PassEntity> passEntityList;
     BaseActivity mActivity;
-    private ScaleGestureDetector mScaleDetector;
-    GestureDetector detector;
-    private float mScaleFactor = 1.f;
-    private float mScale = 1f;
     int txt;
-    private ActionMode actionMode;
-    boolean mMultiSelect = false;
+
     TnstcBusPassDB db;
     PassDao dao;
     String currentMonth;
     String currentYear;
     int startYPosition;
-
-
-
+    boolean mMultiSelect = false;
+    private ActionMode mActionMode;
     PdfDocument mPDFDocument;
     PdfDocument.Page mPDFPage;
     Paint mPaint;
     int mStartXPosition = 10;
     int mEndXPosition;
-
 
 
     @Nullable
@@ -197,7 +178,7 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
             }
             endPage(pdfPage);
         }
-        File mypath=new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME);
+        File mypath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), PINTER_FILE_NAME);
         try {
             mPDFDocument.writeTo(new FileOutputStream(mypath));
             mActivity.printDocument();
@@ -255,7 +236,7 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void endPage(Canvas page) {
-        int endPos = startYPosition -12;
+        int endPos = startYPosition - 12;
         page.drawLine(mStartXPosition, 40, mEndXPosition + 3, 40, mPaint);
         page.drawLine(mStartXPosition, 50, mEndXPosition + 3, 50, mPaint);
         page.drawLine(10, 40, 10, endPos, mPaint);
@@ -377,14 +358,9 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     }
 
     @Override
-    public void OnItemLongClick(View v, int pos) {
-        //startActionMode(pos);
-        dao.delete(passEntityList.get(pos));
-        passEntityList.remove(passEntityList.get(pos));
-        passEntryAdapter.notifyDataSetChanged();
-        totalAndDailyEntry();
-
-
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
+        startActionMode(pos,constraintLayout);
+        constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorItemSelected));
     }
 
     @Override
@@ -408,4 +384,52 @@ public class PassEntryListFragment extends Fragment implements ItemClickListener
     }
 
 
+    public void startActionMode(int pos,ConstraintLayout constraintLayout) {
+        ActionMode.Callback userDelete = new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                mMultiSelect = true;
+                menu.add(R.string.delete).setIcon(R.drawable.ic_baseline_delete_24).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                return false;
+
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getTitle().toString()) {
+                    case "Delete":
+                        new MaterialAlertDialogBuilder(getContext()).setTitle(R.string.delete).setMessage(R.string.areYouSureWantToDelete).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dao.delete(passEntityList.get(pos));
+                                passEntityList.remove(passEntityList.get(pos));
+                                passEntryAdapter.notifyDataSetChanged();
+                                totalAndDailyEntry();
+                            }
+                        }).setNegativeButton(R.string.no, null).show();
+
+                        break;
+                }
+                return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                mActionMode = mode;
+                mMultiSelect = false;
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorTransparentWhite));
+                mode.finish();
+
+            }
+        };
+        ((AppCompatActivity) mContext).startSupportActionMode(userDelete);
+    }
 }

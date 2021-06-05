@@ -1,6 +1,7 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
@@ -27,21 +28,27 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.PassEntryAdapter;
 import com.tnstc.buspass.Adapter.PassMonthWiseListAdapter;
 import com.tnstc.buspass.Database.DAOs.PassDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.Others.MultiTextWatcher;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 import com.tnstc.buspass.callback.TextWatcherWithInstance;
 import com.tnstc.buspass.databinding.PassMonthlyWiseFragmentBinding;
 
@@ -65,7 +72,7 @@ import java.util.List;
 
 import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
 
-public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnItemClickListener, ItemClickListener {
     PassMonthlyWiseFragmentBinding mBinding;
     ApplicationClass mAppClass;
     Context mContext;
@@ -84,6 +91,9 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
     Paint mPaint;
     int mStartXPosition = 10;
     int mEndXPosition;
+
+    boolean mMultiSelect = false;
+    private ActionMode mActionMode;
 
 
     @Nullable
@@ -352,7 +362,7 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
         int monthWiseTotalScales = dao.getMonthWiseTotalSales(month,year);
         mBinding.txtMonthWiseTotAmount.setText(monthWiseTotal+"");
         mBinding.txtMonthWiseToalScalesAm.setText(monthWiseTotalScales+"");
-        mAdapter = new PassMonthWiseListAdapter(passEntityList, getContext());
+        mAdapter = new PassMonthWiseListAdapter(passEntityList, this);
         mBinding.entryList.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.entryList.setAdapter(mAdapter);
     }
@@ -402,13 +412,90 @@ public class PassMonthlyWiseFragment extends Fragment implements AdapterView.OnI
         if (!year.isEmpty() && !month.isEmpty()) {
             passEntityList = new ArrayList<>();
             passEntityList = dao.getMonthWise(month, year);
-            mAdapter = new PassMonthWiseListAdapter(passEntityList, getContext());
+            mAdapter = new PassMonthWiseListAdapter(passEntityList, this);
             mBinding.entryList.setLayoutManager(new LinearLayoutManager(getContext()));
             mBinding.entryList.setAdapter(mAdapter);
-            int monthWiseTotal = dao.monthWiseTotal(month,year);
-            int monthWiseTotalScales = dao.getMonthWiseTotalSales(month,year);
-            mBinding.txtMonthWiseTotAmount.setText(monthWiseTotal+"");
-            mBinding.txtMonthWiseToalScalesAm.setText(monthWiseTotalScales+"");
+            totalAndMonthEntry();
+
         }
     }
+
+    @Override
+    public void OnItemClick(View v, int pos) {
+
+    }
+
+    @Override
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
+        startActionMode(pos,constraintLayout);
+        constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorItemSelected));
+    }
+
+    @Override
+    public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
+
+    }
+
+    public void startActionMode(int pos,ConstraintLayout constraintLayout) {
+        ActionMode.Callback userDelete = new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                mMultiSelect = true;
+                menu.add(R.string.delete).setIcon(R.drawable.ic_baseline_delete_24).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                return false;
+
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getTitle().toString()) {
+                    case "Delete":
+                        new MaterialAlertDialogBuilder(getContext()).setTitle(R.string.delete).setMessage(R.string.areYouSureWantToDelete).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dao.delete(passEntityList.get(pos));
+                                passEntityList.remove(passEntityList.get(pos));
+                                mAdapter.notifyDataSetChanged();
+                                totalAndMonthEntry();
+                            }
+                        }).setNegativeButton(R.string.no, null).show();
+
+                        break;
+                }
+                return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                mActionMode = mode;
+                mMultiSelect = false;
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorTransparentWhite));
+                mode.finish();
+
+            }
+        };
+        ((AppCompatActivity) mContext).startSupportActionMode(userDelete);
+    }
+
+    private void totalAndMonthEntry() {
+        int monthWiseTotal = dao.monthWiseTotal(month,year);
+        int monthWiseTotalScales = dao.getMonthWiseTotalSales(month,year);
+        mBinding.txtMonthWiseTotAmount.setText(monthWiseTotal+"");
+        mBinding.txtMonthWiseToalScalesAm.setText(monthWiseTotalScales+"");
+    }
+
+
 }

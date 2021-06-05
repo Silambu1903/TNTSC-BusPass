@@ -86,13 +86,9 @@ public class PassEntryFragment extends Fragment {
         mBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetPassEntryDetails();
-              /*  if (validation()) {
+                if (validation()) {
                     GetPassEntryDetails();
-                }*/
-
-               // mActivity.printDocument();
-
+                }
             }
         });
     }

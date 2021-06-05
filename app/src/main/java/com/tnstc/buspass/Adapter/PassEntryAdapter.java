@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.DAOs.PassDao;
@@ -266,11 +267,13 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
 
 
     public class PassEntryViewHolder extends RecyclerView.ViewHolder {
-        TextView txtSNo;
-        EditText txtID, txtRepNo, txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
+        ConstraintLayout constraintLayout;
+        TextView txtSNo,txtID;
+        EditText  txtRepNo, txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
 
         public PassEntryViewHolder(@NonNull View itemView) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.constaintpass);
             txtSNo = itemView.findViewById(R.id.item_txtSNo);
             txtID = itemView.findViewById(R.id.item_txtIno);
             txtRepNo = itemView.findViewById(R.id.item_txtrepno);
@@ -287,7 +290,7 @@ public class PassEntryAdapter extends RecyclerView.Adapter<PassEntryAdapter.Pass
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    clickListener.OnItemLongClick(view, getAdapterPosition());
+                    clickListener.OnItemLongClick(view, getAdapterPosition(),constraintLayout);
                     return true;
                 }
             });

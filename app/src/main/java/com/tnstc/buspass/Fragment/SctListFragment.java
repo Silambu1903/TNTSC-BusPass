@@ -130,7 +130,7 @@ public class SctListFragment extends Fragment implements ItemClickListener {
     }
 
     @Override
-    public void OnItemLongClick(View v, int pos) {
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
 
     }
 

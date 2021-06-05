@@ -8,23 +8,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tnstc.buspass.Database.Entity.PassEntity;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 
 import java.util.List;
 
 public class PassMonthWiseListAdapter extends RecyclerView.Adapter<PassMonthWiseListAdapter.PassMonthWiseViewHolder> {
     public List<PassEntity> passEntityList;
-    private Context mContext;
+    ItemClickListener itemClickListener;
 
-    public PassMonthWiseListAdapter(List<PassEntity> passEntityList, Context mContext) {
+    public PassMonthWiseListAdapter(List<PassEntity> passEntityList, ItemClickListener itemClickListener) {
         this.passEntityList = passEntityList;
-        this.mContext = mContext;
+        this.itemClickListener = itemClickListener;
     }
-
-
 
     @NonNull
     @Override
@@ -55,10 +55,12 @@ public class PassMonthWiseListAdapter extends RecyclerView.Adapter<PassMonthWise
     }
 
     public class PassMonthWiseViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout constraintLayout;
         TextView txtSNo,txtID, txtRepNo, txtnewOld, txtDate, txtName, txtForm, txtTo, txtBusFare, txtAmount, txtExpDel, txtCelNo;
 
         public PassMonthWiseViewHolder(@NonNull View itemView) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.con_pass_month);
             txtSNo = itemView.findViewById(R.id.item_month_wise_txtSNo);
             txtID = itemView.findViewById(R.id.item_month_wise_txtIno);
             txtRepNo = itemView.findViewById(R.id.item_month_wise_txtrepno);
@@ -71,6 +73,13 @@ public class PassMonthWiseListAdapter extends RecyclerView.Adapter<PassMonthWise
             txtAmount = itemView.findViewById(R.id.item_txt_month_wise_totalamount);
             txtExpDel = itemView.findViewById(R.id.item_month_wise_txt_expdel);
             txtCelNo = itemView.findViewById(R.id.item_month_wise_txt_cellnumber);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickListener.OnItemLongClick(v,getAdapterPosition(),constraintLayout);
+                }
+            });
         }
     }
 }

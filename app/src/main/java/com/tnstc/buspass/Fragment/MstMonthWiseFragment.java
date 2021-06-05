@@ -1,6 +1,7 @@
 package com.tnstc.buspass.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -31,22 +32,28 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.tnstc.buspass.Activity.BaseActivity;
 import com.tnstc.buspass.Adapter.MstMonthWiseAdapter;
 import com.tnstc.buspass.Database.DAOs.MstDao;
 import com.tnstc.buspass.Database.DAOs.MstOpeningDao;
 import com.tnstc.buspass.Database.DAOs.PassDao;
+import com.tnstc.buspass.Database.Entity.DutyEntity;
 import com.tnstc.buspass.Database.Entity.MstEntity;
 import com.tnstc.buspass.Database.Entity.MstOpeningClosing;
 import com.tnstc.buspass.Database.Entity.SctOpeningClosing;
 import com.tnstc.buspass.Database.TnstcBusPassDB;
 import com.tnstc.buspass.Others.ApplicationClass;
 import com.tnstc.buspass.R;
+import com.tnstc.buspass.callback.ItemClickListener;
 import com.tnstc.buspass.databinding.MstMonthwiseBinding;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -67,7 +74,7 @@ import java.util.List;
 
 import static com.tnstc.buspass.Others.ApplicationClass.PINTER_FILE_NAME;
 
-public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItemClickListener, ItemClickListener {
     MstMonthwiseBinding mBinding;
     TnstcBusPassDB db;
     MstDao dao;
@@ -90,6 +97,9 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
     Paint mPaint;
     int mStartXPosition = 10;
     int mEndXPosition;
+
+    boolean mMultiSelect = false;
+    private ActionMode mActionMode;
 
     int balOpen200, balClose200, TotalBalCard200, balCard200, maxMonthOpenCard200,
             balOpen240, balClose240, TotalBalCard240, balCard240, maxMonthOpenCard240,
@@ -124,10 +134,10 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_download) {
-            if (!(mstOpeningClosings ==null)) {
+            if (!(mstOpeningClosings == null)) {
                 excelWorkBookWrite();
-            }else {
-                mAppClass.showSnackBar(getContext(),"Please Select the Month and Year");
+            } else {
+                mAppClass.showSnackBar(getContext(), "Please Select the Month and Year");
             }
 
         } else if (item.getItemId() == R.id.action_open) {
@@ -156,7 +166,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
         mContext = getContext();
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mAppClass = (ApplicationClass) getActivity().getApplicationContext();
-        mActivity = (BaseActivity)getActivity();
+        mActivity = (BaseActivity) getActivity();
         db = TnstcBusPassDB.getDatabase(mContext);
         dao = db.mstDao();
         daoOpenClose = db.OpeningDao();
@@ -170,7 +180,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
             year = mBinding.yearListMst.getText().toString();
             month = mBinding.monthListMst.getText().toString();
             mstOpeningClosings = daoOpenClose.getMonthWiseMst(month, year);
-            mAdapter = new MstMonthWiseAdapter(mstOpeningClosings, getContext());
+            mAdapter = new MstMonthWiseAdapter(mstOpeningClosings, this);
             mBinding.recyclerMstMonth.setLayoutManager(new LinearLayoutManager(getContext()));
             mBinding.recyclerMstMonth.setAdapter(mAdapter);
         } else {
@@ -214,7 +224,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
             }
             endPage(pdfPage);
         }
-        File mypath=new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),PINTER_FILE_NAME);
+        File mypath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), PINTER_FILE_NAME);
         try {
             mPDFDocument.writeTo(new FileOutputStream(mypath));
             mActivity.printDocument();
@@ -280,7 +290,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void endPage(Canvas page) {
-        int endPos = startYPosition -12;
+        int endPos = startYPosition - 12;
         page.drawLine(mStartXPosition, 30, mEndXPosition + 3, 30, mPaint);
         page.drawLine(mStartXPosition, 40, mEndXPosition + 3, 40, mPaint);
         page.drawLine(mStartXPosition, 50, mEndXPosition + 3, 50, mPaint);
@@ -301,6 +311,7 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
 
         mPDFDocument.finishPage(mPDFPage);
     }
+
     private void excelWorkBookWrite() {
         currentMonth = String.valueOf(DateFormat.format("MMMM", new Date()));
         currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
@@ -747,8 +758,77 @@ public class MstMonthWiseFragment extends Fragment implements AdapterView.OnItem
         month = mBinding.monthListMst.getText().toString();
         mstOpeningClosings = new ArrayList<>();
         mstOpeningClosings = daoOpenClose.getMonthWiseMst(month, year);
-        mAdapter = new MstMonthWiseAdapter(mstOpeningClosings, getContext());
+        mAdapter = new MstMonthWiseAdapter(mstOpeningClosings, this);
         mBinding.recyclerMstMonth.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.recyclerMstMonth.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void OnItemClick(View v, int pos) {
+
+    }
+
+    @Override
+    public void OnItemLongClick(View v, int pos, ConstraintLayout constraintLayout) {
+        startActionMode(pos, constraintLayout);
+    }
+
+    @Override
+    public void OnItemClickDate(View v, int adapterPosition, List<String> currentDateAndDay, ConstraintLayout constraintLayout) {
+
+    }
+
+    @Override
+    public void OnItemDate(int adapterPosition, List<DutyEntity> dutyEntities) {
+
+    }
+
+    public void startActionMode(int pos, ConstraintLayout constraintLayout) {
+        ActionMode.Callback userDelete = new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                mMultiSelect = true;
+                menu.add(R.string.delete).setIcon(R.drawable.ic_baseline_delete_24).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                mActionMode = mode;
+                return false;
+
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getTitle().toString()) {
+                    case "Delete":
+                        new MaterialAlertDialogBuilder(getContext()).setTitle(R.string.delete).setMessage(R.string.areYouSureWantToDelete).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                daoOpenClose.delete(mstOpeningClosings.get(pos));
+                                mstOpeningClosings.remove(mstOpeningClosings.get(pos));
+                                mAdapter.notifyDataSetChanged();
+
+                            }
+                        }).setNegativeButton(R.string.no, null).show();
+
+                        break;
+                }
+                return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                mActionMode = mode;
+                mMultiSelect = false;
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorTransparentWhite));
+                mode.finish();
+
+            }
+        };
+        ((AppCompatActivity) mContext).startSupportActionMode(userDelete);
     }
 }
